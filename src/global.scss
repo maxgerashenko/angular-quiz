@@ -1,0 +1,28 @@
+/* Add application styles & imports to this file! */
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+  font-family: 'Lato', sans-serif;
+}
+
+.page-content {
+  min-width: 600px;
+  max-width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mat-mdc-list-item:hover:not(.mat-option-disabled) {
+  background: rgb(231, 231, 231);
+  border-radius: 10px;
+}

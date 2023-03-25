@@ -1,0 +1,42 @@
+<div class="page-content">
+  <h1>Quiz Results</h1>
+  <p>
+    You scored is {{ score }} ({{ numCorrect }} out of
+    {{ quiz.questions.length }}).
+  </p>
+  <button (click)="reset.emit()">Try Again</button>
+  <p></p>
+
+  <p>{{ message }}</p>
+
+  <ng-container
+    *ngFor="let question of quiz.questions; let questionIndex = index"
+  >
+    <div>
+      <label>
+        {{ question.text }}
+      </label>
+      <ul>
+        <li
+          *ngFor="let option of question.options; let optionIndex = index"
+          [ngClass]="{
+            correct:
+              ((optionIndex | alphabetLetter) === answers[questionIndex] &&
+                answers[questionIndex] === question.answer) ||
+              (optionIndex | alphabetLetter) === question.answer,
+            incorrect:
+              (optionIndex | alphabetLetter) === answers[questionIndex] &&
+              answers[questionIndex] !== question.answer
+          }"
+        >
+          {{ optionIndex | alphabetLetter }}.
+          {{ answers[questionIndex] }}
+          {{ question.answer }}
+          <label>
+            {{ option }}
+          </label>
+        </li>
+      </ul>
+    </div>
+  </ng-container>
+</div>

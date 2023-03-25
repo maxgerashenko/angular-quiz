@@ -1,0 +1,32 @@
+<div class="page-content">
+  <h1>{{ quiz.title }}</h1>
+  <ng-container
+    *ngIf="currentQuestionIndex < quiz.questions.length; else results"
+  >
+  <mat-card class="quiz-card">
+    <quiz-question
+      #optionElement
+      [question]="quiz.questions[currentQuestionIndex]"
+      [currentQuestionIndex]="currentQuestionIndex"
+      [selectedOptionValue]="selectedOptionValue"
+      (optionSelected)="selectOption($event)"
+      (toogleChange)="toogleNext($event)"></quiz-question>
+  <mat-card-actions class="button-container space-between">
+     <button mat-raised-button color="accent" (click)="resetQuiz()">
+      Reset
+     </button>
+     <button 
+          mat-raised-button
+          color="primary"
+          (click)="submitAnswer()"
+          [disabled]="isAutoReply"
+        >
+        NEXT
+        </button>
+  </mat-card-actions>
+  </mat-card>
+  </ng-container>
+  <ng-template #results>
+    <quiz-results [quiz]="quiz" [answers]="answers" [numCorrect]="numCorrect" (reset)="resetQuiz()"/>
+  </ng-template>
+</div>

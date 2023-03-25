@@ -1,0 +1,26 @@
+<mat-card-header>
+  <mat-slide-toggle
+    [checked]="checked"
+    labelPosition="before"
+    (change)="onToggleChange($event.checked)"
+    >auto-reply
+  </mat-slide-toggle>
+  <mat-card-subtitle class="subtitle space-between">
+    <div>Question {{ currentQuestionIndex + 1 }}</div>
+  </mat-card-subtitle>
+  <mat-card-title class="title">{{ question.text }}</mat-card-title>
+</mat-card-header>
+<mat-card-content class="content">
+  <mat-selection-list
+    #list
+    [multiple]="false"
+    (selectionChange)="selectOption($event)"
+  >
+    <mat-list-option
+      *ngFor="let option of question.options; let i = index"
+      [value]="i | alphabetLetter"
+    >
+      {{ option }}
+    </mat-list-option>
+  </mat-selection-list>
+</mat-card-content>
