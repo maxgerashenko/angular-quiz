@@ -14,7 +14,7 @@ export class QuizResultsComponent {
   @Input() numCorrect: number;
   @Output() reset = new EventEmitter<undefined>();
 
-  progressBarColor: 'primary' | 'accent';
+  buttonColor: 'primary' | 'accent';
   score: number;
   total: number;
   message: string;
@@ -37,11 +37,11 @@ export class QuizResultsComponent {
       title: 'this title',
       questions: [...this.questions],
     };
-    this.numCorrect = 7;
+    this.numCorrect = 9;
     this.total = this.quiz.questions.length;
     this.score = (this.numCorrect / this.total) * 100;
     this.message = this.getFeedbackMessage();
-    this.progressBarColor = this.score >= 80 ? 'primary' : 'accent';
+    this.buttonColor = this.score >= 80 ? 'primary' : 'accent';
   }
 
   getFeedbackMessage(): string {
