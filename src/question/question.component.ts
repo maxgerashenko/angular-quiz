@@ -9,7 +9,6 @@ import {
   MatSelectionList,
   MatSelectionListChange,
 } from '@angular/material/list';
-import { MatSelect } from '@angular/material/select';
 import { AlphabetLetterPipe } from '../pipes/letter.pipe';
 import { Question } from '../services/quiz.service';
 

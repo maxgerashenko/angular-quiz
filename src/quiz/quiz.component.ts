@@ -17,7 +17,6 @@ import { rpcQuiz } from '../services/rpcQuiz';
   styleUrls: ['./quiz.component.css'],
 })
 export class QuizComponent implements OnInit {
-  @Output() quizComplete = new EventEmitter<number>();
   @ViewChild(QuizQuestionComponent) questions: QuizQuestionComponent;
 
   quiz = rpcQuiz as Quiz;
@@ -28,9 +27,6 @@ export class QuizComponent implements OnInit {
   isAutoReply = false;
 
   constructor(private readonly quizService: QuizService) {}
-
-  getCorrectCount = () =>
-    this.quiz.questions.filter((question) => question.isCorrect).length;
 
   ngOnInit(): void {
     this.shuffleQuestions();
@@ -46,7 +42,7 @@ export class QuizComponent implements OnInit {
     }
   }
 
-  toogleNext(value) {
+  toogleAutoReply(value) {
     this.isAutoReply = value;
   }
 
@@ -60,25 +56,10 @@ export class QuizComponent implements OnInit {
     this.currentQuestionIndex = 0;
     this.selectedOptionValue = null;
     this.shuffleQuestions();
-    this.quiz.questions.forEach((question) => (question.isCorrect = undefined));
   }
 
   submitAnswer(): void {
     this.questions.list.deselectAll();
-    const currentQuestion = this.quiz.questions[this.currentQuestionIndex];
-    currentQuestion['isCorrect'] =
-      this.selectedOptionValue === currentQuestion.answer;
-    this.selectedOptionValue = null;
-
-    if (this.currentQuestionIndex === this.quiz.questions.length - 1) {
-      const numCorrect = this.quiz.questions.filter(
-        (question) => question.isCorrect
-      ).length;
-      this.quizComplete.emit(numCorrect);
-      this.numCorrect = numCorrect;
-      this.currentQuestionIndex++;
-    } else {
-      this.currentQuestionIndex++;
-    }
+    this.currentQuestionIndex++;
   }
 }

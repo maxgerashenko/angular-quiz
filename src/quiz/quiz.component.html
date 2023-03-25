@@ -1,18 +1,21 @@
 <div class="page-content">
-  <h1>{{ quiz.title }}</h1>
+  
+  
   <ng-container
     *ngIf="currentQuestionIndex < quiz.questions.length; else results"
   >
+  <h1>{{ quiz.title }}</h1>
   <mat-card class="quiz-card">
+    <mat-progress-bar color="pimary" mode="determinate" [value]="(currentQuestionIndex+1)/quiz.questions.length*100"/>
     <quiz-question
       #optionElement
       [question]="quiz.questions[currentQuestionIndex]"
       [currentQuestionIndex]="currentQuestionIndex"
       [selectedOptionValue]="selectedOptionValue"
       (optionSelected)="selectOption($event)"
-      (toogleChange)="toogleNext($event)"></quiz-question>
+      (toogleChange)="toogleAutoReply($event)"></quiz-question>
   <mat-card-actions class="button-container space-between">
-     <button mat-raised-button color="accent" (click)="resetQuiz()">
+     <button mat-button (click)="resetQuiz()">
       Reset
      </button>
      <button 

@@ -21,8 +21,3 @@ h2 {
   display: flex;
   justify-content: space-between;
 }
-
-.mat-mdc-list-item:hover:not(.mat-option-disabled) {
-  background: rgb(231, 231, 231);
-  border-radius: 10px;
-}
