@@ -30,12 +30,12 @@ export class QuizQuestionComponent {
   get questionIndex(): number {
     return this.currentQuestionIndex + 1;
   }
-  checked = false;
+  isAutoReply = true;
 
   constructor(readonly alphabetLetter: AlphabetLetterPipe) {}
 
   onToggleChange(value: boolean) {
-    this.checked = value;
+    this.isAutoReply = value;
     this.toogleChange.emit(value);
     this.list.deselectAll();
   }
@@ -51,6 +51,6 @@ export class QuizQuestionComponent {
       },
     });
 
-    if (this.checked) this.list.deselectAll();
+    if (this.isAutoReply) this.list.deselectAll();
   }
 }

@@ -31,6 +31,7 @@ $light-theme: mat.define-light-theme(
 @include mat.card-theme($dark-theme);
 @include mat.progress-bar-theme($dark-theme);
 @include mat.list-theme($dark-theme);
+@include mat.slide-toggle-theme($dark-theme);
 
 // Apply the light theme only when the user prefers light themes.
 @media (prefers-color-scheme: light) {
@@ -38,19 +39,8 @@ $light-theme: mat.define-light-theme(
   // typography and density styles.
   @include mat.core-color($light-theme);
   @include mat.button-color($light-theme);
+  @include mat.card-color($light-theme);
+  @include mat.progress-bar-color($light-theme);
+  @include mat.list-color($light-theme);
+  @include mat.slide-toggle-color($light-theme);
 }
-
-// @include mat.core-theme($dark-theme);
-// @include mat.button-theme($dark-theme);
-// @include mat.card-theme($dark-theme);
-// @include mat.progress-bar-theme($dark-theme);
-
-// // Apply the light theme only when the user prefers light themes.
-// @media (prefers-color-scheme: light) {
-//   // Use the `-color` mixins to only apply color styles without reapplying the same
-//   // typography and density styles.
-//   @include mat.core-color($light-theme);
-//   @include mat.button-color($light-theme);
-//   @include mat.card-theme($light-theme);
-//   @include mat.progress-bar-theme($light-theme);
-// }

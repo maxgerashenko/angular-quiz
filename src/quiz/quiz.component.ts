@@ -24,7 +24,7 @@ export class QuizComponent implements OnInit {
   numCorrect = 0;
   currentQuestionIndex = 0;
   selectedOptionValue: string;
-  isAutoReply = false;
+  isAutoReply = true;
 
   constructor(private readonly quizService: QuizService) {}
 

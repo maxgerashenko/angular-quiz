@@ -1,9 +1,9 @@
 <mat-card-header>
   <mat-slide-toggle
-    [checked]="checked"
+    [checked]="isAutoReply"
     labelPosition="before"
     (change)="onToggleChange($event.checked)"
-    >auto-reply
+    >auto
   </mat-slide-toggle>
   <mat-card-subtitle class="subtitle space-between">
     <div>Question {{ currentQuestionIndex + 1 }}</div>

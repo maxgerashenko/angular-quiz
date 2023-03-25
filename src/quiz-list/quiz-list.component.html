@@ -1,8 +1,6 @@
-<div class="quiz-list page-content">
-  <h2>Select a Quiz</h2>
-  <ul>
-    <li *ngFor="let quiz of quizTiles" (click)="openQuiz(quiz.id)">
-      {{ quiz.title }}
-    </li>
-  </ul>
-</div>
+<h2>Select a Quiz</h2>
+<ul>
+  <li *ngFor="let quiz of quizTiles" (click)="openQuiz(quiz.id)">
+    {{ quiz.title }}
+  </li>
+</ul>
