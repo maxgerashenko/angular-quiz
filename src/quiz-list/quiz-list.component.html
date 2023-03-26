@@ -1,6 +1,20 @@
 <h2>Select a Quiz</h2>
-<ul>
-  <li *ngFor="let quiz of quizTiles" (click)="openQuiz(quiz.id)">
-    {{ quiz.title }}
-  </li>
-</ul>
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Quiz list</mat-card-title>
+    <mat-card-subtitle>your quizes</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list role="list">
+      <mat-list-item
+        matRipple
+        *ngFor="let quiz of quizTiles"
+        (click)="openQuiz(quiz.id)"
+        role="listitem"
+      >
+        {{ quiz.title }}</mat-list-item
+      >
+    </mat-list>
+  </mat-card-content>
+</mat-card>
