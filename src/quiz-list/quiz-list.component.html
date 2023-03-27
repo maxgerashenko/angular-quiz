@@ -6,15 +6,14 @@
     <mat-card-subtitle>your quizes</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <mat-list role="list">
-      <mat-list-item
-        matRipple
+    <mat-action-list>
+      <button
+        mat-list-item
         *ngFor="let quiz of quizTiles"
         (click)="openQuiz(quiz.id)"
-        role="listitem"
       >
-        {{ quiz.title }}</mat-list-item
-      >
-    </mat-list>
+        {{ quiz.title }}
+      </button>
+    </mat-action-list>
   </mat-card-content>
 </mat-card>

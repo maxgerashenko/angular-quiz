@@ -59,7 +59,7 @@ export class QuizComponent implements OnInit {
   }
 
   submitAnswer(): void {
-    this.questions.list.deselectAll();
+    // this.questions.list.deselectAll();
     this.currentQuestionIndex++;
   }
 }
