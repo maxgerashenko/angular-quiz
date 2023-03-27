@@ -10,7 +10,7 @@ import {
   MatSelectionList,
   MatSelectionListChange,
 } from '@angular/material/list';
-import { AlphabetLetterPipe } from '../pipes/letter.pipe';
+import { AlphabetLetterPipe } from '../pipesAndDirectives/letter.pipe';
 import { Question } from '../services/quiz.service';
 
 @Component({
@@ -19,7 +19,13 @@ import { Question } from '../services/quiz.service';
   styleUrls: ['./question.component.scss'],
 })
 export class QuizQuestionComponent {
-  @Input() question: Question;
+  localQuestion: Question;
+  @Input() set question(val) {
+    this.localQuestion = val;
+    setTimeout(() => {
+      this.resetFocus();
+    }, 100);
+  }
   @Input() currentQuestionIndex: number;
   @Input() selectedOptionValue: string;
   @Output() optionSelected = new EventEmitter<{
@@ -28,7 +34,6 @@ export class QuizQuestionComponent {
   }>();
   @Output() toogleChange = new EventEmitter<boolean>();
   @ViewChild(MatSelectionList) list;
-  // @ViewChild('list') list: E
   get questionIndex(): number {
     return this.currentQuestionIndex + 1;
   }
@@ -38,12 +43,6 @@ export class QuizQuestionComponent {
 
   ngAfterViewInit() {
     this.resetFocus();
-  }
-
-  ngAfterViewChecked() {
-    setTimeout(() => {
-      this.resetFocus();
-    }, 1000);
   }
 
   private resetFocus() {
