@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { QuizComponent } from './quiz.component';
 import { QuestionModule } from '../question/question.module';
 import { QuizResultsModule } from '../quiz-results/quiz-results.module';
-import { PipesModule } from '../pipes/pipes.module';
 import { MaterialModule } from '../material.module';
+import { PipesModule } from '../pipesAndDirectives/pipes.module';
 
 @NgModule({
   imports: [
