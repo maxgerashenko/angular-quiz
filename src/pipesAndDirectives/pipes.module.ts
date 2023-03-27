@@ -5,10 +5,12 @@ import { AlphabetIndexPipe } from './alphabet-index.pipe';
 import { ArrayPipe } from './array.pipe';
 import { AutoFocus } from '../pipesAndDirectives/autofocus.directive';
 
+const pipes = [AlphabetLetterPipe, AlphabetIndexPipe, ArrayPipe];
+
 @NgModule({
   imports: [CommonModule],
-  declarations: [AlphabetLetterPipe, AlphabetIndexPipe, ArrayPipe, AutoFocus],
-  providers: [AlphabetLetterPipe, AlphabetIndexPipe, ArrayPipe],
-  exports: [AlphabetLetterPipe, AlphabetIndexPipe, ArrayPipe, AutoFocus],
+  declarations: [...pipes, AutoFocus],
+  providers: [...pipes],
+  exports: [...pipes, AutoFocus],
 })
 export class PipesModule {}
