@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { AlphabetIndexPipe } from '../pipes/alphabet-index.pipe';
-import { AlphabetLetterPipe } from '../pipes/letter.pipe';
 import { Question, Quiz } from '../services/quiz.service';
 
 @Component({
