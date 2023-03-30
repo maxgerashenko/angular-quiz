@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { rpcQuiz } from './rpcQuiz';
 import { modalsQuiz } from './modalsQuiz';
+import { AlphabetLetterPipe } from '../pipesAndDirectives/letter.pipe';
+import { AlphabetIndexPipe } from '../pipesAndDirectives/alphabet-index.pipe';
 
 export interface Question {
   text: string;
@@ -38,7 +40,10 @@ export class QuizService {
   quizList: Quiz[];
   result: QuizResult;
 
-  constructor() {
+  constructor(
+    private numberPipe: AlphabetIndexPipe,
+    private letterPipe: AlphabetLetterPipe
+  ) {
     this.quizList = this.sources.map((rawQuiz, index) =>
       this.convertQuiz(rawQuiz, index)
     );
@@ -60,7 +65,7 @@ export class QuizService {
   }
 
   getQuiz(quizId: string) {
-    return this.quizList.find(({ id }) => id == quizId);
+    return this.quizList[quizId];
   }
 
   private convertQuiz({ title, questions }: any, index: number): Quiz {
@@ -73,13 +78,20 @@ export class QuizService {
     };
   }
 
+  private isCorrectFormat(key: string, value: any) {
+    if (!/[Aa]nswer/.test(key)) return true;
+    return typeof value === 'string';
+  }
+
   private convertQuestion(rawQuestion: any, objectMap: Object): Question {
-    const keys = Object.keys(objectMap);
+    const newKeys = Object.keys(objectMap);
     let newQuestion = {};
     const entries = Object.entries(rawQuestion);
-    for (const index in Object.entries(rawQuestion)) {
-      let [value] = entries[index];
-      newQuestion[keys[index]] = value;
+    for (const index in entries) {
+      let [key, value] = entries[index];
+      newQuestion[newKeys[index]] = this.isCorrectFormat(key, value)
+        ? value
+        : this.letterPipe.transform(value as number);
     }
     return newQuestion as Question;
   }

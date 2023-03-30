@@ -1,15 +1,11 @@
 import {
   Component,
-  ElementRef,
   EventEmitter,
   Input,
   Output,
   ViewChild,
 } from '@angular/core';
-import {
-  MatSelectionList,
-  MatSelectionListChange,
-} from '@angular/material/list';
+import { MatSelectionList } from '@angular/material/list';
 import { AlphabetLetterPipe } from '../pipesAndDirectives/letter.pipe';
 import { Question } from '../services/quiz.service';
 

@@ -1,16 +1,11 @@
 import {
   Component,
-  ElementRef,
-  EventEmitter,
-  Input,
   OnInit,
-  Output,
   ViewChild,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuizQuestionComponent } from '../question/question.component';
 import { Quiz, QuizService } from '../services/quiz.service';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'quiz',
@@ -31,13 +26,10 @@ export class QuizComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    console.log(this.quiz);
-    console.log(this.quiz);
     let quizId = this.route.snapshot.queryParams.id;
-    console.log(quizId);
     this.quiz = this.quizService.getQuiz(quizId);
-    console.log(this.quiz);
     this.shuffleQuestions();
+    console.log(this.quiz.questions[this.currentQuestionIndex]);
   }
 
   ngOnInit(): void {}

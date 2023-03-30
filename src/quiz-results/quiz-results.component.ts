@@ -1,12 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
-import { map, filter } from 'rxjs/operators';
-import {
-  Question,
-  Quiz,
-  QuizResult,
-  QuizService,
-} from '../services/quiz.service';
+import { Component } from '@angular/core';
+import {Router } from '@angular/router';
+import { Quiz, QuizResult, QuizService } from '../services/quiz.service';
 
 @Component({
   selector: 'quiz-results',
@@ -39,6 +33,10 @@ export class QuizResultsComponent {
   }
 
   ngOnInit() {}
+
+  goToList() {
+    this.router.navigate(['/list']);
+  }
 
   reset() {
     this.router.navigate(['/quiz'], {
