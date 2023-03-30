@@ -80,9 +80,8 @@ export class QuizService {
     };
   }
 
-  private isCorrectFormat(key: string, value: any) {
-    if (!/[Aa]nswer/.test(key)) return true;
-    return typeof value === 'string';
+  private isAnswer(key: string) {
+    return /[Aa]nswer/.test(key);
   }
 
   private convertQuestion(rawQuestion: any, objectMap: Object): Question {
@@ -91,9 +90,11 @@ export class QuizService {
     const entries = Object.entries(rawQuestion);
     for (const index in entries) {
       let [key, value] = entries[index];
-      newQuestion[newKeys[index]] = this.isCorrectFormat(key, value)
+      newQuestion[newKeys[index]] = !this.isAnswer(key)
         ? value
-        : this.letterPipe.transform(value as number);
+        : typeof value === 'number'
+        ? this.letterPipe.transform(value as number)
+        : (value as string).toLocaleLowerCase();
     }
     return newQuestion as Question;
   }
