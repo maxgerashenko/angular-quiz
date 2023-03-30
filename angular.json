@@ -17,7 +17,7 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "assets": [],
-            "styles": ["src/material.scss", "src/global.scss"],
+            "styles": ["src/material.scss", "src/global.scss", "custom.scss"],
             "scripts": []
           },
           "configurations": {

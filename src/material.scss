@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+@use './custom' as custom;
 
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
@@ -32,6 +33,7 @@ $light-theme: mat.define-light-theme(
 @include mat.progress-bar-theme($dark-theme);
 @include mat.list-theme($dark-theme);
 @include mat.slide-toggle-theme($dark-theme);
+@include custom.theme($my-theme);
 
 // Apply the light theme only when the user prefers light themes.
 @media (prefers-color-scheme: light) {
