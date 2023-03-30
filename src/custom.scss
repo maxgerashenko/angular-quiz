@@ -8,12 +8,10 @@
   $warn-palette: map.get($color-config, 'warn');
 
   mat-list-item.correct {
-    background-color: mat.get-color-from-palette($primary-palette, 100);
-    color: mat.get-color-from-palette($primary-palette);
+    background-color: mat.get-color-from-palette($primary-palette, 500);
   }
   mat-list-item.incorrect {
-    background-color: mat.get-color-from-palette($warn-palette, 100);
-    color: mat.get-color-from-palette($warn-palette);
+    background-color: mat.get-color-from-palette($accent-palette, 500);
   }
 }
 
