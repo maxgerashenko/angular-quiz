@@ -11,10 +11,7 @@
     background-color: mat.get-color-from-palette($primary-palette, 500);
   }
   mat-list-item.incorrect {
-    background-color: mat.get-color-from-palette(mat.$gray-palette, 50);
-    label {
-      color: mat.get-color-from-palette($accent-palette, 500);
-    }
+    background-color: mat.get-color-from-palette(mat.$gray-palette, 700);
   }
 }
 
