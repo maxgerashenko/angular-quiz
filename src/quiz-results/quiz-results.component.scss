@@ -6,3 +6,12 @@
   display: flex;
   flex-direction: row;
 }
+
+.bottom-button-container {
+  display: flex;
+  flex-direction: row-reverse;
+
+  button {
+    margin-right: 20px;
+  }
+}

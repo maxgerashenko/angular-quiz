@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuizQuestionComponent } from '../question/question.component';
 import { Quiz, QuizService } from '../services/quiz.service';
@@ -58,6 +54,9 @@ export class QuizComponent implements OnInit {
     this.currentQuestionIndex = 0;
     this.selectedOptionValue = null;
     this.shuffleQuestions();
+  }
+  goToList() {
+    this.router.navigate(['/list']);
   }
 
   submitAnswer(): void {
