@@ -26,7 +26,7 @@ $light-theme: mat.define-light-theme(
   )
 );
 
-// Apply the dark theme by default
+// Dark  !!!! theme !!!
 @include mat.core-theme($dark-theme);
 @include mat.button-theme($dark-theme);
 @include mat.card-theme($dark-theme);
@@ -34,18 +34,18 @@ $light-theme: mat.define-light-theme(
 @include mat.list-theme($dark-theme);
 @include mat.slide-toggle-theme($dark-theme);
 @include mat.form-field-theme($dark-theme);
+
 @include custom.theme($dark-theme);
 
-// Apply the light theme only when the user prefers light themes.
+// Dark  !!!! -color !!!
 @media (prefers-color-scheme: light) {
-  // Use the `-color` mixins to only apply color styles without reapplying the same
-  // typography and density styles.
   @include mat.core-color($light-theme);
   @include mat.button-color($light-theme);
   @include mat.card-color($light-theme);
   @include mat.progress-bar-color($light-theme);
   @include mat.list-color($light-theme);
   @include mat.slide-toggle-color($light-theme);
+  @include mat.form-field-color($light-theme);
+
   @include custom.theme($light-theme);
-  @include mat.form-field-theme($light-theme);
 }

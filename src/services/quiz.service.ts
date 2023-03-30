@@ -10,6 +10,7 @@ export interface Question {
   options: string[];
   answer: string;
   isCorrect?: boolean;
+  description?: string;
 }
 
 export interface Quiz {

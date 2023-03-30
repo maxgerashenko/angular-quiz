@@ -28,26 +28,42 @@
         *ngFor="let question of quiz.questions; let questionIndex = index"
       >
         <h3>{{ question.text }}</h3>
-        <mat-list-item
+        <ng-container
           *ngFor="let option of question.options; let optionIndex = index"
-          [ngClass]="{
-            correct:
-              ((optionIndex | alphabetLetter) === answers[questionIndex] &&
-                answers[questionIndex] === question.answer) ||
-              (optionIndex | alphabetLetter) === question.answer,
-            incorrect:
-              (optionIndex | alphabetLetter) === answers[questionIndex] &&
-              answers[questionIndex] !== question.answer
-          }"
         >
-          <label> {{ optionIndex | alphabetLetter }}. {{ option }} </label>
-        </mat-list-item>
-        <p>
-          <mat-form-field appearance="fill">
-            <mat-label>Textarea</mat-label>
-            <textarea matInput></textarea>
-          </mat-form-field></p
-      ></ng-container>
+          <mat-list-item
+            *ngIf="
+              isSelected(question, optionIndex | alphabetLetter, questionIndex)
+            "
+            [ngClass]="{
+              correct: isCorrect(
+                question,
+                optionIndex | alphabetLetter,
+                questionIndex
+              ),
+              incorrect: isInCorrect(
+                question,
+                optionIndex | alphabetLetter,
+                questionIndex
+              )
+            }"
+          >
+            <label> {{ option }} </label>
+          </mat-list-item>
+        </ng-container>
+        <mat-form-field
+          *ngIf="
+            question.description && !isAnswerCorrect(question, questionIndex)
+          "
+          class="description"
+          appearance="fill"
+        >
+          <mat-label>Explanation</mat-label>
+          <textarea matInput readonly disabled="true">
+            {{ question.description }}
+          </textarea>
+        </mat-form-field>
+      </ng-container>
     </mat-list>
   </mat-card-content>
   <mat-card-footer>

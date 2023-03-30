@@ -32,7 +32,31 @@ export class QuizResultsComponent {
     this.total = quiz.questions.length;
   }
 
-  ngOnInit() {}
+  isSelected(question, optionIndex, questionIndex) {
+    return (
+      optionIndex === this.answers[questionIndex] ||
+      optionIndex === question.answer
+    );
+  }
+
+  isCorrect(question, optionIndex, questionIndex) {
+    return (
+      (optionIndex === this.answers[questionIndex] &&
+        this.answers[questionIndex] === question.answer) ||
+      optionIndex === question.answer
+    );
+  }
+
+  isInCorrect(question, optionIndex, questionIndex) {
+    return (
+      optionIndex === this.answers[questionIndex] &&
+      this.answers[questionIndex] !== question.answer
+    );
+  }
+
+  isAnswerCorrect(question, questionIndex) {
+    return question.answer === this.answers[questionIndex];
+  }
 
   goToList() {
     this.router.navigate(['/list']);
