@@ -41,9 +41,7 @@ export class QuizResultsComponent {
   ngOnInit() {}
 
   reset() {
-    this.router.navigate(['/quiz'], {
-      queryParams: { id: this.quiz.id },
-    });
+    this.router.navigate(['/quiz'], { queryParams: { id: this.quiz.id } });
   }
 
   getFeedbackMessage(): string {
