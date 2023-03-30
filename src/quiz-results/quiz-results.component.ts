@@ -54,8 +54,14 @@ export class QuizResultsComponent {
     );
   }
 
-  isAnswerCorrect(question, questionIndex) {
-    return question.answer === this.answers[questionIndex];
+  isAnswerCorrect(answer, questionIndex) {
+    debugger;
+    return this.answers[questionIndex] === answer;
+  }
+
+  getIsAnswerCorrect() {
+    return (answer, questionIndex) =>
+      this.isAnswerCorrect(answer, questionIndex);
   }
 
   goToList() {

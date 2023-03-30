@@ -6,9 +6,9 @@
     <div class="top-button-container">
       <button mat-button (click)="goToList()">List</button>
       <button
-        autoFocus
-        class="top-button"
+        autofocus
         mat-raised-button
+        class="top-button"
         [color]="buttonColor"
         (click)="reset()"
       >
@@ -25,7 +25,10 @@
   <mat-card-content>
     <mat-list class="hover-list">
       <ng-container
-        *ngFor="let question of quiz.questions; let questionIndex = index"
+        *ngFor="
+          let question of quiz.questions | correctFirst: getIsAnswerCorrect();
+          let questionIndex = index
+        "
       >
         <h3>{{ question.text }}</h3>
         <ng-container
@@ -53,7 +56,8 @@
         </ng-container>
         <mat-form-field
           *ngIf="
-            question.description && !isAnswerCorrect(question, questionIndex)
+            question.description &&
+            !isAnswerCorrect(question.answer, questionIndex)
           "
           class="description"
           appearance="fill"
