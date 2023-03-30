@@ -6,13 +6,12 @@
   $primary-palette: map.get($color-config, 'primary');
   $accent-palette: map.get($color-config, 'accent');
   $warn-palette: map.get($color-config, 'warn');
-  $is-dark-theme: map.get($color-config, 'is-dark');
 
-  .correct {
+  mat-list-item.correct {
     background-color: mat.get-color-from-palette($primary-palette, 100);
     color: mat.get-color-from-palette($primary-palette);
   }
-  .incorrect {
+  mat-list-item.incorrect {
     background-color: mat.get-color-from-palette($warn-palette, 100);
     color: mat.get-color-from-palette($warn-palette);
   }
