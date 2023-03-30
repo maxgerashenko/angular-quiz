@@ -39,7 +39,9 @@ export class QuizService {
   result: QuizResult;
 
   constructor() {
-    this.quizList = this.sources.map((rawQuiz) => this.convertQuiz(rawQuiz));
+    this.quizList = this.sources.map((rawQuiz, index) =>
+      this.convertQuiz(rawQuiz, index)
+    );
   }
 
   getResult() {
@@ -58,12 +60,12 @@ export class QuizService {
   }
 
   getQuiz(quizId: string) {
-    return this.quizList.find(({ id }) => id === quizId);
+    return this.quizList.find(({ id }) => id == quizId);
   }
 
-  private convertQuiz({ title, questions }: any): Quiz {
+  private convertQuiz({ title, questions }: any, index: number): Quiz {
     return {
-      id: String(this.count++),
+      id: String(index),
       title,
       questions: questions.map((question) =>
         this.convertQuestion(question, QUESTION_MAP)

@@ -30,17 +30,17 @@ export class QuizComponent implements OnInit {
     private readonly quizService: QuizService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
-
-  ngOnInit(): void {
+  ) {
+    console.log(this.quiz);
+    console.log(this.quiz);
+    let quizId = this.route.snapshot.queryParams.id;
+    console.log(quizId);
+    this.quiz = this.quizService.getQuiz(quizId);
+    console.log(this.quiz);
     this.shuffleQuestions();
-
-    this.route.queryParams.subscribe((params) => {
-      console.log(params);
-      const quizId = params.id;
-      this.quiz = this.quizService.getQuiz(quizId);
-    });
   }
+
+  ngOnInit(): void {}
 
   private shuffleQuestions(): void {
     for (let i = this.quiz.questions.length - 1; i > 0; i--) {
