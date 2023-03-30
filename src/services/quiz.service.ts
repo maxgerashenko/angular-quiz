@@ -32,6 +32,7 @@ const QUESTION_MAP = Object.freeze({
   text: 'text',
   options: 'options',
   answer: 'answer',
+  description: 'description',
 });
 
 @Injectable({ providedIn: 'root' })
