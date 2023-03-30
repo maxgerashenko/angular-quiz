@@ -26,7 +26,8 @@
     <mat-list class="hover-list">
       <ng-container
         *ngFor="
-          let question of quiz.questions | correctFirst: getIsAnswerCorrect();
+          let question of quiz.questions
+            | correctFirst: getIsAnswerCorrect():true;
           let questionIndex = index
         "
       >

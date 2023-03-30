@@ -55,7 +55,6 @@ export class QuizResultsComponent {
   }
 
   isAnswerCorrect(answer, questionIndex) {
-    debugger;
     return this.answers[questionIndex] === answer;
   }
 
