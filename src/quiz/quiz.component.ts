@@ -7,10 +7,10 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { QuizQuestionComponent } from '../question/question.component';
 import { Quiz, QuizService } from '../services/quiz.service';
-import { rpcQuiz } from '../services/rpcQuiz';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'quiz',
@@ -20,7 +20,7 @@ import { rpcQuiz } from '../services/rpcQuiz';
 export class QuizComponent implements OnInit {
   @ViewChild(QuizQuestionComponent) questions: QuizQuestionComponent;
 
-  quiz = rpcQuiz as Quiz;
+  quiz: Quiz;
   answers: string[] = [];
   currentQuestionIndex = 0;
   selectedOptionValue: string;
@@ -28,11 +28,18 @@ export class QuizComponent implements OnInit {
 
   constructor(
     private readonly quizService: QuizService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.shuffleQuestions();
+
+    this.route.queryParams.subscribe((params) => {
+      console.log(params);
+      const quizId = params.id;
+      this.quiz = this.quizService.getQuiz(quizId);
+    });
   }
 
   private shuffleQuestions(): void {

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { QuizListComponent } from '../quiz-list/quiz-list.component';
-import { QuizResultsComponent } from '../quiz-results/quiz-results.component';
-import { QuizComponent } from '../quiz/quiz.component';
+import { QuizListComponent } from './quiz-list/quiz-list.component';
+import { QuizResultsComponent } from './quiz-results/quiz-results.component';
+import { QuizComponent } from './quiz/quiz.component';
 
 export const routes: Routes = [
   { path: 'list', component: QuizListComponent }, // default
