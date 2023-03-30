@@ -33,6 +33,7 @@ $light-theme: mat.define-light-theme(
 @include mat.progress-bar-theme($dark-theme);
 @include mat.list-theme($dark-theme);
 @include mat.slide-toggle-theme($dark-theme);
+@include mat.form-field-theme($dark-theme);
 @include custom.theme($dark-theme);
 
 // Apply the light theme only when the user prefers light themes.
@@ -46,4 +47,5 @@ $light-theme: mat.define-light-theme(
   @include mat.list-color($light-theme);
   @include mat.slide-toggle-color($light-theme);
   @include custom.theme($light-theme);
+  @include mat.form-field-theme($light-theme);
 }
