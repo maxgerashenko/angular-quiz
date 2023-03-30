@@ -20,6 +20,11 @@ export interface QuizTile {
   id: string;
 }
 
+export interface QuizResult {
+  quiz: Quiz;
+  answers: string[];
+}
+
 const QUESTION_MAP = Object.freeze({
   text: 'text',
   options: 'options',
@@ -31,9 +36,18 @@ export class QuizService {
   count = 0;
   sources = [{ ...rpcQuiz }, { ...modalsQuiz }];
   quizList: Quiz[];
+  result: QuizResult;
 
   constructor() {
     this.quizList = this.sources.map((rawQuiz) => this.convertQuiz(rawQuiz));
+  }
+
+  getResult() {
+    return this.result;
+  }
+
+  setResult(value: QuizResult) {
+    this.result = { ...value };
   }
 
   getQuizTilesList(): QuizTile[] {

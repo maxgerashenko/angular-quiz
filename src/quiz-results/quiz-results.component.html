@@ -1,7 +1,4 @@
 <h1>Quiz Results</h1>
-<p>
-  {{ appstate | async | json }}
-</p>
 <mat-card class="page-card">
   <mat-progress-bar [color]="buttonColor" mode="determinate" [value]="score">
   </mat-progress-bar>
@@ -11,7 +8,7 @@
       class="top-button"
       mat-raised-button
       [color]="buttonColor"
-      (click)="reset.emit()"
+      (click)="reset()"
     >
       Try Again
     </button>
@@ -49,7 +46,7 @@
   </mat-card-content>
   <mat-card-footer>
     <mat-card-actions class="button-container space-between">
-      <button mat-raised-button [color]="buttonColor" (click)="reset.emit()">
+      <button mat-raised-button [color]="buttonColor" (click)="reset()">
         Try Again
       </button>
     </mat-card-actions>

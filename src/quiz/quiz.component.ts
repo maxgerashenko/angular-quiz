@@ -22,7 +22,6 @@ export class QuizComponent implements OnInit {
 
   quiz = rpcQuiz as Quiz;
   answers: string[] = [];
-  numCorrect = 0;
   currentQuestionIndex = 0;
   selectedOptionValue: string;
   isAutoReply = true;
@@ -34,6 +33,16 @@ export class QuizComponent implements OnInit {
 
   ngOnInit(): void {
     this.shuffleQuestions();
+  }
+
+  private shuffleQuestions(): void {
+    for (let i = this.quiz.questions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [this.quiz.questions[i], this.quiz.questions[j]] = [
+        this.quiz.questions[j],
+        this.quiz.questions[i],
+      ];
+    }
   }
 
   toogleAutoReply(value) {
@@ -55,23 +64,11 @@ export class QuizComponent implements OnInit {
   submitAnswer(): void {
     this.currentQuestionIndex++;
     if (this.currentQuestionIndex === this.quiz.questions.length) {
-      this.router.navigate(['/results'], {
-        state: {
-          quiz: this.quiz,
-          answers: this.answers,
-          numCorrect: this.numCorrect,
-        },
+      this.quizService.setResult({
+        quiz: this.quiz,
+        answers: this.answers,
       });
-    }
-  }
-
-  private shuffleQuestions(): void {
-    for (let i = this.quiz.questions.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [this.quiz.questions[i], this.quiz.questions[j]] = [
-        this.quiz.questions[j],
-        this.quiz.questions[i],
-      ];
+      this.router.navigate(['/results']);
     }
   }
 }
