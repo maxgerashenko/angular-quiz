@@ -1,4 +1,7 @@
 <h1>Quiz Results</h1>
+<p>
+  {{ appstate | async | json }}
+</p>
 <mat-card class="page-card">
   <mat-progress-bar [color]="buttonColor" mode="determinate" [value]="score">
   </mat-progress-bar>

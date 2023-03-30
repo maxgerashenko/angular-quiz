@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 import { Question, Quiz } from '../services/quiz.service';
 
 @Component({
@@ -28,8 +30,16 @@ export class QuizResultsComponent {
     { text: '33333333', answer: 'a', options: ['a', 'b', 'c', 'd'] },
     { text: '44444444', answer: 'a', options: ['a', 'b', 'c', 'd'] },
   ];
+  appstate: any;
+
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
+    this.appstate = this.route.paramMap.pipe(
+      map(() => window.history.state.productdetails.queryParams)
+    );
+    const data = this.route.data;
+    console.log(data);
     this.quiz = {
       id: '1',
       title: 'this title',

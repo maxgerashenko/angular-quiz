@@ -7,6 +7,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { QuizQuestionComponent } from '../question/question.component';
 import { Quiz, QuizService } from '../services/quiz.service';
 import { rpcQuiz } from '../services/rpcQuiz';
@@ -26,20 +27,13 @@ export class QuizComponent implements OnInit {
   selectedOptionValue: string;
   isAutoReply = true;
 
-  constructor(private readonly quizService: QuizService) {}
+  constructor(
+    private readonly quizService: QuizService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.shuffleQuestions();
-  }
-
-  shuffleQuestions(): void {
-    for (let i = this.quiz.questions.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [this.quiz.questions[i], this.quiz.questions[j]] = [
-        this.quiz.questions[j],
-        this.quiz.questions[i],
-      ];
-    }
   }
 
   toogleAutoReply(value) {
@@ -59,7 +53,25 @@ export class QuizComponent implements OnInit {
   }
 
   submitAnswer(): void {
-    // this.questions.list.deselectAll();
     this.currentQuestionIndex++;
+    if (this.currentQuestionIndex === this.quiz.questions.length) {
+      this.router.navigate(['/results'], {
+        state: {
+          quiz: this.quiz,
+          answers: this.answers,
+          numCorrect: this.numCorrect,
+        },
+      });
+    }
+  }
+
+  private shuffleQuestions(): void {
+    for (let i = this.quiz.questions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [this.quiz.questions[i], this.quiz.questions[j]] = [
+        this.quiz.questions[j],
+        this.quiz.questions[i],
+      ];
+    }
   }
 }

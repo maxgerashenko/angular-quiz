@@ -1,6 +1,3 @@
-  <ng-container
-    *ngIf="currentQuestionIndex < quiz.questions.length; else results"
-  >
   <h1>{{ quiz.title }}</h1>
   <mat-card class="quiz-card">
     <mat-progress-bar color="pimary" mode="determinate" [value]="(currentQuestionIndex+1)/quiz.questions.length*100"/>
@@ -25,7 +22,3 @@
         </button>
   </mat-card-actions>
   </mat-card>
-  </ng-container>
-  <ng-template #results>
-    <quiz-results [quiz]="quiz" [answers]="answers" [numCorrect]="numCorrect" (reset)="resetQuiz()"/>
-  </ng-template>
