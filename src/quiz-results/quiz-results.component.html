@@ -11,8 +11,19 @@
   </mat-progress-bar>
   <mat-card-header>
     <div class="top-button-container">
-      <button mat-button (click)="goToList()">List</button>
       <button
+        *ngIf="isTopScore()"
+        color="primary"
+        mat-raised-button
+        (click)="goToList()"
+      >
+        Ace, Well done!
+      </button>
+      <button *ngIf="!isTopScore()" mat-button (click)="goToList()">
+        List
+      </button>
+      <button
+        *ngIf="!isTopScore()"
         autofocus
         mat-raised-button
         class="top-button"
@@ -69,7 +80,7 @@
   <mat-card-footer>
     <mat-card-actions class="bottom-button-container space-between">
       <button mat-raised-button [color]="progressColor" (click)="reset()">
-        Try Again
+        {{ isTopScore() ? 'Again anyway' : 'Try Again' }}
       </button>
     </mat-card-actions>
   </mat-card-footer>

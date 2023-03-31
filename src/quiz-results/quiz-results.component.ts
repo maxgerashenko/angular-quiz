@@ -40,6 +40,10 @@ export class QuizResultsComponent {
     this.maxScore = this.scoreService.getQuizMax(this.quiz.title);
   }
 
+  isTopScore() {
+    return this.score === 100;
+  }
+
   flatResults({ quiz, answers }: QuizResult) {
     this.quiz = quiz;
     this.answers = answers;
