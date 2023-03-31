@@ -11,7 +11,7 @@
     background-color: mat.get-color-from-palette(mat.$gray-palette, 700);
   }
   mat-list-item.incorrect {
-    background-color: mat.get-color-from-palette($accent-palette, 500);
+    background-color: mat.get-color-from-palette($accent-palette, 400);
   }
 }
 
