@@ -20,6 +20,7 @@
           {{ quiz.title }}
         </button>
         <mat-progress-bar
+        *ngIf="scoreService.getQuizMax(quiz.title) > 0"
     [color]="scoreService.getQuizProgressColor(quiz.title)"
     mode="determinate"
     [value]="scoreService.getQuizMax(quiz.title)"

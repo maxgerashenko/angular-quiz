@@ -4,6 +4,7 @@ import { modalsQuiz } from './modalsQuiz';
 import { AlphabetLetterPipe } from '../pipesAndDirectives/letter.pipe';
 import { AlphabetIndexPipe } from '../pipesAndDirectives/alphabet-index.pipe';
 import { modalsQuiz2 } from './modalQuiz2';
+import { messageQQuiz1 } from './messageQQuiz1';
 
 export interface Question {
   text: string;
@@ -39,7 +40,12 @@ const QUESTION_MAP = Object.freeze({
 @Injectable({ providedIn: 'root' })
 export class QuizService {
   count = 0;
-  sources = [{ ...rpcQuiz }, { ...modalsQuiz }, { ...modalsQuiz2 }];
+  sources = [
+    { ...rpcQuiz },
+    { ...modalsQuiz },
+    { ...modalsQuiz2 },
+    { ...messageQQuiz1 },
+  ];
   quizList: Quiz[];
   result: QuizResult;
 

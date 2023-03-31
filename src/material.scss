@@ -8,8 +8,8 @@
 $dark-theme: mat.define-dark-theme(
   (
     color: (
-      primary: mat.define-palette(mat.$purple-palette, 600),
-      accent: mat.define-palette(mat.$pink-palette, 400),
+      primary: mat.define-palette(mat.$purple-palette),
+      accent: mat.define-palette(mat.$pink-palette),
       warn: mat.define-palette(mat.$red-palette),
     ),
     typography: mat.define-typography-config(),
