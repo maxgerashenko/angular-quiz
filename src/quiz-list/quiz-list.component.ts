@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuizService, QuizTile } from '../services/quiz.service';
+import { ScoreService } from '../services/score.service';
 
 interface Quiz {
   id: number;
@@ -17,7 +18,8 @@ export class QuizListComponent {
 
   constructor(
     private readonly quizService: QuizService,
-    private router: Router
+    private router: Router,
+    public scoreService: ScoreService
   ) {}
 
   openQuiz(quizId: string) {

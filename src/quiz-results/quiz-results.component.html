@@ -1,6 +1,13 @@
 <h1>Quiz Results</h1>
 <mat-card class="page-card">
-  <mat-progress-bar [color]="buttonColor" mode="determinate" [value]="score">
+  <mat-progress-bar
+    *ngIf="maxScore !== score"
+    [color]="scoreService.getProgressColor(maxScore)"
+    mode="determinate"
+    [value]="maxScore"
+  >
+  </mat-progress-bar>
+  <mat-progress-bar [color]="progressColor" mode="determinate" [value]="score">
   </mat-progress-bar>
   <mat-card-header>
     <div class="top-button-container">
@@ -9,7 +16,7 @@
         autofocus
         mat-raised-button
         class="top-button"
-        [color]="buttonColor"
+        [color]="progressColor"
         (click)="reset()"
       >
         Try Again
@@ -31,10 +38,7 @@
         "
       >
         <h3>
-          {{ question.selected }}-{{ question.answer }}-{{
-            question.selected === question.answer
-          }}
-          <!-- {{ question.text }} -->
+          {{ question.text }}
         </h3>
         <ng-container
           *ngFor="let option of question.options; let optionIndex = index"
@@ -64,7 +68,7 @@
   </mat-card-content>
   <mat-card-footer>
     <mat-card-actions class="bottom-button-container space-between">
-      <button mat-raised-button [color]="buttonColor" (click)="reset()">
+      <button mat-raised-button [color]="progressColor" (click)="reset()">
         Try Again
       </button>
     </mat-card-actions>

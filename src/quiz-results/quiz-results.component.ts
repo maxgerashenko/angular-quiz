@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Quiz, QuizResult, QuizService } from '../services/quiz.service';
+import { ScoreService } from '../services/score.service';
 
 @Component({
   selector: 'quiz-results',
@@ -8,22 +9,30 @@ import { Quiz, QuizResult, QuizService } from '../services/quiz.service';
   styleUrls: ['./quiz-results.component.scss'],
 })
 export class QuizResultsComponent {
-  buttonColor: 'primary' | 'accent';
+  progressColor: 'primary' | 'accent';
   score: number;
   total: number;
   message: string;
   answers: string[];
   quiz: Quiz;
   numCorrect: number;
+  maxScore = 0;
 
-  constructor(private router: Router, private quizService: QuizService) {
+  constructor(
+    private router: Router,
+    private quizService: QuizService,
+    public scoreService: ScoreService
+  ) {
     this.flatResults(this.quizService.getResult());
     this.numCorrect = this.quiz.questions.reduce((pre, { answer }, index) => {
       return answer === this.answers[index] ? pre + 1 : pre;
     }, 0);
     this.score = (this.numCorrect / this.total) * 100;
     this.message = this.getFeedbackMessage();
-    this.buttonColor = this.score >= 80 ? 'primary' : 'accent';
+    this.progressColor = this.scoreService.getProgressColor(this.score);
+
+    this.scoreService.updateQuizMax(this.quiz.title, this.score);
+    this.maxScore = this.scoreService.getQuizMax(this.quiz.title);
   }
 
   flatResults({ quiz, answers }: QuizResult) {
