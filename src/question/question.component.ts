@@ -8,6 +8,7 @@ import {
 import { MatSelectionList } from '@angular/material/list';
 import { AlphabetLetterPipe } from '../pipesAndDirectives/letter.pipe';
 import { Question } from '../services/quiz.service';
+import { VoiceService } from '../services/voice.service';
 
 @Component({
   selector: 'quiz-question',
@@ -15,10 +16,10 @@ import { Question } from '../services/quiz.service';
   styleUrls: ['./question.component.scss'],
 })
 export class QuizQuestionComponent {
-  localQuestion: Question;
-  @Input() set question(val) {
+  @Input() set question(val: Question) {
     this.localQuestion = val;
     setTimeout(() => {
+      this.voiceOver(val.text);
       this.resetFocus();
     }, 100);
   }
@@ -33,12 +34,21 @@ export class QuizQuestionComponent {
   get questionIndex(): number {
     return this.currentQuestionIndex + 1;
   }
+  localQuestion: Question;
   isAutoReply = true;
 
-  constructor(readonly alphabetLetter: AlphabetLetterPipe) {}
+  constructor(
+    readonly alphabetLetter: AlphabetLetterPipe,
+    private voiceService: VoiceService
+  ) {}
 
   ngAfterViewInit() {
+    this.voiceOver(this.localQuestion.text);
     this.resetFocus();
+  }
+
+  private voiceOver(text: string) {
+    this.voiceService.voiceOver(text);
   }
 
   private resetFocus() {
@@ -62,7 +72,6 @@ export class QuizQuestionComponent {
         this.resetFocus();
       },
     });
-
     if (this.isAutoReply) this.list.deselectAll();
   }
 }
