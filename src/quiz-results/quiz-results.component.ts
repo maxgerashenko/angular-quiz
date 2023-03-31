@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { Quiz, QuizResult, QuizService } from '../services/quiz.service';
 import { ScoreService } from '../services/score.service';
+import { VoiceService } from '../services/voice.service';
 
 @Component({
   selector: 'quiz-results',
@@ -9,6 +10,9 @@ import { ScoreService } from '../services/score.service';
   styleUrls: ['./quiz-results.component.scss'],
 })
 export class QuizResultsComponent {
+  @ViewChildren('description') descriptions: QueryList<
+    ElementRef<HTMLTextAreaElement>
+  >;
   progressColor: 'primary' | 'accent';
   score: number;
   total: number;
@@ -21,6 +25,7 @@ export class QuizResultsComponent {
   constructor(
     private router: Router,
     private quizService: QuizService,
+    private voiceOverService: VoiceService,
     public scoreService: ScoreService
   ) {
     this.flatResults(this.quizService.getResult());
@@ -80,5 +85,18 @@ export class QuizResultsComponent {
     } else {
       return 'Better luck next time!';
     }
+  }
+
+  ngAfterViewInit() {
+    if (!this.descriptions) return;
+
+    const messages = this.descriptions.map((el) =>
+      el.nativeElement.textContent.trim()
+    );
+    this.voiceOverMessages(messages);
+  }
+
+  voiceOverMessages(messages) {
+    this.voiceOverService.voiceOverMessages(messages);
   }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 const SPEACH_DELAY = 800;
+const NEXT_SPEACH_DELAY = 500;
 
 @Injectable({ providedIn: 'root' })
 export class VoiceService {
@@ -34,7 +35,12 @@ export class VoiceService {
     return newText;
   }
 
+  stop() {
+    window.speechSynthesis.cancel();
+  }
+
   voiceOver(text: string) {
+    this.initVoice();
     window.speechSynthesis.cancel();
     this.speech.text = this.cleanSpeech(text);
     setTimeout(() => {
@@ -42,7 +48,29 @@ export class VoiceService {
     }, SPEACH_DELAY);
   }
 
-  stop() {
-    window.speechSynthesis.cancel();
+  voiceOverMessages(messages: string[]) {
+    this.initVoice();
+    this.stop();
+    // Create a new SpeechSynthesisUtterance object for each message
+    const speachs = messages.map((message) => {
+      const utterance = new SpeechSynthesisUtterance();
+      utterance.text = message;
+      return utterance;
+    });
+
+    // Speak each message with a delay between them
+    let currentIndex = 0;
+    const speakNextUtterance = () => {
+      if (messages.length === 0) return;
+
+      this.speech.text = messages.shift();
+      this.speech.onend = () => {
+        speakNextUtterance();
+      };
+      setTimeout(() => {
+        window.speechSynthesis.speak(this.speech);
+      }, NEXT_SPEACH_DELAY);
+    };
+    speakNextUtterance();
   }
 }
