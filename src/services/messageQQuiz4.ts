@@ -111,5 +111,17 @@ When dealing with large and read-intensive data, the same approach can be used b
       description:
         'The purpose of the mapping table in the sharding approach of the Metadata service is to redirect messages to the proper shard. The mapping table stores information about the relationship between partition keys and the shards that contain the corresponding data, enabling efficient routing of requests.',
     },
+    {
+      question: 'The purpose of a metadata service is _________.',
+      options: [
+        'to store messages in the queues along with their metadata',
+        'to store, retrieve, and update the metadata of queues in the metadata store and cache',
+        'to provide security features in accessing the queues',
+        'to handle requests from many servers',
+      ],
+      answer: 'c',
+      description:
+        'Metadata service acts as a middleware between the frontend and metadata storages (and caches). It is responsible for storing, retrieving, and updating the metadata of queues in the metadata stores and caches',
+    },
   ],
 };

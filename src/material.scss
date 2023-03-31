@@ -11,6 +11,8 @@ $dark-theme: mat.define-dark-theme(
       primary: mat.define-palette(mat.$purple-palette),
       accent: mat.define-palette(mat.$pink-palette),
       warn: mat.define-palette(mat.$red-palette),
+      correct: mat.get-color-from-palette(mat.$gray-palette, 700),
+      incorrect: mat.define-palette(mat.$pink-palette, 400),
     ),
     typography: mat.define-typography-config(),
     density: 0,
@@ -22,6 +24,8 @@ $light-theme: mat.define-light-theme(
       primary: mat.define-palette(mat.$deep-purple-palette),
       accent: mat.define-palette(mat.$pink-palette),
       warn: mat.define-palette(mat.$red-palette),
+      correct: mat.get-color-from-palette(mat.$gray-palette, 100),
+      incorrect: mat.define-palette(mat.$pink-palette, 400),
     ),
   )
 );
