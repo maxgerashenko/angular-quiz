@@ -9,13 +9,11 @@ $dark-theme: mat.define-dark-theme(
   (
     color: (
       primary: mat.define-palette(mat.$purple-palette),
-      accent: mat.define-palette(mat.$pink-palette),
-      warn: mat.define-palette(mat.$red-palette),
-      correct: mat.get-color-from-palette(mat.$gray-palette, 700),
-      incorrect: mat.define-palette(mat.$pink-palette, 400),
+      accent: mat.define-palette(mat.$pink-palette, 400),
+      warn: mat.define-palette(mat.$gray-palette, 700),
     ),
     typography: mat.define-typography-config(),
-    density: 0,
+    density: -3,
   )
 );
 $light-theme: mat.define-light-theme(
@@ -23,9 +21,8 @@ $light-theme: mat.define-light-theme(
     color: (
       primary: mat.define-palette(mat.$deep-purple-palette),
       accent: mat.define-palette(mat.$pink-palette),
-      warn: mat.define-palette(mat.$red-palette),
-      correct: mat.get-color-from-palette(mat.$gray-palette, 100),
-      incorrect: mat.define-palette(mat.$pink-palette, 400),
+      warn: mat.define-palette(mat.$gray-palette, 200),
+      density: 0,
     ),
   )
 );
@@ -51,5 +48,5 @@ $light-theme: mat.define-light-theme(
   @include mat.slide-toggle-color($light-theme);
   @include mat.form-field-color($light-theme);
 
-  @include custom.theme($light-theme);
+  @include custom.color($light-theme);
 }

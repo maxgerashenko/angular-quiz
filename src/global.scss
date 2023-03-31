@@ -26,3 +26,13 @@ h2 {
 mat-card {
   min-width: 600px;
 }
+
+@media (prefers-color-scheme: light) {
+  .mat-app-background {
+    background-color: #5c5c5c26;
+  }
+
+  .mat-form-field-disabled textarea.mat-mdc-input-element {
+    color: rgba(0, 0, 0, 0.87) !important;
+  }
+}
