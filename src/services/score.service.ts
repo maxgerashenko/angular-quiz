@@ -24,4 +24,8 @@ export class ScoreService {
     const maxScore = Math.max(score, this.getQuizMax(title));
     localStorage.setItem(MAX_SCORE + title, String(maxScore));
   }
+
+  calcScore(correct: number, total: number) {
+    return Math.trunc(correct / total) * 100;
+  }
 }

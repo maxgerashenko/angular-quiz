@@ -14,12 +14,12 @@ export class QuizResultsComponent {
     ElementRef<HTMLTextAreaElement>
   >;
   progressColor: 'primary' | 'accent';
-  score: number;
+  correctCount = this.setCorrectCount();
   total: number;
-  message: string;
+  score: number;
+  messageFeedback: string;
   answers: string[];
   quiz: Quiz;
-  numCorrect: number;
   maxScore = 0;
 
   constructor(
@@ -28,26 +28,39 @@ export class QuizResultsComponent {
     private voiceOverService: VoiceService,
     public scoreService: ScoreService
   ) {
-    this.flatResults(this.quizService.getResult());
-    this.numCorrect = this.quiz.questions.reduce((pre, { answer }, index) => {
-      return answer === this.answers[index] ? pre + 1 : pre;
-    }, 0);
-    this.score = (this.numCorrect / this.total) * 100;
-    this.message = this.getFeedbackMessage();
+    this.setResults();
+    this.messageFeedback = this.getFeedbackMessage();
     this.progressColor = this.scoreService.getProgressColor(this.score);
-
     this.scoreService.updateQuizMax(this.quiz.title, this.score);
     this.maxScore = this.scoreService.getQuizMax(this.quiz.title);
   }
 
-  isTopScore() {
-    return this.score === 100;
+  private setCorrectCount() {
+    return this.quiz.questions.reduce((pre, { answer }, index) => {
+      return answer === this.answers[index] ? pre + 1 : pre;
+    }, 0);
   }
 
-  flatResults({ quiz, answers }: QuizResult) {
+  private setResults() {
+    const { quiz, answers } = this.quizService.getResult();
     this.quiz = quiz;
     this.answers = answers;
     this.total = quiz.questions.length;
+    this.score = this.scoreService.calcScore(this.correctCount, this.total);
+  }
+
+  private getFeedbackMessage(): string {
+    if (this.score >= 0.8) {
+      return 'Great job!';
+    } else if (this.score >= 0.5) {
+      return 'Not bad, but you could do better.';
+    } else {
+      return 'Better luck next time!';
+    }
+  }
+
+  isTopScore() {
+    return this.score === 100;
   }
 
   isRelevant(question, optionLetter) {
@@ -79,16 +92,6 @@ export class QuizResultsComponent {
     this.router.navigate(['/quiz'], {
       queryParams: { id: String(this.quiz.id) },
     });
-  }
-
-  getFeedbackMessage(): string {
-    if (this.score >= 0.8) {
-      return 'Great job!';
-    } else if (this.score >= 0.5) {
-      return 'Not bad, but you could do better.';
-    } else {
-      return 'Better luck next time!';
-    }
   }
 
   ngAfterViewInit() {
