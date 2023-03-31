@@ -85,7 +85,7 @@ export const messageQQuiz2 = {
       options: [
         'It creates a bottleneck of creating ids',
         'It guarantees the correct order of messages on the client-side',
-        'It guarantees the order of messages in terms of wall-clock time',
+        'It can lead to contention and bottlenecks when multiple nodes are trying to order messages',
         'It creates a problem with incorrect time-stamps',
       ],
       answer: 'c',
