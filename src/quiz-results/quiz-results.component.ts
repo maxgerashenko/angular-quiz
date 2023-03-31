@@ -32,35 +32,25 @@ export class QuizResultsComponent {
     this.total = quiz.questions.length;
   }
 
-  isSelected(question, optionIndex, questionIndex) {
+  isRelevant(question, optionLetter) {
     return (
-      optionIndex === this.answers[questionIndex] ||
-      optionIndex === question.answer
+      optionLetter === question.selected || optionLetter === question.answer
     );
   }
 
-  isCorrect(question, optionIndex, questionIndex) {
+  isCorrect(question, optionLetter) {
     return (
-      (optionIndex === this.answers[questionIndex] &&
-        this.answers[questionIndex] === question.answer) ||
-      optionIndex === question.answer
+      (question.selected === optionLetter &&
+        question.selected === question.answer) ||
+      optionLetter === question.answer
     );
   }
 
-  isInCorrect(question, optionIndex, questionIndex) {
+  isInCorrect(question, optionLetter) {
     return (
-      optionIndex === this.answers[questionIndex] &&
-      this.answers[questionIndex] !== question.answer
+      question.selected === optionLetter &&
+      question.selected !== question.answer
     );
-  }
-
-  isAnswerCorrect(answer, questionIndex) {
-    return this.answers[questionIndex] === answer;
-  }
-
-  getIsAnswerCorrect() {
-    return (answer, questionIndex) =>
-      this.isAnswerCorrect(answer, questionIndex);
   }
 
   goToList() {
