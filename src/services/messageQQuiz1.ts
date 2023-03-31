@@ -126,8 +126,6 @@ export const messageQQuiz1 = {
         'To prioritize message processing',
       ],
       answer: 'd',
-      reasoning:
-        'A priority queue in a distributed messaging queue allows messages to be processed in order of priority, so that high-priority messages can be processed first. This is useful in scenarios where certain messages require immediate processing, such as emergency notifications or critical system alerts',
     },
   ],
 };

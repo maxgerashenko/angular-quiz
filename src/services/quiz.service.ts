@@ -5,6 +5,10 @@ import { AlphabetLetterPipe } from '../pipesAndDirectives/letter.pipe';
 import { AlphabetIndexPipe } from '../pipesAndDirectives/alphabet-index.pipe';
 import { modalsQuiz2 } from './modalQuiz2';
 import { messageQQuiz1 } from './messageQQuiz1';
+import { messageQQuiz2 } from './messageQQuiz2';
+import { messageQQuiz3 } from './messageQQuiz3';
+import { messageQQuiz4 } from './messageQQuiz4';
+import { messageQQuiz5 } from './messageQQuiz5';
 
 export interface Question {
   text: string;
@@ -45,6 +49,10 @@ export class QuizService {
     { ...modalsQuiz },
     { ...modalsQuiz2 },
     { ...messageQQuiz1 },
+    { ...messageQQuiz2 },
+    { ...messageQQuiz3 },
+    { ...messageQQuiz4 },
+    { ...messageQQuiz5 },
   ];
   quizList: Quiz[];
   result: QuizResult;
