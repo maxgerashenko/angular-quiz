@@ -26,22 +26,22 @@ By addressing these common availability problems through redundancy, fault toler
     {
       question: 'What is availability in a distributed system?',
       options: [
-        'a) The ability of a system to provide its services without any interruption or downtime',
-        'b) The ability of a system to handle an increasing number of requests',
-        'c) The ability of a system to detect and recover from faults quickly',
-        'd) The ability of a system to distribute incoming requests across multiple servers',
+        'The ability of a system to provide its services without any interruption or downtime',
+        'Ability to handle an increasing number of requests',
+        'Ability to detect and recover from faults quickly',
+        'Ability to distribute incoming requests across multiple servers',
       ],
       answer: 'a',
       description:
-        'Availability refers to the ability of a system to provide its services to users without any interruption or downtime.',
+        'Availability refers to ability to provide its services to users without any interruption or downtime.',
     },
     {
       question: 'What is redundancy in a distributed system?',
       options: [
-        'a) A technique that involves replicating system components, data, and services to ensure that they are available even if some of the nodes or components fail',
-        'b) The ability of a system to handle an increasing number of requests',
-        'c) The ability of a system to detect and recover from faults quickly',
-        'd) The ability of a system to distribute incoming requests across multiple servers',
+        'A technique that involves replicating system components, data, and services to ensure that they are available even if some of the nodes or components fail',
+        'Ability to handle an increasing number of requests',
+        'Ability to detect and recover from faults quickly',
+        'Ability to distribute incoming requests across multiple servers',
       ],
       answer: 'a',
       description:
@@ -50,10 +50,10 @@ By addressing these common availability problems through redundancy, fault toler
     {
       question: 'What is load balancing in a distributed system?',
       options: [
-        'a) A technique that distributes incoming requests across multiple servers to prevent overload and improve performance',
-        'b) The ability of a system to handle an increasing number of requests',
-        'c) The ability of a system to detect and recover from faults quickly',
-        'd) The ability of a system to provide its services without any interruption or downtime',
+        'A technique that distributes incoming requests across multiple servers to prevent overload and improve performance',
+        'Ability to handle an increasing number of requests',
+        'Ability to detect and recover from faults quickly',
+        'Ability to provide its services without any interruption or downtime',
       ],
       answer: 'a',
       description:
@@ -62,22 +62,22 @@ By addressing these common availability problems through redundancy, fault toler
     {
       question: 'What is scalability in a distributed system?',
       options: [
-        'a) The ability of a system to handle an increasing number of requests without affecting its performance or availability',
-        'b) The ability of a system to detect and recover from faults quickly',
-        'c) The ability of a system to distribute incoming requests across multiple servers',
-        'd) The ability of a system to provide its services without any interruption or downtime',
+        'Ability to handle an increasing number of requests without affecting its performance or availability',
+        'Ability to detect and recover from faults quickly',
+        'Ability to distribute incoming requests across multiple servers',
+        'Ability to provide its services without any interruption or downtime',
       ],
       answer: 'a',
       description:
-        'Scalability is the ability of a system to handle an increasing number of requests without affecting its performance or availability.',
+        'Scalability is ability to handle an increasing number of requests without affecting its performance or availability.',
     },
     {
       question: 'What is monitoring and alerting in a distributed system?',
       options: [
-        'a) Techniques used to detect and respond to faults, errors, and performance issues in a system',
-        'b) The ability of a system to handle an increasing number of requests',
-        'c) The ability of a system to distribute incoming requests across multiple servers',
-        'd) The ability of a system to provide its services without any interruption or downtime',
+        'Techniques used to detect and respond to faults, errors, and performance issues in a system',
+        'Ability to handle an increasing number of requests',
+        'Ability to distribute incoming requests across multiple servers',
+        'Ability to provide its services without any interruption or downtime',
       ],
       answer: 'a',
       description:
@@ -87,10 +87,10 @@ By addressing these common availability problems through redundancy, fault toler
       question:
         'What is the primary factor that affects availability in a distributed system?',
       options: [
-        'a) Redundancy',
-        'b) Scalability',
-        'c) Fault Detection and Recovery',
-        'd) Load Balancing',
+        'Redundancy',
+        'Scalability',
+        'Fault Detection and Recovery',
+        'Load Balancing',
       ],
       answer: 'c',
       description:
@@ -99,10 +99,10 @@ By addressing these common availability problems through redundancy, fault toler
     {
       question: 'What is horizontal scaling in a distributed system?',
       options: [
-        'a) A technique that involves replicating system components, data, and services to ensure that they are available even if some of the nodes or components fail.',
-        'b) The ability of a system to handle an increasing number of requests without affecting its performance or availability.',
-        'c) A technique that involves adding more servers to the system to handle an increasing number of requests.',
-        'd) A technique that distributes incoming requests across multiple servers to prevent overload and improve performance.',
+        'A technique that involves replicating system components, data, and services to ensure that they are available even if some of the nodes or components fail.',
+        'The ability of a system to handle an increasing number of requests without affecting its performance or availability.',
+        'A technique that involves adding more servers to the system to handle an increasing number of requests.',
+        'A technique that distributes incoming requests across multiple servers to prevent overload and improve performance.',
       ],
       answer: 'c',
       description:
@@ -111,10 +111,10 @@ By addressing these common availability problems through redundancy, fault toler
     {
       question: 'What is sharding in a distributed system?',
       options: [
-        'a) A technique that involves replicating system components, data, and services to ensure that they are available even if some of the nodes or components fail.',
-        'b) The ability of a system to handle an increasing number of requests without affecting its performance or availability.',
-        'c) A technique that involves partitioning the data or workload across multiple servers to improve performance and scalability.',
-        'd) A technique that distributes incoming requests across multiple servers to prevent overload and improve performance.',
+        'A technique that involves replicating system components, data, and services to ensure that they are available even if some of the nodes or components fail.',
+        'The ability of a system to handle an increasing number of requests without affecting its performance or availability.',
+        'A technique that involves partitioning the data or workload across multiple servers to improve performance and scalability.',
+        'A technique that distributes incoming requests across multiple servers to prevent overload and improve performance.',
       ],
       answer: 'c',
       description:
@@ -124,9 +124,9 @@ By addressing these common availability problems through redundancy, fault toler
       question:
         'What is the purpose of monitoring and alerting in a distributed system?',
       options: [
-        'a) To detect and respond to faults, errors, and performance issues in the system.',
-        'b) To distribute incoming requests across multiple servers to prevent overload and improve performance.',
-        'c) To replicate system components, data, and services to ensure that they are available even if some of the nodes or components fail.',
+        'To detect and respond to faults, errors, and performance issues in the system.',
+        'To distribute incoming requests across multiple servers to prevent overload and improve performance.',
+        'To replicate system components, data, and services to ensure that they are available even if some of the nodes or components fail.',
         "d) To handle an increasing number of requests without affecting the system's performance or availability.",
       ],
       answer: 'a',
@@ -137,10 +137,10 @@ By addressing these common availability problems through redundancy, fault toler
       question:
         'What is the problem with a single point of failure in a distributed system?',
       options: [
-        'a) It can bring down the entire system if it fails.',
-        'b) It can cause network congestion.',
-        'c) It can lead to inadequate capacity planning.',
-        'd) It can introduce software bugs.',
+        'It can bring down the entire system if it fails.',
+        'It can cause network congestion.',
+        'It can lead to inadequate capacity planning.',
+        'It can introduce software bugs.',
       ],
       answer: 'a',
       description:
@@ -150,10 +150,10 @@ By addressing these common availability problems through redundancy, fault toler
       question:
         'What is the solution to the single point of failure problem in a distributed system?',
       options: [
-        'a) Automation and monitoring',
-        'b) Fault detection and recovery',
-        'c) Scalability',
-        'd) Redundancy and fault tolerance',
+        'Automation and monitoring',
+        'Fault detection and recovery',
+        'Scalability',
+        'Redundancy and fault tolerance',
       ],
       answer: 'd',
       description:
@@ -163,10 +163,10 @@ By addressing these common availability problems through redundancy, fault toler
       question:
         'What is the problem with network congestion in a distributed system?',
       options: [
-        'a) It can bring down the entire system if it fails.',
-        'b) It can cause network congestion.',
-        'c) It can lead to inadequate capacity planning.',
-        'd) It can introduce software bugs.',
+        'It can bring down the entire system if it fails.',
+        'It can cause network congestion.',
+        'It can lead to inadequate capacity planning.',
+        'It can introduce software bugs.',
       ],
       answer: 'b',
       description:
@@ -176,10 +176,10 @@ By addressing these common availability problems through redundancy, fault toler
       question:
         'What is the solution to network congestion in a distributed system?',
       options: [
-        'a) Automation and monitoring',
-        'b) Fault detection and recovery',
-        'c) Load balancing and traffic shaping',
-        'd) Redundancy and fault tolerance',
+        'Automation and monitoring',
+        'Fault detection and recovery',
+        'Load balancing and traffic shaping',
+        'Redundancy and fault tolerance',
       ],
       answer: 'c',
       description:
@@ -189,10 +189,10 @@ By addressing these common availability problems through redundancy, fault toler
       question:
         'What is the problem with inadequate capacity planning in a distributed system?',
       options: [
-        'a) It can bring down the entire system if it fails.',
-        'b) It can cause network congestion.',
-        'c) It can lead to inadequate capacity planning.',
-        'd) It can introduce software bugs.',
+        'It can bring down the entire system if it fails.',
+        'It can cause network congestion.',
+        'It can lead to inadequate capacity planning.',
+        'It can introduce software bugs.',
       ],
       answer: 'c',
       description:
@@ -202,10 +202,10 @@ By addressing these common availability problems through redundancy, fault toler
       question:
         'What is the solution to inadequate capacity planning in a distributed system?',
       options: [
-        'a) Automation and monitoring',
-        'b) Fault detection and recovery',
-        'c) Scalability',
-        'd) Redundancy and fault tolerance',
+        'Automation and monitoring',
+        'Fault detection and recovery',
+        'Scalability',
+        'Redundancy and fault tolerance',
       ],
       answer: 'c',
       description:
@@ -215,10 +215,10 @@ By addressing these common availability problems through redundancy, fault toler
       question:
         'What is the problem with software bugs in a distributed system?',
       options: [
-        'a) It can bring down the entire system if it fails.',
-        'b) It can cause network congestion.',
-        'c) It can lead to inadequate capacity planning.',
-        'd) It canintroduce security vulnerabilities.',
+        'It can bring down the entire system if it fails.',
+        'It can cause network congestion.',
+        'It can lead to inadequate capacity planning.',
+        'It canintroduce security vulnerabilities.',
       ],
       answer: 'a',
       description:
@@ -228,10 +228,10 @@ By addressing these common availability problems through redundancy, fault toler
       question:
         'What is the solution to software bugs in a distributed system?',
       options: [
-        'a) Automation and monitoring',
-        'b) Fault detection and recovery',
-        'c) Load balancing and traffic shaping',
-        'd) Redundancy and fault tolerance',
+        'Automation and monitoring',
+        'Fault detection and recovery',
+        'Load balancing and traffic shaping',
+        'Redundancy and fault tolerance',
       ],
       answer: 'b',
       description:
@@ -240,10 +240,10 @@ By addressing these common availability problems through redundancy, fault toler
     {
       question: 'What is the problem with human error in a distributed system?',
       options: [
-        'a) It can bring down the entire system if it fails.',
-        'b) It can cause network congestion.',
-        'c) It can lead to inadequate capacity planning.',
-        'd) It can introduce security vulnerabilities.',
+        'It can bring down the entire system if it fails.',
+        'It can cause network congestion.',
+        'It can lead to inadequate capacity planning.',
+        'It can introduce security vulnerabilities.',
       ],
       answer: 'a',
       description:
@@ -252,10 +252,10 @@ By addressing these common availability problems through redundancy, fault toler
     {
       question: 'What is the solution to human error in a distributed system?',
       options: [
-        'a) Automation and monitoring',
-        'b) Fault detection and recovery',
-        'c) Load balancing and traffic shaping',
-        'd) Redundancy and fault tolerance',
+        'Automation and monitoring',
+        'Fault detection and recovery',
+        'Load balancing and traffic shaping',
+        'Redundancy and fault tolerance',
       ],
       answer: 'a',
       description:

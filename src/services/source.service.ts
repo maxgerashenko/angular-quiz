@@ -29,7 +29,7 @@ export interface Course {
 
 export interface Quiz {
   id?: string;
-  course?: string;
+  courseTite?: string;
   title: string;
   questions: Question[];
   summary?: string;
@@ -127,7 +127,7 @@ export class SourceService {
 
   getQuiz(quizId: string) {
     return {
-      course: this.courses[1].title,
+      courseTite: this.courses[1].title,
       ...this.courses[1].quizList[quizId],
     };
   }
