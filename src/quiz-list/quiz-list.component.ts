@@ -3,18 +3,13 @@ import { Router } from '@angular/router';
 import { QuizService, QuizTile } from '../services/quiz.service';
 import { ScoreService } from '../services/score.service';
 
-interface Quiz {
-  id: number;
-  title: string;
-}
-
 @Component({
   selector: 'app-quiz-list',
   templateUrl: './quiz-list.component.html',
   styleUrls: ['./quiz-list.component.css'],
 })
 export class QuizListComponent {
-  quizTiles: QuizTile[] = this.quizService.getQuizTilesList();
+  course = this.quizService.getCourseQuizTile();
 
   constructor(
     private readonly quizService: QuizService,

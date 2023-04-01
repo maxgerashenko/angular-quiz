@@ -9,7 +9,7 @@ Strict consistency (also known as linearizability) is the strongest model, which
 Choosing a consistency model depends on the requirements of the system. Weaker consistency models like eventual consistency are suitable for systems where availability is more important than consistency, while stronger models like strict consistency are necessary for systems where data integrity is critical.
 Implementing strong consistency models can require additional complexity and overhead, which can impact performance and scalability. Therefore, it's important to strike a balance between consistency and performance, and choose the appropriate consistency model based on the needs of the system.
 Some distributed databases like Cassandra and Riak allow for tunable consistency, which allows the user to choose the level of consistency that best suits their needs. This allows for a flexible approach to balancing consistency and performance in distributed systems.`,
-  title: 'Consistency in Distributed Systems Quiz',
+  title: 'Consistency',
   questions: [
     {
       text: 'What is consistency in distributed systems?',

@@ -9,8 +9,6 @@ import { Quiz, QuizService } from '../services/quiz.service';
   styleUrls: ['./quiz.component.css'],
 })
 export class QuizComponent implements OnInit {
-  // @ViewChild(QuizQuestionComponent) questions: QuizQuestionComponent;
-
   quiz: Quiz;
   answers: string[] = [];
   currentQuestionIndex = 0;

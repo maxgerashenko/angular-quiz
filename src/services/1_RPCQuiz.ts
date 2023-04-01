@@ -25,7 +25,7 @@ It can be more difficult to debug and maintain compared to local function calls.
 It can be more challenging to ensure the security and integrity of data transmitted over the network.
 Conclusion:
 RPC is a powerful protocol that enables distributed computing and simplifies application development. However, it also introduces additional complexity and considerations compared to local function calls. As such, it is important to carefully evaluate the use of RPC in any application and consider alternative solutions when appropriate.`,
-  title: 'Remote Procedure Calls Quiz',
+  title: 'Remote Procedure Calls',
   questions: [
     {
       question:

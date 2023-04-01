@@ -9,6 +9,7 @@ import { messageQQuiz3 } from './messageQQuiz3';
 import { messageQQuiz4 } from './messageQQuiz4';
 import { messageQQuiz5 } from './messageQQuiz5';
 import { RPCQuiz } from './1_RPCQuiz';
+import { consistensyQuiz } from './2_consitensyQuiz';
 
 export interface Question {
   text: string;
@@ -19,25 +20,32 @@ export interface Question {
 }
 
 export interface Course {
+  id: string;
   title: string;
   quizzes: Quiz[];
 }
 
 export interface Quiz {
   id?: string;
+  course?: string;
   title: string;
   questions: Question[];
   summary?: string;
 }
 
-export interface QuizTile {
+export interface CourseQuizTile {
   title: string;
-  id: string;
+  quizTileList: Tile[];
 }
 
 export interface QuizResult {
   quiz: Quiz;
   answers: string[];
+}
+
+export interface Tile {
+  title: string;
+  id: string;
 }
 
 const QUESTION_MAP = Object.freeze({
@@ -48,17 +56,20 @@ const QUESTION_MAP = Object.freeze({
 });
 
 @Injectable({ providedIn: 'root' })
-export class QuizService {
+export class SourceService {
   count = 0;
   courses: Course[] = [
     {
+      id: '0',
       title: 'English',
       quizzes: this.convertQuizzes([{ ...modalsQuiz }, { ...modalsQuiz2 }]),
     },
     {
+      id: '1',
       title: 'System Design',
       quizzes: this.convertQuizzes([
         { ...RPCQuiz },
+        { ...consistensyQuiz },
         { ...messageQQuiz1 },
         { ...messageQQuiz2 },
         { ...messageQQuiz3 },
@@ -74,8 +85,9 @@ export class QuizService {
     private numberPipe: AlphabetIndexPipe,
     private letterPipe: AlphabetLetterPipe
   ) {
-    this.courseList = this.courses.map(({ title, quizzes }) => {
+    this.courseList = this.courses.map(({ id, title, quizzes }) => {
       return {
+        id,
         title,
         quizzes: quizzes.map((rawQuiz, index) =>
           this.convertQuiz(rawQuiz, index)
@@ -83,26 +95,34 @@ export class QuizService {
       };
     });
   }
-
-  getCourseList() {}
-
-  getResult() {
-    return this.result;
-  }
-
-  setResult(value: QuizResult) {
-    this.result = { ...value };
-  }
-
-  getQuizTilesList(): QuizTile[] {
-    return this.courses[0].quizzes.map(({ title, id }) => ({
+  getCourseTileList(): Tile[] {
+    return this.courseList.map(({ title, id }) => ({
       title,
       id,
     }));
   }
+  getCourseList() {}
+  getResult() {
+    return this.result;
+  }
+  setResult(value: QuizResult) {
+    this.result = { ...value };
+  }
+  getCourseQuizTile(): CourseQuizTile {
+    return {
+      title: this.courses[1].title,
+      quizTileList: this.courses[1].quizzes.map(({ title, id }) => ({
+        title,
+        id,
+      })),
+    };
+  }
 
   getQuiz(quizId: string) {
-    return this.courses[0].quizzes[quizId];
+    return {
+      course: this.courses[1].title,
+      ...this.courses[1].quizzes[quizId],
+    };
   }
 
   private convertQuizzes(array: any[]) {
