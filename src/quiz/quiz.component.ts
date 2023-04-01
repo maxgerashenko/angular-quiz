@@ -9,7 +9,7 @@ import { Quiz, QuizService } from '../services/quiz.service';
   styleUrls: ['./quiz.component.css'],
 })
 export class QuizComponent implements OnInit {
-  @ViewChild(QuizQuestionComponent) questions: QuizQuestionComponent;
+  // @ViewChild(QuizQuestionComponent) questions: QuizQuestionComponent;
 
   quiz: Quiz;
   answers: string[] = [];
@@ -25,6 +25,7 @@ export class QuizComponent implements OnInit {
     let quizId = this.route.snapshot.queryParams.id;
     this.quiz = this.quizService.getQuiz(quizId);
     this.shuffleQuestions();
+    console.log(this.quiz);
   }
 
   ngOnInit(): void {}

@@ -114,12 +114,7 @@ RPC is a powerful protocol that enables distributed computing and simplifies app
     },
     {
       question: 'What is the fourth step in the RPC process?',
-      options: {
-        a: 'Packing',
-        b: 'Unpacking',
-        c: 'Dispatching',
-        d: 'Execution',
-      },
+      options: ['Packing', 'Unpacking', 'Dispatching', 'Execution'],
       answer: 'd',
       description:
         'The execution step is where the server executes the remote procedure.',
@@ -127,24 +122,19 @@ RPC is a powerful protocol that enables distributed computing and simplifies app
     {
       question:
         "Which step in the RPC process is critical for processing the client's request?",
-      options: {
-        a: 'Packing',
-        b: 'Unpacking',
-        c: 'Dispatching',
-        d: 'Execution',
-      },
+      options: ['Packing', 'Unpacking', 'Dispatching', 'Execution'],
       answer: 'd',
       description:
         "The execution step is critical for processing the client's request.",
     },
     {
       question: 'What is the purpose of a remote procedure call?',
-      options: {
-        a: 'To execute procedures on a remote server',
-        b: 'To execute procedures on a local client',
-        c: 'To execute procedures on a remote client',
-        d: 'To execute procedures on a local server',
-      },
+      options: [
+        'To execute procedures on a remote server',
+        'To execute procedures on a local client',
+        'To execute procedures on a remote client',
+        'To execute procedures on a local server',
+      ],
       answer: 'a',
       description:
         'The purpose of a remote procedure call is to execute procedures on a remote server.',

@@ -16,12 +16,12 @@ import { VoiceService } from '../services/voice.service';
   styleUrls: ['./question.component.scss'],
 })
 export class QuizQuestionComponent {
-  @Input() set question(val: Question) {
-    this.localQuestion = val;
+  @Input() set question(question: Question) {
+    this._question = question;
     setTimeout(() => {
-      this.voiceOver(val.text);
       this.resetFocus();
     }, 100);
+    this.voiceOver(question.text);
   }
   @Input() currentQuestionIndex: number;
   @Input() selectedOptionValue: string;
@@ -34,7 +34,7 @@ export class QuizQuestionComponent {
   get questionIndex(): number {
     return this.currentQuestionIndex + 1;
   }
-  localQuestion: Question;
+  _question: Question;
   isAutoReply = true;
 
   constructor(
@@ -43,7 +43,6 @@ export class QuizQuestionComponent {
   ) {}
 
   ngAfterViewInit() {
-    this.voiceOver(this.localQuestion.text);
     this.resetFocus();
   }
 
