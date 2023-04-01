@@ -8,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './router.module';
 import { MaterialModule } from './material.module';
 import { PipesModule } from './pipesAndDirectives/pipes.module';
+import { AppModule } from './app/app.module';
 
 @NgModule({
   imports: [
@@ -19,8 +20,8 @@ import { PipesModule } from './pipesAndDirectives/pipes.module';
     PipesModule,
     QuizListModule,
     MaterialModule,
+    AppModule,
   ],
-  declarations: [AppComponent], // importatnt for routing
   bootstrap: [AppComponent], // importatnt for bootstrap
 })
 export class MainModule {}

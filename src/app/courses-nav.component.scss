@@ -1,0 +1,22 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+:host {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+
+  .mat-sidenav-container {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.mat-sidenav {
+  min-width: 300px;
+  background-color: mat.get-color-from-palette(
+    mat.define-palette(mat.$grey-palette),
+    900
+  );
+}

@@ -94,16 +94,16 @@ export class QuizService {
     this.result = { ...value };
   }
 
-  // getQuizTilesList(): QuizTile[] {
-  //   return this.quizList.map(({ title, id }) => ({
-  //     title,
-  //     id,
-  //   }));
-  // }
+  getQuizTilesList(): QuizTile[] {
+    return this.courses[0].quizzes.map(({ title, id }) => ({
+      title,
+      id,
+    }));
+  }
 
-  // getQuiz(quizId: string) {
-  //   return this.quizList[quizId];
-  // }
+  getQuiz(quizId: string) {
+    return this.courses[0].quizzes[quizId];
+  }
 
   private convertQuizzes(array: any[]) {
     return array.map((rawQuiz, index) => this.convertQuiz(rawQuiz, index));
