@@ -14,7 +14,7 @@ export class QuizResultsComponent {
     ElementRef<HTMLTextAreaElement>
   >;
   progressColor: 'primary' | 'accent';
-  correctCount = this.setCorrectCount();
+  correctCount: number;
   total: number;
   score: number;
   messageFeedback: string;
@@ -29,14 +29,20 @@ export class QuizResultsComponent {
     public scoreService: ScoreService
   ) {
     this.setResults();
-    this.messageFeedback = this.getFeedbackMessage();
+    this.setCorrectCount();
+    this.setScore();
+    this.setFeedbackMessage();
     this.progressColor = this.scoreService.getProgressColor(this.score);
     this.scoreService.updateQuizMax(this.quiz.title, this.score);
     this.maxScore = this.scoreService.getQuizMax(this.quiz.title);
   }
 
+  private setScore() {
+    this.score = this.scoreService.calcScore(this.correctCount, this.total);
+  }
+
   private setCorrectCount() {
-    return this.quiz.questions.reduce((pre, { answer }, index) => {
+    this.correctCount = this.quiz.questions.reduce((pre, { answer }, index) => {
       return answer === this.answers[index] ? pre + 1 : pre;
     }, 0);
   }
@@ -46,17 +52,14 @@ export class QuizResultsComponent {
     this.quiz = quiz;
     this.answers = answers;
     this.total = quiz.questions.length;
-    this.score = this.scoreService.calcScore(this.correctCount, this.total);
   }
 
-  private getFeedbackMessage(): string {
-    if (this.score >= 0.8) {
-      return 'Great job!';
-    } else if (this.score >= 0.5) {
-      return 'Not bad, but you could do better.';
-    } else {
-      return 'Better luck next time!';
-    }
+  private setFeedbackMessage() {
+    this.messageFeedback = this.scoreService.hasPass(this.score)
+      ? 'Great job!'
+      : this.scoreService.hasAlmostPass(this.score)
+      ? 'Not bad, but you could do better'
+      : 'Work hard!';
   }
 
   isTopScore() {

@@ -1,12 +1,22 @@
 import { Injectable } from '@angular/core';
 
 const MAX_SCORE = 'max_quiz_score_';
+const THRESHOLD = 80;
+const SECOND_THRESHOLD = 50;
 
 @Injectable({ providedIn: 'root' })
 export class ScoreService {
   threshold = 80;
 
   constructor() {}
+
+  hasPass(score) {
+    return score > THRESHOLD;
+  }
+
+  hasAlmostPass(score) {
+    return score > SECOND_THRESHOLD;
+  }
 
   getProgressColor(score) {
     return score >= this.threshold ? 'primary' : 'accent';
@@ -26,6 +36,6 @@ export class ScoreService {
   }
 
   calcScore(correct: number, total: number) {
-    return Math.trunc(correct / total) * 100;
+    return Math.trunc((correct / total) * 100);
   }
 }
