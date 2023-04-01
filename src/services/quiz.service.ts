@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { rpcQuiz } from './rpcQuiz';
+import { rpcQuiz } from './RPCQuiz';
 import { modalsQuiz } from './modalsQuiz';
 import { AlphabetLetterPipe } from '../pipesAndDirectives/letter.pipe';
 import { AlphabetIndexPipe } from '../pipesAndDirectives/alphabet-index.pipe';

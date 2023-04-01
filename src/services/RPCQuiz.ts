@@ -28,14 +28,15 @@ RPC is a powerful protocol that enables distributed computing and simplifies app
   title: 'Remote Procedure Calls Quiz',
   questions: [
     {
-      text: 'What are the components involved in a Remote Procedure Call (RPC) system?',
+      question:
+        'What are the components involved in a Remote Procedure Call (RPC) system?',
       options: ['Client', 'Server', 'RPC runtime', 'All of the above'],
       answer: 'd',
       description:
         'All of the above components are involved in a Remote Procedure Call (RPC) system.',
     },
     {
-      text: 'What is the role of the client in an RPC system?',
+      question: 'What is the role of the client in an RPC system?',
       options: [
         'Execute the remote procedure',
         'Receive the result of the remote procedure',
@@ -47,7 +48,7 @@ RPC is a powerful protocol that enables distributed computing and simplifies app
         'The client initiates the remote procedure call in an RPC system.',
     },
     {
-      text: 'What is the role of the server in an RPC system?',
+      question: 'What is the role of the server in an RPC system?',
       options: [
         'Execute the remote procedure',
         'Receive the request from the client',
@@ -59,7 +60,7 @@ RPC is a powerful protocol that enables distributed computing and simplifies app
         'The server receives the request from the client, executes the remote procedure, and sends the result back to the client in an RPC system.',
     },
     {
-      text: 'What does the RPC runtime return to the client and server?',
+      question: 'What does the RPC runtime return to the client and server?',
       options: [
         'The result of the remote procedure',
         'An error message if the remote procedure fails',
@@ -71,7 +72,7 @@ RPC is a powerful protocol that enables distributed computing and simplifies app
         'The RPC runtime returns both an error message if the remote procedure fails and a message indicating the success of the remote procedure call to the client and server.',
     },
     {
-      text: 'What is a remote procedure call?',
+      question: 'What is a remote procedure call?',
       options: [
         'A procedure executed on the same machine',
         'A procedure executed on a different machine',
@@ -83,7 +84,7 @@ RPC is a powerful protocol that enables distributed computing and simplifies app
         'A remote procedure call is a procedure executed on a different machine.',
     },
     {
-      text: 'What are some benefits of using Remote Procedure Calls?',
+      question: 'What are some benefits of using Remote Procedure Calls?',
       options: [
         'Enables inter-process communication between different machines',
         'Reduces the complexity of distributed systems',
@@ -95,7 +96,7 @@ RPC is a powerful protocol that enables distributed computing and simplifies app
         'All of the above are benefits of using Remote Procedure Calls, as they enable inter-process communication between different machines, reduce the complexity of distributed systems, and allow for modular design of applications.',
     },
     {
-      text: 'What are some challenges in using Remote Procedure Calls?',
+      question: 'What are some challenges in using Remote Procedure Calls?',
       options: [
         'Network latency and failure',
         'Ensuring compatibility across different machines and platforms',
@@ -107,13 +108,13 @@ RPC is a powerful protocol that enables distributed computing and simplifies app
         'All of the above are challenges in using Remote Procedure Calls, as they involve network latency and failure, ensuring compatibility across different machines and platforms, and security concerns.',
     },
     {
-      text: 'What is a common protocol used for Remote Procedure Calls?',
+      question: 'What is a common protocol used for Remote Procedure Calls?',
       options: ['HTTP', 'FTP', 'TCP/IP', 'XML-RPC'],
       answer: 'a',
       description: 'HTTP is a common protocol used for Remote Procedure Calls.',
     },
     {
-      text: 'What is the fourth step in the RPC process?',
+      question: 'What is the fourth step in the RPC process?',
       options: {
         a: 'Packing',
         b: 'Unpacking',
@@ -125,7 +126,8 @@ RPC is a powerful protocol that enables distributed computing and simplifies app
         'The execution step is where the server executes the remote procedure.',
     },
     {
-      text: "Which step in the RPC process is critical for processing the client's request?",
+      question:
+        "Which step in the RPC process is critical for processing the client's request?",
       options: {
         a: 'Packing',
         b: 'Unpacking',
@@ -137,7 +139,7 @@ RPC is a powerful protocol that enables distributed computing and simplifies app
         "The execution step is critical for processing the client's request.",
     },
     {
-      text: 'What is the purpose of a remote procedure call?',
+      question: 'What is the purpose of a remote procedure call?',
       options: {
         a: 'To execute procedures on a remote server',
         b: 'To execute procedures on a local client',
