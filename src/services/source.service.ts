@@ -10,6 +10,7 @@ import { messageQQuiz4 } from './messageQQuiz4';
 import { messageQQuiz5 } from './messageQQuiz5';
 import { RPCQuiz } from './1_RPCQuiz';
 import { consistensyQuiz } from './2_consitensyQuiz';
+import { failureModelQuiz } from './3_failureModelQuiz';
 
 export interface Question {
   text: string;
@@ -70,6 +71,7 @@ export class SourceService {
       quizList: this.convertQuizzes([
         { ...RPCQuiz },
         { ...consistensyQuiz },
+        { ...failureModelQuiz },
         { ...messageQQuiz1 },
         { ...messageQQuiz2 },
         { ...messageQQuiz3 },
