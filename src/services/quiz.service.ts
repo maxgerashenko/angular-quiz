@@ -22,6 +22,7 @@ export interface Quiz {
   id: string;
   title: string;
   questions: Question[];
+  summary?: string;
 }
 
 export interface QuizTile {
@@ -85,10 +86,11 @@ export class QuizService {
     return this.quizList[quizId];
   }
 
-  private convertQuiz({ title, questions }: any, index: number): Quiz {
+  private convertQuiz({ title, questions, summary }: any, index: number): Quiz {
     return {
       id: String(index),
       title,
+      summary,
       questions: questions.map((question) =>
         this.convertQuestion(question, QUESTION_MAP)
       ),
