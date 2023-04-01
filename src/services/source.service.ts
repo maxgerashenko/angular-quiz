@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { modalsQuiz } from './modalsQuiz';
 import { AlphabetLetterPipe } from '../pipesAndDirectives/letter.pipe';
 import { AlphabetIndexPipe } from '../pipesAndDirectives/alphabet-index.pipe';
-import { modalsQuiz2 } from './modalQuiz2';
-import { messageQQuiz1 } from './messageQQuiz1';
-import { messageQQuiz2 } from './messageQQuiz2';
-import { messageQQuiz3 } from './messageQQuiz3';
-import { messageQQuiz4 } from './messageQQuiz4';
-import { messageQQuiz5 } from './messageQQuiz5';
-import { RPCQuiz } from './1_RPCQuiz';
-import { consistensyQuiz } from './2_consitensyQuiz';
-import { failureModelQuiz } from './3_failureModelQuiz';
-import { availabilityQuiz } from './4_AvailabilityQuiz';
+import { modalsQuiz } from '../sources/modalsQuiz';
+import { modalsQuiz2 } from '../sources/modalQuiz2';
+import { messageQQuiz1 } from '../sources/messageQQuiz1';
+import { messageQQuiz2 } from '../sources/messageQQuiz2';
+import { messageQQuiz3 } from '../sources/messageQQuiz3';
+import { messageQQuiz4 } from '../sources/messageQQuiz4';
+import { messageQQuiz5 } from '../sources/messageQQuiz5';
+import { rpcQuiz } from '../sources/1_rpcQuiz';
+import { consistensyQuiz } from '../sources/2_consitensyQuiz';
+import { failureModelQuiz } from '../sources/3_failureModelQuiz';
+import { availabilityQuiz } from '../sources/4_availabilityQuiz';
 
 export interface Question {
   text: string;
@@ -70,7 +70,7 @@ export class SourceService {
       id: '1',
       title: 'System Design',
       quizList: this.convertQuizzes([
-        { ...RPCQuiz },
+        { ...rpcQuiz },
         { ...consistensyQuiz },
         { ...failureModelQuiz },
         { ...availabilityQuiz },

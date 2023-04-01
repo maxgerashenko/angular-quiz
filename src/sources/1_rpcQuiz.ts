@@ -1,4 +1,4 @@
-export const RPCQuiz = {
+export const rpcQuiz = {
   id: '1680325358621',
   summary: `Overview:
 Remote Procedure Call (RPC) is a protocol used for communication between processes on different systems.
