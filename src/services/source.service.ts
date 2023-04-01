@@ -12,6 +12,7 @@ import { rpcQuiz } from '../sources/1_rpcQuiz';
 import { consistensyQuiz } from '../sources/2_consitensyQuiz';
 import { failureModelQuiz } from '../sources/3_failureModelQuiz';
 import { availabilityQuiz } from '../sources/4_availabilityQuiz';
+import { reliabilityQuiz } from '../sources/5_reliability';
 
 export interface Question {
   text: string;
@@ -21,18 +22,18 @@ export interface Question {
   description?: string;
 }
 
-export interface Course {
-  id: string;
-  title: string;
-  quizList: Quiz[];
-}
-
 export interface Quiz {
   id?: string;
   courseTite?: string;
   title: string;
   questions: Question[];
   summary?: string;
+}
+
+export interface Course {
+  id: string;
+  title: string;
+  quizList: Quiz[];
 }
 
 export interface CourseQuizTile {
@@ -74,6 +75,7 @@ export class SourceService {
         { ...consistensyQuiz },
         { ...failureModelQuiz },
         { ...availabilityQuiz },
+        { ...reliabilityQuiz },
         { ...messageQQuiz1 },
         { ...messageQQuiz2 },
         { ...messageQQuiz3 },
