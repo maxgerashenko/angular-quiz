@@ -1,6 +1,6 @@
 import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
-import { Quiz, QuizResult, QuizService } from '../services/quiz.service';
+import { Quiz, QuizService } from '../services/quiz.service';
 import { ScoreService } from '../services/score.service';
 import { VoiceService } from '../services/voice.service';
 
@@ -13,14 +13,15 @@ export class QuizResultsComponent {
   @ViewChildren('description') descriptions: QueryList<
     ElementRef<HTMLTextAreaElement>
   >;
-  progressColor: 'primary' | 'accent';
-  correctCount: number;
-  total: number;
-  score: number;
-  messageFeedback: string;
-  answers: string[];
+
   quiz: Quiz;
-  maxScore = 0;
+  answers: string[];
+  total: number;
+  correctCount: number;
+  score: number;
+  maxScore: number;
+  feedbackMessage: string;
+  progressColor: 'primary' | 'accent';
 
   constructor(
     private router: Router,
@@ -28,38 +29,40 @@ export class QuizResultsComponent {
     private voiceOverService: VoiceService,
     public scoreService: ScoreService
   ) {
-    this.setResults();
-    this.setCorrectCount();
-    this.setScore();
+    this.setQuizResults();
+    this.calculateScore();
     this.setFeedbackMessage();
+    this.updateQuizScore();
     this.progressColor = this.scoreService.getProgressColor(this.score);
-    this.scoreService.updateQuizMax(this.quiz.title, this.score);
-    this.maxScore = this.scoreService.getQuizMax(this.quiz.title);
   }
 
-  private setScore() {
-    this.score = this.scoreService.calcScore(this.correctCount, this.total);
-  }
-
-  private setCorrectCount() {
+  private setQuizResults() {
+    const result = this.quizService.getResult();
+    this.quiz = result.quiz;
+    this.answers = result.answers;
+    this.total = this.quiz.questions.length;
     this.correctCount = this.quiz.questions.reduce((pre, { answer }, index) => {
       return answer === this.answers[index] ? pre + 1 : pre;
     }, 0);
+    this.maxScore = this.scoreService.getQuizMax(this.quiz.title);
   }
 
-  private setResults() {
-    const { quiz, answers } = this.quizService.getResult();
-    this.quiz = quiz;
-    this.answers = answers;
-    this.total = quiz.questions.length;
+  private calculateScore() {
+    this.score = this.scoreService.calcScore(this.correctCount, this.total);
   }
 
   private setFeedbackMessage() {
-    this.messageFeedback = this.scoreService.hasPass(this.score)
-      ? 'Great job!'
-      : this.scoreService.hasAlmostPass(this.score)
-      ? 'Not bad, but you could do better'
-      : 'Work hard!';
+    if (this.score >= 0.8) {
+      this.feedbackMessage = 'Great job!';
+    } else if (this.score >= 0.5) {
+      this.feedbackMessage = 'Not bad, but you could do better';
+    } else {
+      this.feedbackMessage = 'Work hard!';
+    }
+  }
+
+  private updateQuizScore() {
+    this.scoreService.updateQuizMax(this.quiz.title, this.score);
   }
 
   isTopScore() {
@@ -98,12 +101,12 @@ export class QuizResultsComponent {
   }
 
   ngAfterViewInit() {
-    if (!this.descriptions) return;
-
-    const messages = this.descriptions.map((el) =>
-      el.nativeElement.textContent.trim()
-    );
-    this.voiceOverMessages(messages);
+    if (this.descriptions) {
+      const messages = this.descriptions.map((el) =>
+        el.nativeElement.textContent.trim()
+      );
+      this.voiceOverMessages(messages);
+    }
   }
 
   voiceOverMessages(messages) {
