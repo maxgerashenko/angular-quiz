@@ -11,6 +11,7 @@ import { messageQQuiz5 } from './messageQQuiz5';
 import { RPCQuiz } from './1_RPCQuiz';
 import { consistensyQuiz } from './2_consitensyQuiz';
 import { failureModelQuiz } from './3_failureModelQuiz';
+import { availabilityQuiz } from './4_AvailabilityQuiz';
 
 export interface Question {
   text: string;
@@ -72,6 +73,7 @@ export class SourceService {
         { ...RPCQuiz },
         { ...consistensyQuiz },
         { ...failureModelQuiz },
+        { ...availabilityQuiz },
         { ...messageQQuiz1 },
         { ...messageQQuiz2 },
         { ...messageQQuiz3 },
