@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav mode="side" opened="true">
+  <mat-sidenav #sidenav mode="side" [opened]="menuService.isMenuOpen | async">
     <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
     <mat-action-list>
       <button

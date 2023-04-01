@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MenuService } from '../services/menu.service';
 import { Quiz } from '../services/source.service';
 import { SourceService } from '../services/source.service';
 
@@ -18,11 +19,13 @@ export class QuizComponent implements OnInit {
   constructor(
     private readonly sourceService: SourceService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private menuService: MenuService
   ) {
     let quizId = this.route.snapshot.queryParams.id;
     this.quiz = this.sourceService.getQuiz(quizId);
     this.shuffleQuestions();
+    this.menuService.closeMenu();
   }
 
   ngOnInit(): void {}
