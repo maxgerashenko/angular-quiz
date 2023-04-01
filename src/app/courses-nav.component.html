@@ -1,9 +1,15 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav mode="side" opened="true">
     <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
-    <button *ngFor="let course of courses" (click)="openCourse(course.id)">
-      {{ course.title }}
-    </button>
+    <mat-action-list>
+      <button
+        mat-list-item
+        *ngFor="let course of courses"
+        (click)="openCourse(course.id)"
+      >
+        {{ course.title }}
+      </button>
+    </mat-action-list>
   </mat-sidenav>
 
   <mat-sidenav-content>

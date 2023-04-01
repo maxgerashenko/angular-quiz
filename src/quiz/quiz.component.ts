@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Quiz } from '../services/quiz.service';
+import { Quiz } from '../services/source.service';
 import { SourceService } from '../services/source.service';
 
 @Component({

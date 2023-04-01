@@ -22,7 +22,7 @@ export interface Question {
 export interface Course {
   id: string;
   title: string;
-  quizzes: Quiz[];
+  quizList: Quiz[];
 }
 
 export interface Quiz {
@@ -62,12 +62,12 @@ export class SourceService {
     {
       id: '0',
       title: 'English',
-      quizzes: this.convertQuizzes([{ ...modalsQuiz }, { ...modalsQuiz2 }]),
+      quizList: this.convertQuizzes([{ ...modalsQuiz }, { ...modalsQuiz2 }]),
     },
     {
       id: '1',
       title: 'System Design',
-      quizzes: this.convertQuizzes([
+      quizList: this.convertQuizzes([
         { ...RPCQuiz },
         { ...consistensyQuiz },
         { ...messageQQuiz1 },
@@ -85,11 +85,11 @@ export class SourceService {
     private numberPipe: AlphabetIndexPipe,
     private letterPipe: AlphabetLetterPipe
   ) {
-    this.courseList = this.courses.map(({ id, title, quizzes }) => {
+    this.courseList = this.courses.map(({ id, title, quizList }) => {
       return {
         id,
         title,
-        quizzes: quizzes.map((rawQuiz, index) =>
+        quizList: quizList.map((rawQuiz, index) =>
           this.convertQuiz(rawQuiz, index)
         ),
       };
@@ -101,7 +101,10 @@ export class SourceService {
       id,
     }));
   }
-  getCourseList() {}
+  getCourse(id: string) {
+    return this.courseList[id];
+  }
+
   getResult() {
     return this.result;
   }
@@ -111,7 +114,7 @@ export class SourceService {
   getCourseQuizTile(): CourseQuizTile {
     return {
       title: this.courses[1].title,
-      quizTileList: this.courses[1].quizzes.map(({ title, id }) => ({
+      quizTileList: this.courses[1].quizList.map(({ title, id }) => ({
         title,
         id,
       })),
@@ -121,7 +124,7 @@ export class SourceService {
   getQuiz(quizId: string) {
     return {
       course: this.courses[1].title,
-      ...this.courses[1].quizzes[quizId],
+      ...this.courses[1].quizList[quizId],
     };
   }
 

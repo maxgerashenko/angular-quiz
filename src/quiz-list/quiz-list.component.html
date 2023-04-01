@@ -6,7 +6,7 @@
   </mat-card-header>
   <mat-card-content>
     <mat-action-list>
-      <ng-container *ngFor="let quiz of course.quizTileList; let index = index">
+      <ng-container *ngFor="let quiz of course.quizList; let index = index">
         <button
           *ngIf="index === 0"
           autoFocus
@@ -15,7 +15,7 @@
         >
           {{ quiz.title }}
         </button>
-        <button *ngIf="index > 0" mat-list-item (click)="openQuiz(quiz.id)">
+        <button mat-list-item *ngIf="index > 0"  (click)="openQuiz(quiz.id)">
           {{ quiz.title }}
         </button>
         <mat-progress-bar

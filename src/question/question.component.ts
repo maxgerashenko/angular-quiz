@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { MatSelectionList } from '@angular/material/list';
 import { AlphabetLetterPipe } from '../pipesAndDirectives/letter.pipe';
-import { Question } from '../services/quiz.service';
+import { Question } from '../services/source.service';
 import { VoiceService } from '../services/voice.service';
 
 @Component({
