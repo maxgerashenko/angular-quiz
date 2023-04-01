@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { QuizService, QuizTile } from '../services/quiz.service';
+import { SourceService } from '../services/quiz.service';
 import { ScoreService } from '../services/score.service';
 
 @Component({
@@ -9,10 +9,10 @@ import { ScoreService } from '../services/score.service';
   styleUrls: ['./quiz-list.component.css'],
 })
 export class QuizListComponent {
-  course = this.quizService.getCourseQuizTile();
+  course = this.sourceService.getCourseQuizTile();
 
   constructor(
-    private readonly quizService: QuizService,
+    private readonly sourceService: SourceService,
     private router: Router,
     public scoreService: ScoreService
   ) {}

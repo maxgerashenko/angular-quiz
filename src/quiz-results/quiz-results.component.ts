@@ -1,6 +1,6 @@
 import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
-import { Quiz, QuizResult, QuizService } from '../services/quiz.service';
+import { Quiz, QuizResult, SourceService } from '../services/quiz.service';
 import { ScoreService } from '../services/score.service';
 import { VoiceService } from '../services/voice.service';
 
@@ -24,11 +24,11 @@ export class QuizResultsComponent {
 
   constructor(
     private router: Router,
-    private quizService: QuizService,
+    private sourceService: SourceService,
     private voiceOverService: VoiceService,
     public scoreService: ScoreService
   ) {
-    this.flatResults(this.quizService.getResult());
+    this.flatResults(this.sourceService.getResult());
     this.correctCount = this.quiz.questions.reduce((pre, { answer }, index) => {
       return answer === this.answers[index] ? pre + 1 : pre;
     }, 0);

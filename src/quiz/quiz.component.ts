@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { QuizQuestionComponent } from '../question/question.component';
-import { Quiz, QuizService } from '../services/quiz.service';
+import { Quiz } from '../services/quiz.service';
+import { SourceService } from '../services/source.service';
 
 @Component({
   selector: 'quiz',
@@ -16,12 +16,12 @@ export class QuizComponent implements OnInit {
   isAutoReply = true;
 
   constructor(
-    private readonly quizService: QuizService,
+    private readonly sourceService: SourceService,
     private router: Router,
     private route: ActivatedRoute
   ) {
     let quizId = this.route.snapshot.queryParams.id;
-    this.quiz = this.quizService.getQuiz(quizId);
+    this.quiz = this.sourceService.getQuiz(quizId);
     this.shuffleQuestions();
   }
 
@@ -59,7 +59,7 @@ export class QuizComponent implements OnInit {
   submitAnswer(): void {
     this.currentQuestionIndex++;
     if (this.currentQuestionIndex === this.quiz.questions.length) {
-      this.quizService.setResult({
+      this.sourceService.setResult({
         quiz: this.quiz,
         answers: this.answers,
       });
