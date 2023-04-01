@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { rpcQuiz } from './RPCQuiz';
+import { RPCQuiz } from './RPCQuiz';
 import { modalsQuiz } from './modalsQuiz';
 import { AlphabetLetterPipe } from '../pipesAndDirectives/letter.pipe';
 import { AlphabetIndexPipe } from '../pipesAndDirectives/alphabet-index.pipe';
@@ -46,7 +46,7 @@ const QUESTION_MAP = Object.freeze({
 export class QuizService {
   count = 0;
   sources = [
-    { ...rpcQuiz },
+    { ...RPCQuiz },
     { ...modalsQuiz },
     { ...modalsQuiz2 },
     { ...messageQQuiz1 },

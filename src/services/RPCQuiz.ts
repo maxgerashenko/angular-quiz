@@ -1,6 +1,5 @@
-export const rpcQuiz = {
+export const RPCQuiz = {
   summary: `Overview:
-
 Remote Procedure Call (RPC) is a protocol used for communication between processes on different systems.
 It allows a process to call a function or procedure on another system as if it were a local function call.
 The process sending the request is known as the client, and the process receiving the request is known as the server.
