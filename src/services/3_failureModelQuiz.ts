@@ -16,12 +16,12 @@ Understanding these failure models is essential for designing robust and fault-t
   title: 'Failure Models',
   questions: [
     {
-      question: 'What is the Fail-stop failure model?',
+      question: 'What is the Fail-stop failure model? ',
       options: [
-        'A failure where a node stops working altogether when it fails',
-        'A failure where a node stops abruptly without notifying other nodes',
-        'A failure where a node fails to send or receive a message',
-        'A failure where a node returns correct but outdated data',
+        'Node stops working altogether when it fails',
+        'Node stops abruptly without notifying other nodes',
+        'Node fails to send or receive a message',
+        'Node returns correct but outdated data',
       ],
       answer: 'a',
       description:
@@ -30,10 +30,10 @@ Understanding these failure models is essential for designing robust and fault-t
     {
       question: 'What is the Crash failure model?',
       options: [
-        'A failure where a node stops working altogether when it fails',
-        'A failure where a node stops abruptly without notifying other nodes',
-        'A failure where a node fails to send or receive a message',
-        'A failure where a node returns correct but outdated data',
+        'Node stops working altogether when it fails',
+        'Node stops abruptly without notifying other nodes',
+        'Node fails to send or receive a message',
+        'Node returns correct but outdated data',
       ],
       answer: 'b',
       description:
@@ -42,10 +42,10 @@ Understanding these failure models is essential for designing robust and fault-t
     {
       question: 'What is the Omission failure model?',
       options: [
-        'A failure where a node stops working altogether when it fails',
-        'A failure where a node stops abruptly without notifying other nodes',
-        'A failure where a node fails to send or receive a message',
-        'A failure where a node returns correct but outdated data',
+        'Node stops working altogether when it fails',
+        'Node stops abruptly without notifying other nodes',
+        'Node fails to send or receive a message',
+        'Node returns correct but outdated data',
       ],
       answer: 'c',
       description:
@@ -54,10 +54,10 @@ Understanding these failure models is essential for designing robust and fault-t
     {
       question: 'What is the Temporal failure model?',
       options: [
-        'A failure where a node stops working altogether when it fails',
-        'A failure where a node stops abruptly without notifying other nodes',
-        'A failure where a node fails to send or receive a message',
-        'A failure where a node returns correct but outdated data',
+        'Node stops working altogether when it fails',
+        'Node stops abruptly without notifying other nodes',
+        'Node fails to send or receive a message',
+        'Node returns correct but outdated data',
       ],
       answer: 'd',
       description:
@@ -66,10 +66,10 @@ Understanding these failure models is essential for designing robust and fault-t
     {
       question: 'What is the Byzantine failure model?',
       options: [
-        'A failure where a node stops working altogether when it fails',
-        'A failure where a node stops abruptly without notifying other nodes',
-        'A failure where a node fails to send or receive a message',
-        'A failure where a node behaves arbitrarily or maliciously',
+        'Node stops working altogether when it fails',
+        'Node stops abruptly without notifying other nodes',
+        'Node fails to send or receive a message',
+        'Node behaves arbitrarily or maliciously',
       ],
       answer: 'd',
       description:
