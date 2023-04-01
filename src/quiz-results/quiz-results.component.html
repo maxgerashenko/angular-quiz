@@ -65,12 +65,12 @@
           </mat-list-item>
         </ng-container>
         <mat-form-field
+          appearance="fill"
           *ngIf="question.description && question.answer !== question.selected"
           class="description"
-          appearance="fill"
         >
           <mat-label>Explanation</mat-label>
-          <textarea #description matInput readonly disabled="true">
+          <textarea #description matInput disabled="true">
             {{ question.description }}
           </textarea>
         </mat-form-field>

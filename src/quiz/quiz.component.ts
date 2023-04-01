@@ -25,7 +25,6 @@ export class QuizComponent implements OnInit {
     let quizId = this.route.snapshot.queryParams.id;
     this.quiz = this.quizService.getQuiz(quizId);
     this.shuffleQuestions();
-    console.log(this.quiz);
   }
 
   ngOnInit(): void {}
