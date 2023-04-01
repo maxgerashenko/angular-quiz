@@ -72,7 +72,7 @@ export class QuizResultsComponent {
   }
 
   goToList() {
-    this.router.navigate(['/list']);
+    this.router.navigate(['/course'], { queryParams: { id: courseId } });
   }
 
   reset() {
