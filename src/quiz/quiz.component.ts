@@ -57,7 +57,9 @@ export class QuizComponent implements OnInit {
     this.shuffleQuestions();
   }
   goToList() {
-    this.router.navigate(['/list']);
+    this.router.navigate(['/course'], {
+      queryParams: { id: this.quiz.courseId },
+    });
   }
 
   submitAnswer(): void {

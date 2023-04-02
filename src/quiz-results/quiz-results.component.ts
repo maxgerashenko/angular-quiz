@@ -4,6 +4,7 @@ import { QuizResult, SourceService } from '../services/source.service';
 import { ScoreService } from '../services/score.service';
 import { VoiceService } from '../services/voice.service';
 import { Question, Quiz } from '../services/data.service';
+import { MenuService } from '../services/menu.service';
 
 @Component({
   selector: 'quiz-results',
@@ -89,7 +90,7 @@ export class QuizResultsComponent {
     this.router.navigate(['/quiz'], {
       queryParams: {
         courseId: this.quiz.courseId,
-        quizId: String(this.quiz.id),
+        quizId: this.quiz.id,
       },
     });
   }

@@ -5,6 +5,7 @@ import { ScoreService } from '../services/score.service';
 import { filter } from 'rxjs/operators';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import { Course } from '../services/data.service';
+import { MenuService } from '../services/menu.service';
 
 @Component({
   selector: 'app-quiz-list',
@@ -20,9 +21,11 @@ export class QuizListComponent {
     private readonly sourceService: SourceService,
     private router: Router,
     public scoreService: ScoreService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private menuService: MenuService
   ) {
     this.updateCourse();
+    this.menuService.openMenu();
   }
 
   updateCourse() {

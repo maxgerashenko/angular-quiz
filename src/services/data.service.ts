@@ -85,24 +85,21 @@ export class DataService {
   coursesListRaw = [
     {
       title: 'English',
-      quizzesList: [
-        { ...modalsQuiz },
-        // { ...modalsQuiz2 }
-      ],
+      quizzesList: [{ ...modalsQuiz }, { ...modalsQuiz2 }],
     },
     {
       title: 'System Design',
       quizzesList: [
         { ...rpcQuiz },
-        //     { ...consistensyQuiz },
-        //     { ...failureModelQuiz },
-        //     { ...availabilityQuiz },
-        //     { ...reliabilityQuiz },
-        //     { ...messageQQuiz1 },
-        //     { ...messageQQuiz2 },
-        //     { ...messageQQuiz3 },
-        //     { ...messageQQuiz4 },
-        //     { ...messageQQuiz5 },
+        { ...consistensyQuiz },
+        { ...failureModelQuiz },
+        { ...availabilityQuiz },
+        { ...reliabilityQuiz },
+        { ...messageQQuiz1 },
+        { ...messageQQuiz2 },
+        { ...messageQQuiz3 },
+        { ...messageQQuiz4 },
+        { ...messageQQuiz5 },
       ],
     },
   ];
