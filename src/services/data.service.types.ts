@@ -20,6 +20,20 @@ export interface Question {
 }
 export type QuestionOptions = string[];
 
+export interface CourseRaw {
+  title: string;
+  quizzesList: QuizRaw[];
+}
+export interface QuizRaw {
+  id: string;
+  title: string;
+  questions?: QuestionRaw[];
+  summary?: string;
+}
+type RawValueTypes = string | number | QuestionOptionsRaw;
+export interface QuestionRaw {
+  [key: string]: RawValueTypes;
+}
 export interface QuestionOptionObject {
   [key: string]: string;
 }

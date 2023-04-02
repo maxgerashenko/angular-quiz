@@ -12,7 +12,7 @@
     "importHelpers": true,
     "target": "es2017",
     "typeRoots": ["node_modules/@types"],
-    "lib": ["esnext", "dom"]
+    "lib": ["es2017", "dom"]
   },
   "angularCompilerOptions": {
     "strictTemplates": true,

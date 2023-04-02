@@ -10,6 +10,10 @@ import {
   QuestionOptionsRaw,
   ObjecKeyMapper,
   ObjecValueMapper,
+  QuizRaw,
+  CourseRaw,
+  QuestionRaw,
+  Question,
 } from './data.service.types';
 
 const QUIZ_RAW_KEY_MAP: ObjecKeyMapper = {
@@ -22,7 +26,6 @@ const QUESTION_RAW_KEY_MAP: ObjecKeyMapper = {
   optionsList: /options|optionList/,
   description: /description/,
 };
-
 @Injectable({ providedIn: 'root' })
 export class DataService {
   coursesListRaw = [
@@ -38,28 +41,50 @@ export class DataService {
 
   constructor(private letterPipe: AlphabetLetterPipe) {}
 
+  // Main method to get the courses list
   getCoursesList(): Course[] {
-    return this.coursesListRaw.map((course, courseId) => ({
-      ...course,
-      id: String(courseId),
-      quizzesList: course.quizzesList.map((quiz, quizId) => ({
-        ...(this.mapObjectKeysAndValues(quiz, QUIZ_RAW_KEY_MAP) as Quiz),
-        courseTitle: course.title,
-        courseId: String(courseId),
-        id: String(quizId),
-        questionsList: quiz.questions
-          ? quiz.questions.map((question) =>
-              this.mapObjectKeysAndValues(
-                question,
-                QUESTION_RAW_KEY_MAP,
-                this.QUESTION_RAW_VALUE_MAP
-              )
-            )
-          : [],
-      })),
-    }));
+    return this.coursesListRaw.map(this.processCourse);
   }
 
+  // Process a course and its quizzes
+  private processCourse = (course: CourseRaw, courseId: number): Course => {
+    return {
+      ...course,
+      id: String(courseId),
+      quizzesList: course.quizzesList.map((quiz, quizId) =>
+        this.processQuiz(quiz, quizId, course, String(courseId))
+      ),
+    };
+  };
+
+  // Process a quiz and its questions
+  private processQuiz = (
+    quiz: QuizRaw,
+    quizId: number,
+    course: CourseRaw,
+    courseId: string
+  ): Quiz => {
+    return {
+      ...this.mapObjectKeysAndValues(quiz, QUIZ_RAW_KEY_MAP),
+      courseTitle: course.title,
+      courseId,
+      id: String(quizId),
+      questionsList: quiz.questions
+        ? quiz.questions.map(this.processQuestion)
+        : [],
+    };
+  };
+
+  // Process a question
+  private processQuestion = (question: QuestionRaw): Question => {
+    return this.mapObjectKeysAndValues(
+      question,
+      QUESTION_RAW_KEY_MAP,
+      this.QUESTION_RAW_VALUE_MAP
+    );
+  };
+
+  // Utility methods
   private returnValue = <T>(value: T): T => value;
   private trimAndRemoveAlphabetPrefix = (option: string) =>
     option.trim().replace(/^[a-zA-Z][\)\.,]/, '');
@@ -80,6 +105,7 @@ export class DataService {
     description: this.returnValue,
   };
 
+  // Map object keys and values using the provided mappers
   mapObjectKeysAndValues<T, Q>(
     object: T,
     objectKeyMapper: ObjecKeyMapper,
