@@ -14,10 +14,11 @@ import {
   CourseRaw,
   QuestionRaw,
   Question,
+  QuizRawWithIdTitle,
 } from './data.service.types';
 
 const QUIZ_RAW_KEY_MAP: ObjecKeyMapper = {
-  questionsList: /questions/,
+  questionsList: /questions|questionList|questionsList/,
 };
 const { modalsQuiz, modalQuiz2, ...rest } = sources;
 const QUESTION_RAW_KEY_MAP: ObjecKeyMapper = {
@@ -52,24 +53,31 @@ export class DataService {
     return {
       ...course,
       id: String(courseId),
-      quizzesList: course.quizzesList.map((quiz, quizId) =>
-        this.processQuiz(quiz, quizId, course, String(courseId))
-      ),
+      quizzesList: course.quizzesList
+        .map(this.mapQuizKeysValues)
+        .map((quiz, quizId) =>
+          this.processQuiz(quiz, quizId, course, String(courseId), quiz.title)
+        ),
     };
   };
 
+  private mapQuizKeysValues(quiz: QuizRaw) {
+    return this.mapObjectKeysAndValues(quiz, QUIZ_RAW_KEY_MAP);
+  }
+
   // Process a quiz and its questions
   private processQuiz = (
-    quiz: QuizRaw,
+    quiz: QuizRawWithIdTitle,
     quizId: number,
     course: CourseRaw,
-    courseId: string
+    courseId: string,
+    title: string
   ): Quiz => {
     return {
-      ...this.mapObjectKeysAndValues(quiz, QUIZ_RAW_KEY_MAP),
       courseTitle: course.title,
       courseId,
-      id: String(quizId),
+      title: quiz.title || title, // use the quiz's title if available, otherwise fallback to the provided title
+      id: quiz.id ? String(quiz.id) : String(quizId), // use the quiz's id if available, otherwise generate a new id
       questionsList: quiz.questions
         ? quiz.questions.map(this.processQuestion)
         : [],

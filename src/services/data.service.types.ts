@@ -18,6 +18,10 @@ export interface Question {
   isCorrect?: boolean;
   description?: string;
 }
+export interface QuizRawWithIdTitle extends Omit<QuizRaw, 'id' | 'title'> {
+  id?: string;
+  title?: string;
+}
 export type QuestionOptions = string[];
 
 export interface CourseRaw {
