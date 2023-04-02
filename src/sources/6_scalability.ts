@@ -23,10 +23,10 @@ Horizontal scalability (scaling out): Involves adding more machines to the syste
 In summary, scalability is an important consideration for any system or application that is expected to grow in usage over time. Understanding the different dimensions of scalability and the options for achieving it can help in designing and managing scalable systems.
   `,
   title: 'Scalability Quiz',
-  questionList: [
+  questions: [
     {
       text: 'What does scalability refer to?',
-      optionList: [
+      options: [
         'The ability of a system to handle a decreasing amount of workload without compromising performance',
         'The ability of a system to handle an increasing amount of workload without compromising performance',
         'The ability of a system to handle a fixed amount of workload without compromising performance',
@@ -38,7 +38,7 @@ In summary, scalability is an important consideration for any system or applicat
     },
     {
       text: 'What is the size dimension of scalability?',
-      optionList: [
+      options: [
         'Refers to the ability to handle multiple users with the same load over all',
         'Refers to the ability to service a broad geographical area',
         'Refers to the ability to handle an increasing number of users or resources',
@@ -50,7 +50,7 @@ In summary, scalability is an important consideration for any system or applicat
     },
     {
       text: 'What is the difference between vertical scalability and horizontal scalability?',
-      optionList: [
+      options: [
         'Vertical scalability involves adding more servers, while horizontal scalability involves adding more resources to a single machine',
         'Vertical scalability involves adding more resources to a single machine, while horizontal scalability involves adding more servers',
         'Vertical scalability is more expensive than horizontal scalability',
@@ -62,7 +62,7 @@ In summary, scalability is an important consideration for any system or applicat
     },
     {
       text: 'What is the administrative dimension of scalability?',
-      optionList: [
+      options: [
         'Refers to the ability to handle an increasing number of users or resources',
         'Refers to the ability to service a broad geographical area',
         'Refers to the ability to handle multiple users with the same load over all',
@@ -74,7 +74,7 @@ In summary, scalability is an important consideration for any system or applicat
     },
     {
       text: 'What are some common methods for achieving horizontal scalability?',
-      optionList: [
+      options: [
         'Adding more resources to a single machine',
         'Adding more servers to the system',
         'Using load balancers to distribute traffic',
@@ -86,7 +86,7 @@ In summary, scalability is an important consideration for any system or applicat
     },
     {
       text: 'What are some common methods for achieving vertical scalability?',
-      optionList: [
+      options: [
         'Adding more resources to a single machine',
         'Adding more servers to the system',
         'Using load balancers to distribute traffic',
@@ -98,7 +98,7 @@ In summary, scalability is an important consideration for any system or applicat
     },
     {
       text: 'What are some potential limitations of vertical scalability?',
-      optionList: [
+      options: [
         'It can be expensive',
         'It can be limited by the physical constraints of the machine',
         'It can be difficult to manage and coordinate multiple machines',
@@ -110,7 +110,7 @@ In summary, scalability is an important consideration for any system or applicat
     },
     {
       text: 'What is the difference between scaling up and scaling out?',
-      optionList: [
+      options: [
         'Scaling up involves adding more machines to the system, while scaling out involves adding more resources to a single machine',
         'Scaling up involves adding more resources to a single machine, while scaling out involves adding more machines to the system',
         'Scaling up is more expensive than scaling out',
@@ -122,7 +122,7 @@ In summary, scalability is an important consideration for any system or applicat
     },
     {
       text: 'What is the difference between stateless and stateful systems in terms of scalability?',
-      optionList: [
+      options: [
         'Stateless systems are more scalable than stateful systems',
         'Stateful systems are more scalable than stateless systems',
         'There is no difference in scalability between stateless and stateful systems',
@@ -134,7 +134,7 @@ In summary, scalability is an important consideration for any system or applicat
     },
     {
       text: 'What is sharding?',
-      optionList: [
+      options: [
         'A method for achieving vertical scalability',
         'A method for achieving horizontal scalability',
         'A method for achieving both vertical and horizontal scalability',
@@ -146,7 +146,7 @@ In summary, scalability is an important consideration for any system or applicat
     },
     {
       text: 'What are some challenges of achieving scalability?',
-      optionList: [
+      options: [
         'Maintaining data consistency across multiple machines',
         'Managing and coordinating multiple machines',
         'Ensuring high availability and fault tolerance',

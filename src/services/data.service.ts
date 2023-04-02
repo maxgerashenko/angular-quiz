@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AlphabetLetterPipe } from '../pipesAndDirectives/letter.pipe';
 
 import * as sources from '../sources/';
-const { modalsQuiz, modalQuiz2, ...rest } = sources;
+
 import {
   Course,
   Quiz,
@@ -17,15 +17,16 @@ import {
 } from './data.service.types';
 
 const QUIZ_RAW_KEY_MAP: ObjecKeyMapper = {
-  questionsList: /questions|questionList/,
+  questionsList: /questions/,
 };
-
+const { modalsQuiz, modalQuiz2, ...rest } = sources;
 const QUESTION_RAW_KEY_MAP: ObjecKeyMapper = {
   title: /([Tt]ext|itle)|question/,
   answer: /[Aa]nswer/,
-  optionsList: /options|optionList/,
+  optionsList: /options|optionList|optionsList/,
   description: /description/,
 };
+
 @Injectable({ providedIn: 'root' })
 export class DataService {
   coursesListRaw = [

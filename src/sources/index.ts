@@ -5,6 +5,7 @@ export { consistensyQuiz } from './2_consitensyQuiz';
 export { failureModelQuiz } from './3_failureModelQuiz';
 export { availabilityQuiz } from './4_availabilityQuiz';
 export { reliabilityQuiz } from './5_reliability';
+export { scalabilityQuiz } from './6_scalability';
 export { messageQQuiz1 } from './messageQQuiz1';
 export { messageQQuiz2 } from './messageQQuiz2';
 export { messageQQuiz3 } from './messageQQuiz3';
