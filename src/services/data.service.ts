@@ -135,14 +135,22 @@ export class DataService {
   });
   private addCourseTitleAndCourseIdToTheQuiz =
     (course: CourseRaw & { id: string }) =>
-    (quiz: QuizRaw & { courseTitle: string; courseId: string }) => ({
+    (
+      quiz: QuizRaw & { courseTitle: string; courseId: string }
+    ): QuizRaw | { courseTitle: string; courseId: string } => ({
       ...quiz,
       courseTitle: course.title,
       courseId: course.id,
     });
   private mapQuizzesListWithCourseMetaData = (
     course: CourseRaw & { id: string }
-  ) => ({
+  ): CourseRaw & {
+    id: string;
+    quizzesList: (QuizRaw & {
+      courseId: string;
+      courseTitle: string;
+    })[];
+  } => ({
     ...course,
     quizzesList: course.quizzesList.map(
       this.addCourseTitleAndCourseIdToTheQuiz(course)
@@ -157,7 +165,7 @@ export class DataService {
     ...course,
     quizzesList: course.quizzesList.map(this.mapQuizKeyAndValues),
   });
-  private mapQuizQuestion = (question: Question) => ({
+  private mapQuizQuestion = (question: QuestionRaw) => ({
     ...this.mapObjectKeyAndValues<QuestionRaw, Question>(
       question,
       QUESTION_RAW_KEY_MAP,
