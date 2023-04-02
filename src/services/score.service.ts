@@ -10,11 +10,11 @@ export class ScoreService {
 
   constructor() {}
 
-  hasPass(score) {
+  hasPass(score: number) {
     return score > THRESHOLD;
   }
 
-  hasAlmostPass(score) {
+  hasAlmostPass(score: number) {
     return score > SECOND_THRESHOLD;
   }
 

@@ -45,6 +45,7 @@
       <ng-container
         *ngFor="
           let question of quiz.questionsList | correctFirst: answers:true;
+          trackBy: trackQuestion;
           let questionIndex = index
         "
       >
@@ -52,7 +53,7 @@
           {{ question.text }}
         </h3>
         <ng-container
-          *ngFor="let option of question.options; let optionIndex = index"
+          *ngFor="let option of question.optionsList; let optionIndex = index"
         >
           <mat-list-item
             *ngIf="isRelevant(question, optionIndex | alphabetLetter)"

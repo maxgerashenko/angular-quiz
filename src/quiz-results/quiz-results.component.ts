@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { QuizResult, SourceService } from '../services/source.service';
 import { ScoreService } from '../services/score.service';
 import { VoiceService } from '../services/voice.service';
-import { Quiz } from '../services/data.service';
+import { Question, Quiz } from '../services/data.service';
 
 @Component({
   selector: 'quiz-results',
@@ -42,6 +42,10 @@ export class QuizResultsComponent {
 
     this.scoreService.updateQuizMax(this.quiz.title, this.score);
     this.maxScore = this.scoreService.getQuizMax(this.quiz.title);
+  }
+
+  trackQuestion(index: number, quiz: Question) {
+    return quiz?.title;
   }
 
   isTopScore() {
@@ -91,9 +95,9 @@ export class QuizResultsComponent {
   }
 
   getFeedbackMessage(): string {
-    if (this.score >= 0.8) {
+    if (this.scoreService.hasPass(this.score)) {
       return 'Great job!';
-    } else if (this.score >= 0.5) {
+    } else if (this.scoreService.hasAlmostPass(this.score)) {
       return 'Not bad, but you could do better.';
     } else {
       return 'Better luck next time!';
