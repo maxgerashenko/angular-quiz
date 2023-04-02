@@ -133,50 +133,72 @@ export class DataService {
     ...el,
     id: String(index),
   });
-  private addTitle = <T>(el: T, title: string): T & { title: string } => ({
-    ...el,
-    title,
+  private addCourseTitleAndCourseIdToTheQuiz =
+    (course: CourseRaw & { id: string }) =>
+    (quiz: QuizRaw & { courseTitle: string; courseId: string }) => ({
+      ...quiz,
+      courseTitle: course.title,
+      courseId: course.id,
+    });
+  private mapQuizzesListWithCourseMetaData = (
+    course: CourseRaw & { id: string }
+  ) => ({
+    ...course,
+    quizzesList: course.quizzesList.map(
+      this.addCourseTitleAndCourseIdToTheQuiz(course)
+    ),
+  });
+  private mapQuizKeyAndValues = (quiz: QuizRaw) => ({
+    ...this.mapObjectKeyAndValues<QuizRaw, Quiz>(quiz, QUIZ_RAW_KEY_MAP),
+  });
+  private mapCourseQuizzesListKeyAndValues = (
+    course: CourseRaw & { id: string }
+  ): Course => ({
+    ...course,
+    quizzesList: course.quizzesList.map(this.mapQuizKeyAndValues),
+  });
+  private mapQuizQuestion = (question: Question) => ({
+    ...this.mapObjectKeyAndValues<QuestionRaw, Question>(
+      question,
+      QUESTION_RAW_KEY_MAP,
+      this.QUESTION_RAW_VALUE_MAP
+    ),
+  });
+  private mapQuizQuestionsList = (quiz: QuizRaw) => ({
+    ...quiz,
+    questionsList: quiz.questions.map(this.mapQuizQuestion),
+  });
+  private mapCourseQuizesListQuestions = (
+    course: Course & { id: string }
+  ): Course => ({
+    ...course,
+    quizzesList: course.quizzesList.map(this.mapQuizQuestionsList),
   });
   convertRawCourseList(rawCourseList: CourseRaw[]) {
     return rawCourseList
       .map(this.addId)
-      .map((course: CourseRaw & { id: string }) => ({
-        ...course,
-        quizzesList: course.quizzesList.map(
-          (quiz: QuizRaw & { courseTitle: string; courseId: string }) => ({
-            ...quiz,
-            courseTitle: course.title,
-            courseId: course.id,
-          })
-        ),
-      }))
-      .map(
-        (course: CourseRaw & { id: string }): Course => ({
-          ...course,
-          quizzesList: course.quizzesList.map((quiz: QuizRaw) => ({
-            ...this.mapKeyAndValues(quiz, QUIZ_RAW_KEY_MAP),
-          })),
-        })
-      );
+      .map(this.mapQuizzesListWithCourseMetaData)
+      .map(this.mapCourseQuizzesListKeyAndValues)
+      .map(this.mapCourseQuizesListQuestions);
   }
 
-  mapKeyAndValues<T>(
+  mapObjectKeyAndValues<T, Q>(
     object: T,
     objecKeyMapper: ObjecKeyMapper,
     objectValueMapper?: ObjecValueMapper
-  ): Quiz {
-    const newObject = {};
+  ): Q {
+    const newObject = <Q>{};
     const oldEntries = Object.entries(object);
     for (const [oldKey, oldValue] of oldEntries) {
       const newKey = Object.entries(objecKeyMapper)
         .map(([key, regExp]) => (regExp.test(oldKey) ? key : null))
         .find((key) => typeof key === 'string');
-      const newValue = objectValueMapper
+      const newValue = !!objectValueMapper
         ? objectValueMapper[newKey](oldValue)
         : oldValue;
       newObject[newKey] = newValue;
     }
-    return newObject as Quiz;
+    return newObject;
   }
 
   // convertQuestion(rawQuestion: any) {
