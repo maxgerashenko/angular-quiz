@@ -35,7 +35,7 @@
     </div>
     <mat-card-title>
       You scored is {{ score }}% {{ correctCount }} of
-      {{ quiz.questions.length }}
+      {{ quiz.questionsList.length }}
     </mat-card-title>
     <mat-card-subtitle> {{ feedbackMessage }}</mat-card-subtitle>
   </mat-card-header>
@@ -44,7 +44,7 @@
     <mat-list class="hover-list">
       <ng-container
         *ngFor="
-          let question of quiz.questions | correctFirst: answers:true;
+          let question of quiz.questionsList | correctFirst: answers:true;
           let questionIndex = index
         "
       >

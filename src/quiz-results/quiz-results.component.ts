@@ -1,8 +1,9 @@
 import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
-import { Quiz, QuizResult, SourceService } from '../services/source.service';
+import { QuizResult, SourceService } from '../services/source.service';
 import { ScoreService } from '../services/score.service';
 import { VoiceService } from '../services/voice.service';
+import { Quiz } from '../services/data.service';
 
 @Component({
   selector: 'quiz-results',
@@ -29,9 +30,12 @@ export class QuizResultsComponent {
     public scoreService: ScoreService
   ) {
     this.flatResults(this.sourceService.getResult());
-    this.correctCount = this.quiz.questions.reduce((pre, { answer }, index) => {
-      return answer === this.answers[index] ? pre + 1 : pre;
-    }, 0);
+    this.correctCount = this.quiz.questionsList.reduce(
+      (pre, { answer }, index) => {
+        return answer === this.answers[index] ? pre + 1 : pre;
+      },
+      0
+    );
     this.score = Math.trunc((this.correctCount / this.total) * 100);
     this.feedbackMessage = this.getFeedbackMessage();
     this.progressColor = this.scoreService.getProgressColor(this.score);
@@ -47,7 +51,7 @@ export class QuizResultsComponent {
   flatResults({ quiz, answers }: QuizResult) {
     this.quiz = quiz;
     this.answers = answers;
-    this.total = quiz.questions.length;
+    this.total = quiz.questionsList.length;
   }
 
   isRelevant(question, optionLetter) {
@@ -72,7 +76,9 @@ export class QuizResultsComponent {
   }
 
   goToList() {
-    this.router.navigate(['/course'], { queryParams: { id: courseId } });
+    this.router.navigate(['/course'], {
+      queryParams: { id: this.quiz.courseId },
+    });
   }
 
   reset() {

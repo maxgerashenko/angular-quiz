@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Quiz } from '../services/data.service';
 import { MenuService } from '../services/menu.service';
-import { Quiz } from '../services/source.service';
 import { SourceService } from '../services/source.service';
 
 @Component({
@@ -22,8 +22,9 @@ export class QuizComponent implements OnInit {
     private route: ActivatedRoute,
     private menuService: MenuService
   ) {
-    let quizId = this.route.snapshot.queryParams.id;
-    this.quiz = this.sourceService.getQuiz(quizId);
+    let courseId = this.route.snapshot.queryParams.courseId;
+    let quizId = this.route.snapshot.queryParams.quizId;
+    this.quiz = this.sourceService.getQuiz(courseId, quizId);
     this.shuffleQuestions();
     this.menuService.closeMenu();
   }
@@ -31,11 +32,11 @@ export class QuizComponent implements OnInit {
   ngOnInit(): void {}
 
   private shuffleQuestions(): void {
-    for (let i = this.quiz.questions.length - 1; i > 0; i--) {
+    for (let i = this.quiz.questionsList.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [this.quiz.questions[i], this.quiz.questions[j]] = [
-        this.quiz.questions[j],
-        this.quiz.questions[i],
+      [this.quiz.questionsList[i], this.quiz.questionsList[j]] = [
+        this.quiz.questionsList[j],
+        this.quiz.questionsList[i],
       ];
     }
   }
@@ -61,7 +62,7 @@ export class QuizComponent implements OnInit {
 
   submitAnswer(): void {
     this.currentQuestionIndex++;
-    if (this.currentQuestionIndex === this.quiz.questions.length) {
+    if (this.currentQuestionIndex === this.quiz.questionsList.length) {
       this.sourceService.setResult({
         quiz: this.quiz,
         answers: this.answers,

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Course, SourceService } from '../services/source.service';
+import { SourceService } from '../services/source.service';
 import { ScoreService } from '../services/score.service';
 import { filter } from 'rxjs/operators';
 import { Subject, Subscription, takeUntil } from 'rxjs';
+import { Course } from '../services/data.service';
 
 @Component({
   selector: 'app-quiz-list',

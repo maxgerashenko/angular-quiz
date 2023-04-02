@@ -8,8 +8,8 @@ export interface QuizResult {
 
 @Injectable({ providedIn: 'root' })
 export class SourceService {
-  
   result: QuizResult;
+  coursesList = this.dataService.getCoursesList();
 
   constructor(private dataService: DataService) {}
 
@@ -17,14 +17,17 @@ export class SourceService {
     title,
     id,
   });
+  getQuiz(courseId: string, quizId: string) {
+    return this.coursesList[courseId].quizzesList[quizId];
+  }
   getCourseTileList(): Tile[] {
-    return this.courseList.map(this.mapTile);
+    return this.coursesList.map(this.mapTile);
   }
   getQuizTileList(courseId: string): Tile[] {
-    return this.courseList[courseId].quizList.map(this.mapTile);
+    return this.coursesList[courseId].quizList.map(this.mapTile);
   }
   getCourse(id: string): Course {
-    return this.courseList[id];
+    return this.coursesList[id];
   }
   getResult(): QuizResult {
     return this.result;

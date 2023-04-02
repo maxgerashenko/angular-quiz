@@ -1,9 +1,9 @@
-<h1>{{quiz.courseTite}}: {{ quiz.title }}</h1>
+<h1>{{quiz.courseTitle}}: {{ quiz.title }}</h1>
   <mat-card class="quiz-card">
-    <mat-progress-bar color="pimary" mode="determinate" [value]="(currentQuestionIndex+1)/quiz.questions.length*100"/>
+    <mat-progress-bar color="pimary" mode="determinate" [value]="(currentQuestionIndex+1)/quiz.questionsList.length*100"/>
     <quiz-question
       #optionElement
-      [question]="quiz.questions[currentQuestionIndex]"
+      [question]="quiz.questionsList[currentQuestionIndex]"
       [currentQuestionIndex]="currentQuestionIndex"
       [selectedOptionValue]="selectedOptionValue"
       (optionSelected)="selectOption($event)"

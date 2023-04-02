@@ -6,8 +6,8 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatSelectionList } from '@angular/material/list';
+import { Question } from '../services/data.service';
 import { AlphabetLetterPipe } from '../pipesAndDirectives/letter.pipe';
-import { Question } from '../services/source.service';
 import { VoiceService } from '../services/voice.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class QuizQuestionComponent {
     setTimeout(() => {
       this.resetFocus();
     }, 100);
-    this.voiceOver(question.text);
+    this.voiceOver(question.title);
   }
   @Input() currentQuestionIndex: number;
   @Input() selectedOptionValue: string;
