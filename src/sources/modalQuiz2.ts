@@ -1,4 +1,4 @@
-export const modalsQuiz2 = {
+export const modalQuiz2 = {
   id: '1680378121535',
   title:
     'Have to, Must, Should - Obligation, Prohibition, Necessity, Advice Quiz',

@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
-import { messageQQuiz1 } from '../sources/messageQQuiz1';
-import { messageQQuiz2 } from '../sources/messageQQuiz2';
-import { messageQQuiz3 } from '../sources/messageQQuiz3';
-import { messageQQuiz4 } from '../sources/messageQQuiz4';
-import { messageQQuiz5 } from '../sources/messageQQuiz5';
-import { rpcQuiz } from '../sources/1_rpcQuiz';
-import { consistensyQuiz } from '../sources/2_consitensyQuiz';
-import { failureModelQuiz } from '../sources/3_failureModelQuiz';
-import { availabilityQuiz } from '../sources/4_availabilityQuiz';
-import { reliabilityQuiz } from '../sources/5_reliability';
 import { AlphabetLetterPipe } from '../pipesAndDirectives/letter.pipe';
-import { modalsQuiz } from '../sources/modalsQuiz';
-import { modalsQuiz2 } from '../sources/modalQuiz2';
+import {
+  modalsQuiz,
+  modalQuiz2,
+  rpcQuiz,
+  consistensyQuiz,
+  failureModelQuiz,
+  availabilityQuiz,
+  reliabilityQuiz,
+  messageQQuiz1,
+  messageQQuiz2,
+  messageQQuiz3,
+  messageQQuiz4,
+  messageQQuiz5,
+} from '../sources/';
 
 export interface Course {
   id: string;
@@ -85,7 +87,7 @@ export class DataService {
   coursesListRaw = [
     {
       title: 'English',
-      quizzesList: [{ ...modalsQuiz }, { ...modalsQuiz2 }],
+      quizzesList: [{ ...modalsQuiz }, { ...modalQuiz2 }],
     },
     {
       title: 'System Design',
