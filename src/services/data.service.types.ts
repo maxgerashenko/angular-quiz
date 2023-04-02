@@ -51,3 +51,7 @@ export interface Tile {
 export interface ObjecKeyMapper {
   [key: string]: RegExp;
 }
+
+export interface ObjecValueMapper {
+  [key: string]: (...rest) => any;
+}

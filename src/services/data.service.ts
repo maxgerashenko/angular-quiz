@@ -1,29 +1,19 @@
 import { Injectable } from '@angular/core';
 import { AlphabetLetterPipe } from '../pipesAndDirectives/letter.pipe';
-import {
-  modalsQuiz,
-  modalQuiz2,
-  rpcQuiz,
-  consistensyQuiz,
-  failureModelQuiz,
-  availabilityQuiz,
-  reliabilityQuiz,
-  messageQQuiz1,
-  messageQQuiz2,
-  messageQQuiz3,
-  messageQQuiz4,
-  messageQQuiz5,
-} from '../sources/';
+
+import * as sources from '../sources/';
+const { modalsQuiz, modalQuiz2, ...rest } = sources;
 import {
   Course,
   CourseRaw,
-  ObjecKeyMapper,
-  Question,
-  QuestionOptions,
-  QuestionOptionsRaw,
-  QuestionRaw,
   Quiz,
   QuizRaw,
+  Question,
+  QuestionRaw,
+  QuestionOptions,
+  QuestionOptionsRaw,
+  ObjecKeyMapper,
+  ObjecValueMapper,
 } from './data.service.types';
 
 const QUIZ_RAW_KEY_MAP: ObjecKeyMapper = {
@@ -36,9 +26,6 @@ const QUESTION_RAW_KEY_MAP: ObjecKeyMapper = {
   optionsList: /options|optionList/,
   description: /description/,
 };
-export interface ObjecValueMapper {
-  [key: string]: (...rest) => any;
-}
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
@@ -49,26 +36,15 @@ export class DataService {
     },
     {
       title: 'System Design',
-      quizzesList: [
-        { ...rpcQuiz },
-        { ...consistensyQuiz },
-        { ...failureModelQuiz },
-        { ...availabilityQuiz },
-        { ...reliabilityQuiz },
-        { ...messageQQuiz1 },
-        { ...messageQQuiz2 },
-        { ...messageQQuiz3 },
-        { ...messageQQuiz4 },
-        { ...messageQQuiz5 },
-      ],
+      quizzesList: Object.values(rest),
     },
   ];
 
   constructor(private letterPipe: AlphabetLetterPipe) {}
 
   private returnValue = <T>(value: T): T => value;
-  private trimAndRemoveAlphabetPrefix = (optoin: string) =>
-    optoin.trim().replace(/^[a-zA-Z][\)\.,]/, '');
+  private trimAndRemoveAlphabetPrefix = (option: string) =>
+    option.trim().replace(/^[a-zA-Z][\)\.,]/, '');
   private getOptionsFromObjectOrArray = (
     value: QuestionOptionsRaw
   ): QuestionOptions =>
@@ -95,14 +71,14 @@ export class DataService {
     return rawCourseList
       .map(this.addId)
       .map(this.mapQuizzesListWithCourseMetaData)
-      .map(this.mapCourseQuizzesListKeyAndValues)
-      .map(this.mapCourseQuizesListQuestions);
+      .map(this.mapCourseQuizzesListKeysAndValues)
+      .map(this.mapCourseQuizzesListQuestions);
   }
   private addId = <T>(el: T, index: number): T & { id: string } => ({
     ...el,
     id: String(index),
   });
-  private addCourseTitleAndCourseIdToTheQuiz =
+  private addCourseTitleAndCourseIdToQuiz =
     (course: CourseRaw & { id: string }) =>
     (quiz: QuizRaw): QuizRaw & { courseTitle: string; courseId: string } => ({
       ...quiz,
@@ -120,10 +96,10 @@ export class DataService {
   } => ({
     ...course,
     quizzesList: course.quizzesList.map(
-      this.addCourseTitleAndCourseIdToTheQuiz(course)
+      this.addCourseTitleAndCourseIdToQuiz(course)
     ),
   });
-  private mapQuizKeyAndValues = (
+  private mapQuizKeysAndValues = (
     quiz: QuizRaw & {
       courseId: string;
       courseTitle: string;
@@ -135,7 +111,7 @@ export class DataService {
     title: string;
     questionsList: QuestionRaw[];
   } => ({
-    ...this.mapObjectKeyAndValues<
+    ...this.mapObjectKeysAndValues<
       QuizRaw & {
         courseId: string;
         courseTitle: string;
@@ -149,7 +125,7 @@ export class DataService {
       }
     >(quiz, QUIZ_RAW_KEY_MAP),
   });
-  private mapCourseQuizzesListKeyAndValues = (
+  private mapCourseQuizzesListKeysAndValues = (
     course: CourseRaw & {
       id: string;
       quizzesList: (QuizRaw & {
@@ -168,10 +144,10 @@ export class DataService {
     })[];
   } => ({
     ...course,
-    quizzesList: course.quizzesList.map(this.mapQuizKeyAndValues),
+    quizzesList: course.quizzesList.map(this.mapQuizKeysAndValues),
   });
   private mapQuizQuestion = (question: QuestionRaw): Question => ({
-    ...this.mapObjectKeyAndValues<QuestionRaw, Question>(
+    ...this.mapObjectKeysAndValues<QuestionRaw, Question>(
       question,
       QUESTION_RAW_KEY_MAP,
       this.QUESTION_RAW_VALUE_MAP
@@ -190,7 +166,7 @@ export class DataService {
     questionsList: quiz.questionsList.map(this.mapQuizQuestion),
   });
 
-  private mapCourseQuizesListQuestions = (
+  private mapCourseQuizzesListQuestions = (
     course: CourseRaw & {
       id: string;
       quizzesList: (Omit<QuizRaw, 'questions'> & {
@@ -206,7 +182,7 @@ export class DataService {
     quizzesList: course.quizzesList.map(this.mapQuizQuestionsList),
   });
 
-  mapObjectKeyAndValues<T, Q>(
+  mapObjectKeysAndValues<T, Q>(
     object: T,
     objecKeyMapper: ObjecKeyMapper,
     objectValueMapper?: ObjecValueMapper
