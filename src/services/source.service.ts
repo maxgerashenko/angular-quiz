@@ -18,7 +18,9 @@ export class SourceService {
     id,
   });
   getQuiz(courseId: string, quizId: string) {
-    return this.coursesList[courseId].quizzesList[quizId];
+    return this.coursesList[courseId].quizzesList.find(
+      (quiz) => quiz.id === quizId
+    );
   }
   getCourseTileList(): Tile[] {
     return this.coursesList.map(this.mapTile);

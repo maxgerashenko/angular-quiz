@@ -40,6 +40,7 @@ export interface CourseRaw {
   quizzesList: QuizRaw[];
 }
 export interface QuizRaw {
+  id: string;
   title: string;
   questions?: QuestionRaw[];
   summary?: string;
@@ -66,14 +67,11 @@ export interface ObjecKeyMapper {
   [key: string]: RegExp;
 }
 const QUIZ_RAW_KEY_MAP: ObjecKeyMapper = {
-  id: /quizId|id/,
-  summary: /[sS]ummary|[qQ]uizSummary/,
-  title: /[Tt]ext|itle/,
   questionsList: /questions|questionList/,
 };
 
 const QUESTION_RAW_KEY_MAP: ObjecKeyMapper = {
-  title: /[Tt]ext|itle/,
+  title: /([Tt]ext|itle)|question/,
   answer: /[Aa]nswer/,
   optionsList: /options|optionList/,
   description: /description/,
@@ -87,21 +85,24 @@ export class DataService {
   coursesListRaw = [
     {
       title: 'English',
-      quizzesList: [{ ...modalsQuiz }, { ...modalsQuiz2 }],
+      quizzesList: [
+        { ...modalsQuiz },
+        // { ...modalsQuiz2 }
+      ],
     },
     {
       title: 'System Design',
       quizzesList: [
         { ...rpcQuiz },
-        { ...consistensyQuiz },
-        { ...failureModelQuiz },
-        { ...availabilityQuiz },
-        { ...reliabilityQuiz },
-        { ...messageQQuiz1 },
-        { ...messageQQuiz2 },
-        { ...messageQQuiz3 },
-        { ...messageQQuiz4 },
-        { ...messageQQuiz5 },
+        //     { ...consistensyQuiz },
+        //     { ...failureModelQuiz },
+        //     { ...availabilityQuiz },
+        //     { ...reliabilityQuiz },
+        //     { ...messageQQuiz1 },
+        //     { ...messageQQuiz2 },
+        //     { ...messageQQuiz3 },
+        //     { ...messageQQuiz4 },
+        //     { ...messageQQuiz5 },
       ],
     },
   ];
@@ -229,7 +230,7 @@ export class DataService {
     }
   ): Quiz => ({
     ...quiz,
-    questionsList: quiz.questions.map(this.mapQuizQuestion),
+    questionsList: quiz.questionsList.map(this.mapQuizQuestion),
   });
 
   private mapCourseQuizesListQuestions = (
@@ -259,10 +260,11 @@ export class DataService {
       const newKey = Object.entries(objecKeyMapper)
         .map(([key, regExp]) => (regExp.test(oldKey) ? key : null))
         .find((key) => typeof key === 'string');
-      const newValue = !!objectValueMapper
-        ? objectValueMapper[newKey](oldValue)
-        : oldValue;
-      newObject[newKey] = newValue;
+      const newValue =
+        !!objectValueMapper && !!newKey
+          ? objectValueMapper[newKey](oldValue)
+          : oldValue;
+      newObject[newKey || oldKey] = newValue;
     }
     return newObject;
   }

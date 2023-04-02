@@ -11,11 +11,11 @@
           *ngIf="index === 0"
           autoFocus
           mat-list-item
-          (click)="openQuiz(quiz.id)"
+          (click)="openQuiz(quiz.courseId, quiz.id)"
         >
           {{ quiz.title }}
         </button>
-        <button mat-list-item *ngIf="index > 0"  (click)="openQuiz(quiz.id)">
+        <button mat-list-item *ngIf="index > 0"  (click)="openQuiz(quiz.courseId, quiz.id)">
           {{ quiz.title }}
         </button>
         <mat-progress-bar

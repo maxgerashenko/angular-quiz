@@ -1,4 +1,5 @@
 export const reliabilityQuiz = {
+  id: '1680378121529',
   summary: `
   Reliability in distributed systems refers to the ability of the system to provide a consistent and dependable service to its users, despite the failures or partial failures of its components.
 Achieving high reliability in distributed systems requires employing various techniques to ensure fault-tolerance, such as redundancy, replication, load balancing, monitoring, and fault-tolerance design.
@@ -8,7 +9,6 @@ Despite the techniques employed, achieving perfect reliability in distributed sy
 Additional techniques that can be used to improve reliability in distributed systems include using distributed consensus algorithms, distributed tracing tools, and containerization technologies.
 Achieving high reliability in distributed systems is essential for ensuring the system can provide its services to users consistently and dependably.
   `,
-  id: '1680378121529',
   title: 'Reliability',
   questions: [
     {

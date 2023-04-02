@@ -1,4 +1,5 @@
 export const messageQQuiz5 = {
+  id: '1680378121534',
   summary: `Back-end service or queue is a system that manages the storage, delivery, and processing of messages between different applications or services. Below are the key concepts related to back-end service or queue:
 
 Internal Cluster Manager: It manages the assignment of queues within a cluster and has information about each node within a cluster. It listens to the heartbeat from each node and manages host failure, instance addition, and removals from the cluster. It partitions a queue into several parts and each part gets a primary server.

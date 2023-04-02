@@ -83,7 +83,10 @@ export class QuizResultsComponent {
 
   reset() {
     this.router.navigate(['/quiz'], {
-      queryParams: { id: String(this.quiz.id) },
+      queryParams: {
+        courseId: this.quiz.courseId,
+        quizId: String(this.quiz.id),
+      },
     });
   }
 

@@ -1,4 +1,5 @@
 export const failureModelQuiz = {
+  id: '1680335931319',
   summary: `The Failure Models are a classification of different types of failures that can occur in distributed systems. The models range from easy to deal with to hard, and each model describes a unique type of failure:
 
 Fail-stop is a failure model where a node stops working altogether when it fails, and other nodes in the system can detect this failure.
@@ -12,7 +13,6 @@ Temporal failures occur when a node returns correct but outdated data due to net
 Byzantine failures are the most complex and challenging failure model to handle, where a node behaves arbitrarily or maliciously, leading to unpredictable system behavior.
 
 Understanding these failure models is essential for designing robust and fault-tolerant distributed systems. Each model requires a different approach to handle it, and the system should have a combination of techniques to handle multiple failure models simultaneously.`,
-  id: '1680335931319',
   title: 'Failure Models',
   questions: [
     {

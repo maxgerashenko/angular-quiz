@@ -41,8 +41,8 @@ export class QuizListComponent {
       });
   }
 
-  openQuiz(quizId: string) {
-    this.router.navigate(['/quiz'], { queryParams: { id: quizId } });
+  openQuiz(courseId: string, quizId: string) {
+    this.router.navigate(['/quiz'], { queryParams: { courseId, quizId } });
   }
 
   ngOnDestroy() {
