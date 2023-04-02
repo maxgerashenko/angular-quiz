@@ -28,11 +28,12 @@ export interface Quiz {
 }
 export interface Question {
   title: string;
-  optionsList: string[];
+  optionsList: QuestionOptions;
   answer: string;
   isCorrect?: boolean;
   description?: string;
 }
+export type QuestionOptions = string[];
 
 export interface CourseRaw {
   title: string;
@@ -40,16 +41,17 @@ export interface CourseRaw {
 }
 export interface QuizRaw {
   title: string;
-  questions: QuestionRaw[];
+  questions?: QuestionRaw[];
   summary?: string;
 }
-type RawValueTypes = string | number | QuestionOptionRaw[] | string[];
+type RawValueTypes = string | number | QuestionOptionsRaw;
 export interface QuestionRaw {
   [key: string]: RawValueTypes;
 }
-export interface QuestionOptionRaw {
+export interface QuestionOptionObject {
   [key: string]: string;
 }
+export type QuestionOptionsRaw = QuestionOptionObject | string[];
 
 export interface CourseQuizTile {
   title: string;
@@ -106,38 +108,45 @@ export class DataService {
 
   constructor(private letterPipe: AlphabetLetterPipe) {}
 
-  private returnValue = <T>(value: T) => value;
+  private returnValue = <T>(value: T): T => value;
   private trimAndRemoveAlphabetPrefix = (optoin: string) =>
     optoin.trim().replace(/^[a-zA-Z][\)\.,]/, '');
   private getOptionsFromObjectOrArray = (
-    value: { [key: string]: string } | string[]
-  ) =>
-    (typeof value === 'object' ? Object.values(value) : value).map(
-      this.trimAndRemoveAlphabetPrefix
-    );
+    value: QuestionOptionsRaw
+  ): QuestionOptions =>
+    (typeof value === 'object'
+      ? Object.values(<object>value)
+      : <string[]>value
+    ).map(this.trimAndRemoveAlphabetPrefix);
   private getAnswerLetterFromStringOrNumber = (value: string | number) =>
     typeof value === 'number'
-      ? this.letterPipe.transform(value as number)
-      : (value as string).toLocaleLowerCase();
+      ? this.letterPipe.transform(<number>value)
+      : (<string>value).toLocaleLowerCase();
   private QUESTION_RAW_VALUE_MAP: ObjecValueMapper = {
     title: this.returnValue,
-    optionList: this.getOptionsFromObjectOrArray,
+    optionsList: this.getOptionsFromObjectOrArray,
     answer: this.getAnswerLetterFromStringOrNumber,
+    description: this.returnValue,
   };
 
   getCoursesList(): Course[] {
     return this.convertRawCourseList(this.coursesListRaw);
   }
 
+  convertRawCourseList(rawCourseList: CourseRaw[]): Course[] {
+    return rawCourseList
+      .map(this.addId)
+      .map(this.mapQuizzesListWithCourseMetaData)
+      .map(this.mapCourseQuizzesListKeyAndValues)
+      .map(this.mapCourseQuizesListQuestions);
+  }
   private addId = <T>(el: T, index: number): T & { id: string } => ({
     ...el,
     id: String(index),
   });
   private addCourseTitleAndCourseIdToTheQuiz =
     (course: CourseRaw & { id: string }) =>
-    (
-      quiz: QuizRaw & { courseTitle: string; courseId: string }
-    ): QuizRaw | { courseTitle: string; courseId: string } => ({
+    (quiz: QuizRaw): QuizRaw & { courseTitle: string; courseId: string } => ({
       ...quiz,
       courseTitle: course.title,
       courseId: course.id,
@@ -156,39 +165,88 @@ export class DataService {
       this.addCourseTitleAndCourseIdToTheQuiz(course)
     ),
   });
-  private mapQuizKeyAndValues = (quiz: QuizRaw) => ({
-    ...this.mapObjectKeyAndValues<QuizRaw, Quiz>(quiz, QUIZ_RAW_KEY_MAP),
+  private mapQuizKeyAndValues = (
+    quiz: QuizRaw & {
+      courseId: string;
+      courseTitle: string;
+    }
+  ): Omit<QuizRaw, 'questions'> & {
+    courseId: string;
+    courseTitle: string;
+    id: string;
+    title: string;
+    questionsList: QuestionRaw[];
+  } => ({
+    ...this.mapObjectKeyAndValues<
+      QuizRaw & {
+        courseId: string;
+        courseTitle: string;
+      },
+      Omit<QuizRaw, 'questions'> & {
+        courseId: string;
+        courseTitle: string;
+        id: string;
+        title: string;
+        questionsList: QuestionRaw[];
+      }
+    >(quiz, QUIZ_RAW_KEY_MAP),
   });
   private mapCourseQuizzesListKeyAndValues = (
-    course: CourseRaw & { id: string }
-  ): Course => ({
+    course: CourseRaw & {
+      id: string;
+      quizzesList: (QuizRaw & {
+        courseId: string;
+        courseTitle: string;
+      })[];
+    }
+  ): CourseRaw & {
+    id: string;
+    quizzesList: (Omit<QuizRaw, 'questions'> & {
+      courseId: string;
+      courseTitle: string;
+      id: string;
+      title: string;
+      questionsList: QuestionRaw[];
+    })[];
+  } => ({
     ...course,
     quizzesList: course.quizzesList.map(this.mapQuizKeyAndValues),
   });
-  private mapQuizQuestion = (question: QuestionRaw) => ({
+  private mapQuizQuestion = (question: QuestionRaw): Question => ({
     ...this.mapObjectKeyAndValues<QuestionRaw, Question>(
       question,
       QUESTION_RAW_KEY_MAP,
       this.QUESTION_RAW_VALUE_MAP
     ),
   });
-  private mapQuizQuestionsList = (quiz: QuizRaw) => ({
+  private mapQuizQuestionsList = (
+    quiz: QuizRaw & {
+      courseId: string;
+      courseTitle: string;
+      id: string;
+      title: string;
+      questionsList: QuestionRaw[];
+    }
+  ): Quiz => ({
     ...quiz,
     questionsList: quiz.questions.map(this.mapQuizQuestion),
   });
+
   private mapCourseQuizesListQuestions = (
-    course: Course & { id: string }
+    course: CourseRaw & {
+      id: string;
+      quizzesList: (Omit<QuizRaw, 'questions'> & {
+        courseId: string;
+        courseTitle: string;
+        id: string;
+        title: string;
+        questionsList: QuestionRaw[];
+      })[];
+    }
   ): Course => ({
     ...course,
     quizzesList: course.quizzesList.map(this.mapQuizQuestionsList),
   });
-  convertRawCourseList(rawCourseList: CourseRaw[]) {
-    return rawCourseList
-      .map(this.addId)
-      .map(this.mapQuizzesListWithCourseMetaData)
-      .map(this.mapCourseQuizzesListKeyAndValues)
-      .map(this.mapCourseQuizesListQuestions);
-  }
 
   mapObjectKeyAndValues<T, Q>(
     object: T,
@@ -208,14 +266,4 @@ export class DataService {
     }
     return newObject;
   }
-
-  // convertQuestion(rawQuestion: any) {
-  //   const newKeys = Object.keys(this.QUESTION_RAW_VALUE_MAP);
-  //   const entries = Object.entries(rawQuestion);
-  //   for (const index in entries) {
-  //     let [key, value] = entries[index];
-  //     newQuestion[newKeys[index]] = this.convertValue(key, value);
-  //   }
-  //   return newQuestion as Question;
-  // }
 }
