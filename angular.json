@@ -15,7 +15,7 @@
           "options": {
             "outputPath": "dist/demo",
             "index": "src/index.html",
-            "main": "src/main-testing.ts",
+            "main": "src/main.ts",
             "assets": [],
             "styles": [
               "src/material.scss",
