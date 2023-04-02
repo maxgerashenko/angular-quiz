@@ -23,5 +23,6 @@ Install the necessary dependencies by running the following command: npm install
 Set up a Firebase project and add the necessary configuration to the environment.ts file.
 Start the application by running the following command: ng serve.
 Navigate to http://localhost:4200 in your web browser to use the application.
+
 Conclusion
 Quizify is a useful tool for anyone who wants to reinforce their learning and track their progress across multiple quizzes and courses. With its easy-to-use interface and customizable quiz settings, Quizify makes learning fun and engaging.
