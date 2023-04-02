@@ -21,7 +21,7 @@ import {
 } from '@angular/platform-browser-dynamic/testing';
 
 // stuff to test
-import './pipesAndDirectives/alphabet-index.pipe';
+import './pipesAndDirectives/alphabet-index.pipe.spec.ts';
 import './app/app.component.spec.ts';
 import './quiz-list/quiz-list.component.spec.ts';
 
