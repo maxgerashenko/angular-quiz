@@ -21,7 +21,6 @@ export interface Question {
   isCorrect?: boolean;
   description?: string;
 }
-
 export interface Quiz {
   courseTitle: string;
   courseId: string;
@@ -30,19 +29,23 @@ export interface Quiz {
   questionList: Question[];
   summary?: string;
 }
-
 export interface Course {
   id: string;
   title: string;
   quizList: Quiz[];
 }
 
-export interface CourseRaw {
-  title: string;
-  quizList: Quiz[];
+export interface QuestionOptionRaw {
+  [key in keys]: string;
 }
-
+export interface QuestionRAW {
+  [key in keys]: string | number | QuestionOptionRaw[] | string[];
+}
 export interface QuizRaw {
+  title: string;
+  questionsList: QuestionRAW[];
+}
+export interface CourseRaw {
   title: string;
   quizList: Quiz[];
 }
@@ -57,12 +60,12 @@ export interface Tile {
   id: string;
 }
 
-const QUESTION_MAP = Object.freeze({
-  text: 'title',
-  options: 'optionList',
-  answer: 'answer',
-  description: 'description',
-});
+const QUESTION_RAW_KEY_MAP = {
+  title: /[Tt]ext|itle/,
+  answer: /[Aa]nswer/,
+  optionsList: /options|optionList/,
+  description: /description/,
+};
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
@@ -93,47 +96,70 @@ export class DataService {
     private letterPipe: AlphabetLetterPipe
   ) {}
 
-  getCourseListRaw() {
-    return this.courseListRaw;
+  private returnValue = <T>(value: T) => value;
+  private trimAndRemoveAlphabetPrefix = (optoin: string) =>
+    optoin.trim().replace(/^[a-zA-Z][\)\.,]/, '');
+  private getOptionsFromObjectOrArray = (
+    value: { [key: string]: string } | string[]
+  ) =>
+    (typeof value === 'object' ? Object.values(value) : value).map(
+      this.trimAndRemoveAlphabetPrefix
+    );
+  private getAnswerLetterFromStringOrNumber = (value: string | number) =>
+    typeof value === 'number'
+      ? this.letterPipe.transform(value as number)
+      : (value as string).toLocaleLowerCase();
+  private QUESTION_RAW_VALUE_MAP = {
+    title: this.returnValue,
+    optionList: this.getOptionsFromObjectOrArray,
+    answer: this.getAnswerLetterFromStringOrNumber,
+  };
+
+  getCourseList() {
+    return this.convertRawCourseList(this.courseListRaw);
   }
 
-  isAnswer(key: string) {
-    return /[Aa]nswer/.test(key);
-  }
-
-  getNormalizedKey(key: string) {
-    if (/[Aa]nswer/.test(key)) return 'answer';
-    if (/option/.test(key)) return 'options';
-    return key;
+  private addId = <T>(el: T, index: number): T & { id: string } => ({
+    ...el,
+    id: String(index),
+  });
+  convertRawCourseList(rawCourseList: CourselistRaw) {
+    return rawCourseList.map(this.addId);
   }
 
   convertQuestion(rawQuestion: any) {
-    const newKeys = Object.keys(QUESTION_MAP);
+    const newKeys = Object.keys(this.QUESTION_RAW_VALUE_MAP);
     let newQuestion = {};
     const entries = Object.entries(rawQuestion);
     for (const index in entries) {
       let [key, value] = entries[index];
-      switch (this.getNormalizedKey(key)) {
-        case 'answer':
-          return typeof value === 'number'
-            ? this.letterPipe.transform(value as number)
-            : (value as string).toLocaleLowerCase();
-        case 'options':
-          return Array.isArray(value)
-            ? value.map((option) =>
-                option.trim().replace(/^[a-zA-Z][\)\.,]/, '')
-              )
-            : typeof value === 'object' && Object.values(value);
-        default:
-          return value;
-      }
-
-      newQuestion[newKeys[index]] = !this.isAnswer(key)
-        ? value
-        : typeof value === 'number'
-        ? this.letterPipe.transform(value as number)
-        : (value as string).toLocaleLowerCase();
+      newQuestion[newKeys[index]] = this.convertValue(key, value);
     }
     return newQuestion as Question;
   }
+
+  private addTitle = <T>(el: T, title: string): T & { title: string } => ({
+    ...el,
+    title,
+  });
+  courseList: Course[] = this.dataService
+    .getCourseListRaw()
+    .map(this.addId)
+    .map((id: string, title: string, quizLis: Quiz[]) => ({
+      id,
+      title,
+      quizList: quizList
+        .map(this.addId)
+        .map((quiz) => this.addTitle(quiz, title))
+        .map(({ id, title, courseTite, courseId, questions, summary }) => ({
+          id,
+          title,
+          courseTite,
+          courseId,
+          summary,
+          questionsList: questions
+            .map(this.addId)
+            .map((question) => this.dataService.convertQuestion(question)),
+        })),
+    }));
 }
