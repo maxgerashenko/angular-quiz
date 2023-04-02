@@ -4,7 +4,7 @@ import { SourceService } from '../services/source.service';
 import { ScoreService } from '../services/score.service';
 import { filter } from 'rxjs/operators';
 import { Subject, Subscription, takeUntil } from 'rxjs';
-import { Course } from '../services/data.service';
+import { Course } from '../services/data.service.types';
 import { MenuService } from '../services/menu.service';
 
 @Component({

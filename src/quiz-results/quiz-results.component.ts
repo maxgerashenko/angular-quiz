@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import { QuizResult, SourceService } from '../services/source.service';
 import { ScoreService } from '../services/score.service';
 import { VoiceService } from '../services/voice.service';
-import { Question, Quiz } from '../services/data.service';
-import { MenuService } from '../services/menu.service';
+import { Question, Quiz } from '../services/data.service.types';
 
 @Component({
   selector: 'quiz-results',

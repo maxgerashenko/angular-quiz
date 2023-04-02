@@ -6,8 +6,8 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatSelectionList } from '@angular/material/list';
-import { Question } from '../services/data.service';
 import { AlphabetLetterPipe } from '../pipesAndDirectives/letter.pipe';
+import { Question } from '../services/data.service.types';
 import { VoiceService } from '../services/voice.service';
 
 @Component({

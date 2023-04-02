@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Course, DataService, Quiz, Tile } from './data.service';
+import { DataService } from './data.service';
+import { Course, Quiz, Tile } from './data.service.types';
 
 export interface QuizResult {
   quiz: Quiz;
