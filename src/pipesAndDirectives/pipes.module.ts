@@ -8,7 +8,7 @@ import { correctFirstPipe } from '../pipesAndDirectives/order-by-correct.pipe';
 
 const pipes = [
   AlphabetLetterPipe,
-  AlphabetIndexPipe,
+  letterIndexPipe,
   ArrayPipe,
   correctFirstPipe,
 ];
