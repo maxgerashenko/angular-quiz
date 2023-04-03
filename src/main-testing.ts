@@ -23,6 +23,8 @@ import './app/app.component.spec.ts';
 import './quiz-list/quiz-list.component.spec.ts';
 import './index-letter.pipe.spec.ts';
 import './letter-index.pipe.spec.ts';
+import './array.pipe.spec.ts';
+import './autofocus.directive.spec.ts';
 
 // Run tests
 jasmine.getEnv().configure({ random: false });
