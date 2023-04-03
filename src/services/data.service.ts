@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AlphabetLetterPipe } from '../pipesAndDirectives/letter.pipe';
+import { LetterIndexPipe } from '../pipesAndDirectives/letter-index.pipe';
 
 import * as sources from '../sources/';
 
@@ -18,7 +18,7 @@ import {
 } from './data.service.types';
 
 const QUIZ_RAW_KEY_MAP: ObjecKeyMapper = {
-  questionsList: /questions|questionList|questionsList/,
+  questionsList: /questions|questionList/,
 };
 const { modalsQuiz, modalQuiz2, ...rest } = sources;
 const QUESTION_RAW_KEY_MAP: ObjecKeyMapper = {
@@ -39,7 +39,7 @@ export class DataService {
     },
   ];
 
-  constructor(private letterPipe: AlphabetLetterPipe) {}
+  constructor(private letterIndexPipe: LetterIndexPipe) {}
 
   // Main method to get the courses list
   getCoursesList(): Course[] {
@@ -103,7 +103,7 @@ export class DataService {
     );
   private getAnswerLetterFromStringOrNumber = (value: string | number) =>
     typeof value === 'number'
-      ? this.letterPipe.transform(value)
+      ? this.letterIndexPipe.transform(value)
       : value.toLocaleLowerCase();
   private QUESTION_RAW_VALUE_MAP: ObjecValueMapper = {
     title: this.returnValue,
