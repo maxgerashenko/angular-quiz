@@ -9,7 +9,6 @@ export interface QuizResult {
 
 @Injectable({ providedIn: 'root' })
 export class SourceService {
-  result: QuizResult;
   coursesList = this.dataService.getCoursesList();
 
   constructor(private dataService: DataService) {}
@@ -32,9 +31,7 @@ export class SourceService {
   getCourse(id: string): Course {
     return this.coursesList[id];
   }
-  getResult(): QuizResult {
-    return this.result;
-  }
+
   setResult(value: QuizResult) {
     this.result = { ...value };
   }

@@ -7,8 +7,12 @@ const SECOND_THRESHOLD = 50;
 @Injectable({ providedIn: 'root' })
 export class ScoreService {
   threshold = 80;
-
+  result: QuizResult;
   constructor() {}
+
+  getResult(): QuizResult {
+    return this.result;
+  }
 
   hasPass(score: number) {
     return score > THRESHOLD;
