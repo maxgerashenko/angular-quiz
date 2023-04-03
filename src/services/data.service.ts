@@ -53,9 +53,12 @@ export class DataService {
       id: String(courseId),
       quizzesList: course.quizzesList
         .map(this.mapQuizKeysValues)
-        .map((quiz, quizId) =>
-          this.processQuiz(quiz, quizId, course, String(courseId), quiz.title)
-        ),
+        .map(quiz => {
+          ...quiz,
+          courseId: course.id,
+          courseTitle: course.title,
+        })
+        .map(this.processQuiz),
     };
   };
 
@@ -64,32 +67,20 @@ export class DataService {
   }
 
   // Process a quiz and its questions
-  private processQuiz = (
-    quiz: QuizRawWithIdTitle,
-    quizId: number,
-    course: CourseRaw,
-    courseId: string,
-    title: string
-  ): Quiz => {
+  private processQuiz = (quiz): Quiz => {
     return {
-      courseTitle: course.title,
-      courseId,
-      title: quiz.title || title, // use the quiz's title if available, otherwise fallback to the provided title
-      id: quiz.id ? String(quiz.id) : String(quizId), // use the quiz's id if available, otherwise generate a new id
-      questionsList: quiz.questions
-        ? quiz.questions.map(this.processQuestion)
-        : [],
+      ...quiz,
+      questionsList: quiz.questionsList
+      .map(this.processQuestion)
     };
   };
 
   // Process a question
-  private processQuestion = (question: QuestionRaw): Question => {
-    return this.mapObjectKeysAndValues(
+  private processQuestion = (question: QuestionRaw): Question => ({this.mapObjectKeysAndValues(
       question,
       QUESTION_RAW_KEY_MAP,
       this.QUESTION_RAW_VALUE_MAP
-    );
-  };
+    )})
 
   // Utility methods
   private returnValue = <T>(value: T): T => value;
