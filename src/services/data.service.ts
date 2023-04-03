@@ -22,10 +22,8 @@ const QUIZ_RAW_KEY_MAP: ObjecKeyMapper = {
 };
 const { modalsQuiz, modalQuiz2, ...rest } = sources;
 const QUESTION_RAW_KEY_MAP: ObjecKeyMapper = {
-  title: /([Tt]ext|itle)|question/,
-  answer: /[Aa]nswer/,
-  optionsList: /options|optionList|optionsList/,
-  description: /description/,
+  title: /text|title|question/,
+  optionsList: /options/,
 };
 
 @Injectable({ providedIn: 'root' })
