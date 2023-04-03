@@ -1,18 +1,23 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+import { Pipe, PipeTransform } from '@angular/core';
+
 @Pipe({
   name: 'correctFirst',
 })
-export class correctFirstPipe implements PipeTransform {
+export class CorrectFirstPipe implements PipeTransform {
   transform(questions: any[], answers: string[], isInversed?: boolean): any[] {
-    const updated = questions.map((el, index) => ({
-      ...el,
+    const updatedQuestions = questions.map((question, index) => ({
+      ...question,
       selected: answers[index],
     }));
-    const sorted = [
-      ...updated.filter(({ answer, selected }) => answer === selected),
-      ...updated.filter(({ answer, selected }) => answer !== selected),
-    ];
-    return isInversed ? sorted.reverse() : sorted;
+    const correctQuestions = updatedQuestions.filter(
+      ({ answer, selected }) => answer === selected
+    );
+    const incorrectQuestions = updatedQuestions.filter(
+      ({ answer, selected }) => answer !== selected
+    );
+    const sortedQuestions = [...correctQuestions, ...incorrectQuestions];
+    return isInversed ? sortedQuestions.reverse() : sortedQuestions;
   }
 }

@@ -1,7 +1,7 @@
 import { LetterIndexPipe } from './letter-index.pipe';
 
 describe('LetterIndexPipe', () => {
-  let pipe: AlphabetIndexPipe;
+  let pipe: LetterIndexPipe;
 
   beforeEach(() => {
     pipe = new LetterIndexPipe();

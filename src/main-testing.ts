@@ -25,6 +25,7 @@ import './index-letter.pipe.spec.ts';
 import './letter-index.pipe.spec.ts';
 import './array.pipe.spec.ts';
 import './autofocus.directive.spec.ts';
+import './order-by-correct.pipe.spec.ts';
 
 // Run tests
 jasmine.getEnv().configure({ random: false });
