@@ -31,8 +31,4 @@ export class SourceService {
   getCourse(id: string): Course {
     return this.coursesList[id];
   }
-
-  setResult(value: QuizResult) {
-    this.result = { ...value };
-  }
 }

@@ -10,6 +10,9 @@ export class ScoreService {
   result: QuizResult;
   constructor() {}
 
+  setResult(value: QuizResult) {
+    this.result = { ...value };
+  }
   getResult(): QuizResult {
     return this.result;
   }
