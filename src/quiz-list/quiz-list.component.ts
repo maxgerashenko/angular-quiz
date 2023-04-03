@@ -8,7 +8,6 @@ import { Course } from '../services/data.service.types';
 import { MenuService } from '../services/menu.service';
 
 @Component({
-  selector: 'app-quiz-list',
   templateUrl: './quiz-list.component.html',
   styleUrls: ['./quiz-list.component.css'],
 })
