@@ -1,10 +1,10 @@
-import { AlphabetIndexPipe } from './alphabet-index.pipe';
+import { LetterIndexPipe } from './letter-index.pipe';
 
-describe('AlphabetIndexPipe', () => {
+describe('LetterIndexPipe', () => {
   let pipe: AlphabetIndexPipe;
 
   beforeEach(() => {
-    pipe = new AlphabetIndexPipe();
+    pipe = new LetterIndexPipe();
   });
 
   it('should create an instance', () => {
