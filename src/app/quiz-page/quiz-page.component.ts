@@ -57,7 +57,7 @@ export class QuizPageComponent implements OnInit {
     this.isAutoReply = value;
   }
 
-  selectOption({ value }: ObjectType<string>) {
+  selectOption({ value }) {
     this.answers[this.currentQuestionIndex] = value;
     this.selectedOptionValue = value;
     if (this.isAutoReply) this.submitAnswer();

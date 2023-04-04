@@ -1,6 +1,4 @@
-import { Course } from "./interfaces"
-
-
+import { Course } from './interfaces';
 
 export const TMP_COURSES_LIST: Course[] = [
   {
@@ -14,13 +12,14 @@ export const TMP_COURSES_LIST: Course[] = [
         courseTitle: 'Angular',
         questionsList: [
           {
-            title: '',
+            title: 'question',
             optionsList: ['Java', 'JavaScript', 'Python', 'C#'],
             answer: 'b',
             description: 'Java is not JavaScript',
           },
-        ]
-      }]
+        ],
+      },
+    ],
   },
   {
     id: '1',
@@ -33,13 +32,13 @@ export const TMP_COURSES_LIST: Course[] = [
         courseTitle: 'Angular',
         questionsList: [
           {
-            title: '',
+            title: 'question',
             optionsList: ['Java', 'JavaScript', 'Python', 'C#'],
             answer: 'b',
             description: 'Java is not JavaScript',
           },
           {
-            title: '',
+            title: 'question',
             optionsList: ['Java', 'JavaScript', 'Python', 'C#'],
             answer: 'b',
             description: 'Java is not JavaScript',
@@ -67,5 +66,5 @@ export const TMP_COURSES_LIST: Course[] = [
         ],
       },
     ],
-  }
+  },
 ];
