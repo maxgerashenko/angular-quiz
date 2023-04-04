@@ -1,32 +1,32 @@
 .top-button-container {
-  position: absolute;
-  margin-right: 20px;
-  margin-bottom: 10px;
-  right: 0;
-  display: flex;
-  flex-direction: row;
-}
-
-.bottom-button-container {
-  display: flex;
-  flex-direction: row-reverse;
-
-  button {
+    position: absolute;
     margin-right: 20px;
+    margin-bottom: 10px;
+    right: 0;
+    display: flex;
+    flex-direction: row;
   }
-}
-
-.description {
-  margin-top: 20px;
-  padding-top: 0;
-  padding-bottom: 0;
-  width: 100%;
-}
-
-textarea {
-  resize: none;
-  height: fit-content;
-  min-width: 100%;
-  overflow: hidden;
-  color: white !important;
-}
+  
+  .bottom-button-container {
+    display: flex;
+    flex-direction: row-reverse;
+  
+    button {
+      margin-right: 20px;
+    }
+  }
+  
+  .description {
+    padding-top: 0;
+    padding-bottom: 0;
+    width: 100%;
+  }
+  
+  textarea {
+    resize: none;
+    height: fit-content;
+    min-width: 100%;
+    overflow: hidden;
+    color: white !important;
+  }
+  

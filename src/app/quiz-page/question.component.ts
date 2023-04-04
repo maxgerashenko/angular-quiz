@@ -5,10 +5,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import {
-  MatSelectionList,
-  MatSelectionListChange,
-} from '@angular/material/list';
+import { MatSelectionList, MatSelectionListChange } from '@angular/material/list';
 import { IndexLetterPipe } from '../pipes/index-letter.pipe';
 import { Question } from '../services/interfaces';
 import { VoiceService } from '../services/voice.service';
@@ -29,6 +26,7 @@ export class QuestionComponent {
     this.voiceOver(question.title);
   }
   @Input() currentQuestionIndex!: number;
+  @Input() selectedOptionValue!: string;
   @Output() optionSelected = new EventEmitter<{
     value: string;
     deselect: () => void;
@@ -38,7 +36,7 @@ export class QuestionComponent {
   get questionIndex(): number {
     return this.currentQuestionIndex + 1;
   }
-
+  
   isAutoReply = true;
 
   constructor(
@@ -46,10 +44,12 @@ export class QuestionComponent {
     private voiceService: VoiceService
   ) {}
 
-  ngOnInit() {
+  ngOnInit() { 
     assert(this.currentQuestionIndex, 'currentQuestionIndex is not set');
+    assert(this.selectedOptionValue, 'selectedOptionValue is not set');
     assert(this.question, '_question is not set');
     assert(this.list, 'list does not exist on the page');
+
   }
 
   ngAfterViewInit() {
