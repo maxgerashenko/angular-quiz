@@ -1,0 +1,14 @@
+.subtitle {
+  padding: 10px 0 20px;
+  display: flex;
+}
+
+mat-slide-toggle {
+  position: absolute;
+  margin-right: 50px;
+  right: 0;
+}
+
+mat-card-title {
+  min-height: 3em;
+}
