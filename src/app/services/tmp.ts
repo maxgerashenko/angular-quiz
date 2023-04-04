@@ -6,7 +6,7 @@ export const TMP_COURSES_LIST: Course[] = [
     title: 'First',
     quizzesList: [
       {
-        id: '1',
+        id: 'What language does angular use',
         title: 'Introduction to Angular',
         courseId: '1',
         courseTitle: 'Angular',
@@ -26,7 +26,7 @@ export const TMP_COURSES_LIST: Course[] = [
     title: 'Angular',
     quizzesList: [
       {
-        id: '1',
+        id: 'What language does angular use',
         title: 'Introduction to Angular',
         courseId: '1',
         courseTitle: 'Angular',
@@ -46,7 +46,7 @@ export const TMP_COURSES_LIST: Course[] = [
         ],
       },
       {
-        id: '2',
+        id: 'What language does angular use',
         title: 'Introduction to Angular',
         courseId: '1',
         courseTitle: 'Angular',
