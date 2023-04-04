@@ -9,7 +9,7 @@
   </mat-progress-bar>
   <mat-progress-bar [color]="progressColor" mode="determinate" [value]="score">
   </mat-progress-bar>
-  <mat-card-header class=" space-between">
+  <mat-card-header class="space-between">
     <div class="top-button-container">
       <button
         *ngIf="isTopScore()"
@@ -68,7 +68,7 @@
           appearance="outline"
           *ngIf="question.description && question.answer !== question.selected"
           class="description"
-          floatLabel="true"
+          floatLabel="always"
         >
           <mat-label>Explanation</mat-label>
           <textarea #description matInput disabled="true">
