@@ -18,9 +18,9 @@
             "main": "src/main.ts",
             "assets": [],
             "styles": [
-              "src/app/material.scss",
-              "src/app/general.scss",
-              "src/app/result.scss"
+              "src/app/styles.material.scss",
+              "src/app/styles.result.scss",
+              "src/app/styles.scss"
             ],
             "scripts": []
           },
