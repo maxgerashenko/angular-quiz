@@ -19,7 +19,7 @@
             "assets": [],
             "styles": [
               "src/material.scss",
-              "src/general.scss",
+              "src/app/general.scss",
               "src/result.scss"
             ],
             "scripts": []
