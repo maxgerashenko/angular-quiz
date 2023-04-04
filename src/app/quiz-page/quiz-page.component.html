@@ -1,9 +1,10 @@
 <h1 class="quiz-title">{{quiz.courseTitle}}: {{ quiz.title }}</h1>
+
 <mat-card class="quiz-card">
   <mat-progress-bar color="pimary" mode="determinate"
     [value]="(currentQuestionIndex+1)/quiz.questionsList.length*100" />
   <question #optionElement [question]="quiz.questionsList[currentQuestionIndex]"
-    [currentQuestionIndex]="currentQuestionIndex" [selectedOptionValue]="selectedOptionValue"
+    [currentQuestionIndex]="currentQuestionIndex" 
     (optionSelected)="selectOption($event)" (toogleChange)="toogleAutoReply($event)"></question>
   <mat-card-actions class="button-container space-between">
     <div>
