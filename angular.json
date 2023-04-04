@@ -15,12 +15,13 @@
           "options": {
             "outputPath": "dist/demo",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "main": "src/app/main.app.ts",
             "assets": [],
             "styles": [
-              "src/material.scss",
-              "src/general.scss",
-              "src/result.scss"
+              "src/app/styles.general.scss",
+              "src/app/styles.material.scss",
+              "src/app/styles.result.theme.scss",
+              "src/app/styles.app.scss"
             ],
             "scripts": []
           },
@@ -68,7 +69,12 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": ["styles.css"],
+            "styles": [
+              "src/app/styles.general.scss",
+              "src/app/styles.material.scss",
+              "src/app/styles.result.mat.theme.scss",
+              "src/app/styles.app.scss"
+            ],
             "scripts": [],
             "assets": ["src/favicon.ico", "src/assets"]
           }
