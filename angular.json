@@ -19,8 +19,8 @@
             "assets": [],
             "styles": [
               "src/app/styles.material.scss",
-              "src/app/styles.result.scss",
-              "src/app/styles.scss"
+              "src/app/styles.scss",
+              "src/app/styles.result.scss"
             ],
             "scripts": []
           },
