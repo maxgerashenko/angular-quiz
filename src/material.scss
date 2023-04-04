@@ -35,6 +35,7 @@ $light-theme: mat.define-light-theme(
 @include mat.list-theme($dark-theme);
 @include mat.slide-toggle-theme($dark-theme);
 @include mat.form-field-theme($dark-theme);
+@include mat.sidenav-theme($dark-theme);
 
 @include result.theme($dark-theme);
 
@@ -47,6 +48,7 @@ $light-theme: mat.define-light-theme(
   @include mat.list-color($light-theme);
   @include mat.slide-toggle-color($light-theme);
   @include mat.form-field-color($light-theme);
+  @include mat.sidenav-color($light-theme);
 
   @include result.color($light-theme);
 }

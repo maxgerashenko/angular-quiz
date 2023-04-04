@@ -15,8 +15,11 @@
 
 .mat-sidenav {
   min-width: 300px;
-  background-color: mat.get-color-from-palette(
-    mat.define-palette(mat.$grey-palette),
-    900
-  );
+
+  @media (prefers-color-scheme: dark) {
+    background-color: mat.get-color-from-palette(
+      mat.define-palette(mat.$grey-palette),
+      900
+    );
+  }
 }
