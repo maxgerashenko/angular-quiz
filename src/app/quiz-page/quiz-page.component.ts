@@ -15,7 +15,7 @@ export class QuizPageComponent implements OnInit {
   quiz!: Quiz;
   answers: string[] = [];
   currentQuestionIndex = 0;
-  selectedOptionValue: string|null = null;
+  selectedOptionValue: string | null = null;
   isAutoReply = true;
 
   constructor(
@@ -25,16 +25,25 @@ export class QuizPageComponent implements OnInit {
     private route: ActivatedRoute,
     private menuService: MenuService
   ) {
-    let courseId = castExists(this.route.snapshot.queryParams['courseId'], 'course id is not set');
-    let quizId = castExists(this.route.snapshot.queryParams['quizId'], 'quiz id is not set');
-    this.quiz = castExists(this.sourceService.getQuiz(courseId, quizId), 'quizId does not exist in course with courseId')!; 
+    let courseId = castExists(
+      this.route.snapshot.queryParams['courseId'],
+      'course id is not set'
+    );
+    let quizId = castExists(
+      this.route.snapshot.queryParams['quizId'],
+      'quiz id is not set'
+    );
+    this.quiz = castExists(
+      this.sourceService.getQuiz(courseId, quizId),
+      'quizId does not exist in course with courseId'
+    )!;
     this.shuffleQuestions();
     this.menuService.closeMenu();
   }
 
-  ngOnInit(): void {}
+  ngOnInit() {}
 
-  private shuffleQuestions(): void {
+  private shuffleQuestions() {
     for (let i = this.quiz.questionsList.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [this.quiz.questionsList[i], this.quiz.questionsList[j]] = [
@@ -48,13 +57,13 @@ export class QuizPageComponent implements OnInit {
     this.isAutoReply = value;
   }
 
-  selectOption({value}: ObjectType<string> ): void {
+  selectOption({ value }: ObjectType<string>) {
     this.answers[this.currentQuestionIndex] = value;
     this.selectedOptionValue = value;
     if (this.isAutoReply) this.submitAnswer();
   }
 
-  resetQuiz(): void {
+  resetQuiz() {
     this.currentQuestionIndex = 0;
     this.selectedOptionValue = null;
     this.shuffleQuestions();
@@ -65,7 +74,7 @@ export class QuizPageComponent implements OnInit {
     });
   }
 
-  submitAnswer(): void {
+  submitAnswer() {
     this.currentQuestionIndex++;
     if (this.currentQuestionIndex === this.quiz.questionsList.length) {
       this.scoreService.setResult({
