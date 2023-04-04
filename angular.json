@@ -72,7 +72,7 @@
             "styles": [
               "src/app/styles.general.scss",
               "src/app/styles.material.scss",
-              "src/app/styles.result.mat.theme.scss",
+              "src/app/styles.result.theme.scss",
               "src/app/styles.app.scss"
             ],
             "scripts": [],
