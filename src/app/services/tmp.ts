@@ -3,65 +3,27 @@ import { Course } from './interfaces';
 export const TMP_COURSES_LIST: Course[] = [
   {
     id: '1',
-    title: 'First',
-    quizzesList: [
-      {
-        id: 'What language does angular use',
-        title: 'Introduction to Angular',
-        courseId: '1',
-        courseTitle: 'Angular',
-        questionsList: [
-          {
-            title: 'question',
-            optionsList: ['Java', 'JavaScript', 'Python', 'C#'],
-            answer: 'b',
-            description: 'Java is not JavaScript',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: '1',
     title: 'Angular',
     quizzesList: [
       {
-        id: 'What language does angular use',
+        id: '1',
         title: 'Introduction to Angular',
         courseId: '1',
         courseTitle: 'Angular',
         questionsList: [
           {
-            title: 'question',
+            title: 'What language does angular use?',
             optionsList: ['Java', 'JavaScript', 'Python', 'C#'],
             answer: 'b',
-            description: 'Java is not JavaScript',
+            description:
+              'Java is not the correct answer because Angular is a JavaScript framework and uses JavaScript as its language, not Java. The two languages have different syntax, features, and libraries.',
           },
           {
-            title: 'question',
+            title: 'What language does angular use 2?',
             optionsList: ['Java', 'JavaScript', 'Python', 'C#'],
             answer: 'b',
-            description: 'Java is not JavaScript',
-          },
-        ],
-      },
-      {
-        id: 'What language does angular use',
-        title: 'Introduction to Angular',
-        courseId: '1',
-        courseTitle: 'Angular',
-        questionsList: [
-          {
-            title: '',
-            optionsList: ['Java', 'JavaScript', 'Python', 'C#'],
-            answer: 'b',
-            description: 'Java is not JavaScript',
-          },
-          {
-            title: '',
-            optionsList: ['Java', 'JavaScript', 'Python', 'C#'],
-            answer: 'b',
-            description: 'Java is not JavaScript',
+            description:
+              'Java is not the correct answer because Angular is a JavaScript framework and uses JavaScript as its language, not Java. The two languages have different syntax, features, and libraries.',
           },
         ],
       },
