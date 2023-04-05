@@ -48,15 +48,21 @@ export class VoiceService {
   }
 
   updateSettigns(isVoiceOverOn: boolean, isVoiceOverMessagesOn: boolean) {
+    if (!(isVoiceOverOn || isVoiceOverMessagesOn)) {
+      this.voiceOver('Voice off', 0);
+    }
     this.isVoiceOverOn = isVoiceOverOn;
     this.isVoiceOverMessagesOn = isVoiceOverMessagesOn;
+    if (isVoiceOverMessagesOn && isVoiceOverOn) {
+      this.voiceOver('Voice on', 0);
+    }
   }
 
   stop() {
     window.speechSynthesis.cancel();
   }
 
-  voiceOver(text: string) {
+  voiceOver(text: string, delay = SPEACH_DELAY) {
     if (!this.isVoiceOverOn) return;
 
     this.initVoice();
@@ -64,7 +70,7 @@ export class VoiceService {
     this.speech.text = this.cleanSpeech(text);
     setTimeout(() => {
       window.speechSynthesis.speak(this.speech);
-    }, SPEACH_DELAY);
+    }, delay);
   }
 
   voiceOverMessages(messages: string[]) {
