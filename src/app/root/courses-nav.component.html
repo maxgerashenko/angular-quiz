@@ -5,7 +5,16 @@
     mode="side"
     [opened]="menuService.isMenuOpen | async"
   >
-    <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
+    <button
+      *ngIf="sidenav.opened"
+      class="menu-button menu-top"
+      [class.is-open]="sidenav.opened"
+      mat-mini-fab
+      (click)="sidenav.toggle()"
+    >
+      <mat-icon *ngIf="!sidenav.opened">arrow_forward_ios</mat-icon>
+      <mat-icon *ngIf="sidenav.opened">arrow_back_ios</mat-icon>
+    </button>
     <div class="list-container">
       <mat-action-list>
         <button
@@ -33,6 +42,15 @@
       </mat-action-list>
     </div>
   </mat-sidenav>
-  <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
+  <button
+    *ngIf="!sidenav.opened"
+    [class.is-open]="sidenav.opened"
+    class="menu-button"
+    mat-mini-fab
+    (click)="sidenav.toggle()"
+  >
+    <mat-icon *ngIf="!sidenav.opened">arrow_forward_ios</mat-icon>
+    <mat-icon *ngIf="sidenav.opened">arrow_back_ios</mat-icon>
+  </button>
   <ng-content></ng-content>
 </mat-sidenav-container>
