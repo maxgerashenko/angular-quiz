@@ -4,7 +4,7 @@ import { AutoFocusDirective } from './auto-focus.directive';
 import { FocusRemover } from './remove-focus.directive';
 
 @NgModule({
-  declarations: [AutoFocusDirective, FocusRemover],
+  declarations: [AutoFocusDirective],
   imports: [CommonModule],
 })
 export class DirectivesModule {}

@@ -12,6 +12,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { DirectivesModule } from '../directives/directives.module';
+import { FocusRemover } from '../directives/remove-focus.directive';
 
 @NgModule({
   imports: [
@@ -27,6 +28,6 @@ import { DirectivesModule } from '../directives/directives.module';
     MatDividerModule,
     DirectivesModule,
   ],
-  declarations: [CoursesNavComponent, AppComponent],
+  declarations: [CoursesNavComponent, AppComponent, FocusRemover],
 })
 export class AppModule {}
