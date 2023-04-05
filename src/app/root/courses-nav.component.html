@@ -6,19 +6,35 @@
     [opened]="menuService.isMenuOpen | async"
   >
     <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
-    <mat-action-list>
-      <button
-        mat-list-item
-        *ngFor="let course of courses"
-        (click)="openCourse(course.id)"
-      >
-        {{ course.title }}
-      </button>
-    </mat-action-list>
-  </mat-sidenav>
+    <div class="list-container">
+      <mat-action-list>
+        <button
+          mat-list-item
+          *ngFor="let course of courses"
+          (click)="openCourse(course.id)"
+        >
+          {{ course.title }}
+        </button>
+      </mat-action-list>
 
-  <mat-sidenav-content>
-    <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
-    <ng-content></ng-content>
-  </mat-sidenav-content>
+      <mat-action-list class="toggle-buttons">
+        <mat-divider></mat-divider>
+        <button mat-list-item>
+          <span matListItemTitle>Read</span>
+          <mat-icon matListItemIcon>volume_up</mat-icon>
+          Question
+        </button>
+        <button mat-list-item>
+          <span matListItemTitle>Read</span>
+          <mat-icon matListItemIcon>volume_up</mat-icon>
+          Question & Result
+        </button>
+        <button mat-list-item [class.active]="true">
+          <span matListItemTitle>Turn Off</span>
+          <mat-icon matListItemIcon>volume_off</mat-icon>
+        </button>
+      </mat-action-list>
+    </div>
+  </mat-sidenav>
+  <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
 </mat-sidenav-container>
