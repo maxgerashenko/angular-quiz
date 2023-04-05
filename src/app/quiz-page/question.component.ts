@@ -52,10 +52,10 @@ export class QuestionComponent {
       'QuestionComponent.currentQuestionIndex is not set'
     );
     assert(this._question, 'QuestionComponent.question is not set');
-    assert(this.list, 'list does not exist on the page');
   }
 
   ngAfterViewInit() {
+    assert(this.list, 'QuestionComponent.list does not exist on the page');
     this.resetFocus();
   }
 
