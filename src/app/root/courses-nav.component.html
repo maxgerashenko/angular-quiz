@@ -15,6 +15,7 @@
       <mat-icon *ngIf="!sidenav.opened">arrow_forward_ios</mat-icon>
       <mat-icon *ngIf="sidenav.opened">arrow_back_ios</mat-icon>
     </button>
+
     <div class="list-container">
       <mat-action-list>
         <button
@@ -28,20 +29,11 @@
 
       <mat-action-list class="settings-container">
         <mat-divider></mat-divider>
-        <button
-          (click)="updateVoiceOver()"
-          mat-list-item
-          focus-remover
-          class="settings-button"
-          [class.active]="voiceOverSettings.isActive"
-        >
-          <span matListItemTitle>{{ voiceOverSettings.title }}</span>
-          <mat-icon matListItemIcon>{{ voiceOverSettings.icon }}</mat-icon>
-          {{ voiceOverSettings.subtitle }}
-        </button>
+        <app-voice-toggle></app-voice-toggle>
       </mat-action-list>
     </div>
   </mat-sidenav>
+
   <button
     *ngIf="!sidenav.opened"
     [class.is-open]="sidenav.opened"

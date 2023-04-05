@@ -1,3 +1,11 @@
-<p>
-voice-toggle works!
-</p>
+<button
+  (click)="updateVoiceOver()"
+  mat-list-item
+  focus-remover
+  class="settings-button"
+  [class.active]="voiceOverSettings.isActive"
+>
+  <span matListItemTitle>{{ voiceOverSettings.title }}</span>
+  <mat-icon matListItemIcon>{{ voiceOverSettings.icon }}</mat-icon>
+  {{ voiceOverSettings.subtitle }}
+</button>
