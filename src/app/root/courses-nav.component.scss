@@ -28,6 +28,10 @@
   }
 }
 
+button.settings-button {
+  min-height: 60px;
+}
+
 mat-divider {
   color: mat.get-color-from-palette(mat.define-palette(mat.$grey-palette), 800);
 }

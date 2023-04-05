@@ -17,21 +17,18 @@
         </button>
       </mat-action-list>
 
-      <mat-action-list class="toggle-buttons">
+      <mat-action-list class="settings-container">
         <mat-divider></mat-divider>
-        <button mat-list-item focus-remover>
-          <span matListItemTitle>Read</span>
-          <mat-icon matListItemIcon>volume_up</mat-icon>
-          Question
-        </button>
-        <button mat-list-item focus-remover>
-          <span matListItemTitle>Read</span>
-          <mat-icon matListItemIcon>volume_up</mat-icon>
-          Question & Result
-        </button>
-        <button mat-list-item focus-remover [class.active]="true">
-          <span matListItemTitle>Turn Off</span>
-          <mat-icon matListItemIcon>volume_off</mat-icon>
+        <button
+          (click)="updateVoiceOver()"
+          mat-list-item
+          focus-remover
+          class="settings-button"
+          [class.active]="voiceOverSettings.isActive"
+        >
+          <span matListItemTitle>{{ voiceOverSettings.title }}</span>
+          <mat-icon matListItemIcon>{{ voiceOverSettings.icon }}</mat-icon>
+          {{ voiceOverSettings.subtitle }}
         </button>
       </mat-action-list>
     </div>

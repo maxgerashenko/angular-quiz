@@ -11,12 +11,17 @@ const NEXT_SPEACH_DELAY = 500;
 @Injectable({ providedIn: 'root' })
 export class VoiceService {
   private speech!: SpeechSynthesisUtterance;
-  private replacements:{[key: string]: string} = {
+  private replacements: { [key: string]: string } = {
     '_+': 'bla bla',
   };
+  isVoiceOverOn = true;
+  isVoiceOverMessagesOn = true;
 
   constructor() {
-    this.speech = castExists<SpeechSynthesisUtterance>(new SpeechSynthesisUtterance(), 'No speechSynthesis found');
+    this.speech = castExists<SpeechSynthesisUtterance>(
+      new SpeechSynthesisUtterance(),
+      'No speechSynthesis found'
+    );
     this.initVoice();
   }
 
@@ -30,7 +35,7 @@ export class VoiceService {
     this.speech.lang = 'en-US';
   }
 
-  cleanSpeech(text:string) {
+  private cleanSpeech(text: string) {
     let newText = text;
     for (const pattern in this.replacements) {
       if (this.replacements.hasOwnProperty(pattern)) {
@@ -42,11 +47,18 @@ export class VoiceService {
     return newText;
   }
 
+  updateSettigns(isVoiceOverOn: boolean, isVoiceOverMessagesOn: boolean) {
+    this.isVoiceOverOn = isVoiceOverOn;
+    this.isVoiceOverMessagesOn = isVoiceOverMessagesOn;
+  }
+
   stop() {
     window.speechSynthesis.cancel();
   }
 
   voiceOver(text: string) {
+    if (!this.isVoiceOverOn) return;
+
     this.initVoice();
     window.speechSynthesis.cancel();
     this.speech.text = this.cleanSpeech(text);
@@ -56,6 +68,8 @@ export class VoiceService {
   }
 
   voiceOverMessages(messages: string[]) {
+    if (!this.isVoiceOverMessagesOn) return;
+
     this.initVoice();
     this.stop();
     // Create a new SpeechSynthesisUtterance object for each message
