@@ -23,7 +23,7 @@ Once Quizify is installed, you can access the application by navigating to `http
   - [ ] Save courses to the firebase
   - [ ] Make request to ChatGPT to generate quiz
 - Project
-  - Add lint settigns to the project, ide, pre-submit.
+  - [ ] Add lint settigns to the project, ide, pre-submit.
 
 ## Contributing
 
