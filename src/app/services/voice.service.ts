@@ -29,7 +29,6 @@ export class VoiceService {
 
   private initLocalsettings() {
     let settingsString = localStorage.getItem(VOICE_OVER_SETTINGS);
-    debugger;
     if (!settingsString) return;
     const { isVoiceOverOn, isVoiceOverMessagesOn } = JSON.parse(settingsString);
     this.isVoiceOverOn = isVoiceOverOn;
@@ -37,7 +36,6 @@ export class VoiceService {
   }
 
   private setLocalSettings() {
-    debugger;
     localStorage.setItem(
       VOICE_OVER_SETTINGS,
       JSON.stringify({

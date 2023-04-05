@@ -48,7 +48,6 @@ export class CoursesNavComponent {
     private voiceService: VoiceService,
     public menuService: MenuService
   ) {
-    debugger;
     const { isVoiceOverOn, isVoiceOverMessagesOn } =
       this.voiceService.getSettings();
 
@@ -71,12 +70,10 @@ export class CoursesNavComponent {
   updateVoiceOver() {
     this.setVoiceOver((this.voiceOverIndex + 1) % this.voiceOverOptions.length);
     const { isVoiceOverOn, isVoiveOverMessagesOn } = this.voiceOverSettings;
-    debugger;
     this.voiceService.updateSettigns(isVoiceOverOn, isVoiveOverMessagesOn);
   }
 
   openCourse(courseId: string) {
-    debugger;
     this.router.navigate(['/course'], { queryParams: { id: courseId } });
   }
 }
