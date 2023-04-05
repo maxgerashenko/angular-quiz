@@ -12,7 +12,6 @@ import { VoiceService } from '../services/voice.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CoursesNavComponent {
-  // @ViewChild(MatSidenav) sidenav!: MatSidenav;
   courses = this.sourceService.getCourseTileList();
   voiceOverOptions = [
     {

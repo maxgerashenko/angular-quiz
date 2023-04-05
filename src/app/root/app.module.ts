@@ -12,6 +12,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { DirectivesModule } from '../directives/directives.module';
+import { VoiceToggleComponent } from './voice-toggle.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,6 @@ import { DirectivesModule } from '../directives/directives.module';
     MatDividerModule,
     DirectivesModule,
   ],
-  declarations: [CoursesNavComponent, AppComponent],
+  declarations: [CoursesNavComponent, AppComponent, VoiceToggleComponent],
 })
 export class AppModule {}
