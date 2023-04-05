@@ -47,8 +47,11 @@ export class QuestionComponent {
   ) {}
 
   ngOnInit() {
-    assert(this.currentQuestionIndex, 'currentQuestionIndex is not set');
-    assert(this.question, '_question is not set');
+    assert(
+      this.currentQuestionIndex,
+      'QuestionComponent.currentQuestionIndex is not set'
+    );
+    assert(this._question, 'QuestionComponent.question is not set');
     assert(this.list, 'list does not exist on the page');
   }
 
