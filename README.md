@@ -16,9 +16,14 @@ Once Quizify is installed, you can access the application by navigating to `http
 
 ## Todo List
 
-- [x] Allow use to turn on/off voice over quiestins or result
-- [ ] Save courses to the firebase
-- [ ] Make request to ChatGPT to generate quiz
+- UI
+  - [x] Allow user to turn on/off voice over quiestins or result
+  - [ ] Allow user to change voice speed
+- Functional
+  - [ ] Save courses to the firebase
+  - [ ] Make request to ChatGPT to generate quiz
+- Project
+  - Add lint settigns to the project, ide, pre-submit.
 
 ## Contributing
 
