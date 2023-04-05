@@ -71,7 +71,13 @@
           floatLabel="always"
         >
           <mat-label>Explanation</mat-label>
-          <textarea #description matInput disabled="true">
+          <textarea
+            maxLength="200"
+            cdkTextareaAutosize
+            #description
+            matInput
+            disabled="true"
+          >
             {{ question.description }}
           </textarea>
         </mat-form-field>
