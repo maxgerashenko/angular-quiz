@@ -7,6 +7,7 @@ interface pattern {
 
 const SPEACH_DELAY = 800;
 const NEXT_SPEACH_DELAY = 500;
+const VOICE_OVER_SETTINGS = 'settings_voice_over';
 
 @Injectable({ providedIn: 'root' })
 export class VoiceService {
@@ -22,7 +23,28 @@ export class VoiceService {
       new SpeechSynthesisUtterance(),
       'No speechSynthesis found'
     );
+    this.initLocalsettings();
     this.initVoice();
+  }
+
+  private initLocalsettings() {
+    let settingsString = localStorage.getItem(VOICE_OVER_SETTINGS);
+    debugger;
+    if (!settingsString) return;
+    const { isVoiceOverOn, isVoiceOverMessagesOn } = JSON.parse(settingsString);
+    this.isVoiceOverOn = isVoiceOverOn;
+    this.isVoiceOverMessagesOn = isVoiceOverMessagesOn;
+  }
+
+  private setLocalSettings() {
+    debugger;
+    localStorage.setItem(
+      VOICE_OVER_SETTINGS,
+      JSON.stringify({
+        isVoiceOverOn: this.isVoiceOverOn,
+        isVoiceOverMessagesOn: this.isVoiceOverMessagesOn,
+      })
+    );
   }
 
   private initVoice(speed = 1.2, voiceName = 'Samantha') {
@@ -47,6 +69,13 @@ export class VoiceService {
     return newText;
   }
 
+  getSettings() {
+    return {
+      isVoiceOverOn: this.isVoiceOverOn,
+      isVoiceOverMessagesOn: this.isVoiceOverMessagesOn,
+    };
+  }
+
   updateSettigns(isVoiceOverOn: boolean, isVoiceOverMessagesOn: boolean) {
     if (!(isVoiceOverOn || isVoiceOverMessagesOn)) {
       this.voiceOver('Voice off', 0);
@@ -56,6 +85,7 @@ export class VoiceService {
     if (isVoiceOverMessagesOn && isVoiceOverOn) {
       this.voiceOver('Voice on', 0);
     }
+    this.setLocalSettings();
   }
 
   stop() {

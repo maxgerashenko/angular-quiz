@@ -20,7 +20,7 @@ export class CoursesNavComponent {
       title: 'Read',
       subtitle: 'Question & Result',
       icon: 'volume_up',
-      isVoiveOvecerOn: true,
+      isVoiceOverOn: true,
       isVoiveOverMessagesOn: true,
     },
     {
@@ -28,14 +28,14 @@ export class CoursesNavComponent {
       title: 'Read',
       subtitle: 'Question',
       icon: 'volume_down',
-      isVoiveOvecerOn: true,
+      isVoiceOverOn: true,
       isVoiveOverMessagesOn: false,
     },
     {
       isActive: false,
       title: 'Turn Off',
       icon: 'volume_off',
-      isVoiveOvecerOn: false,
+      isVoiceOverOn: false,
       isVoiveOverMessagesOn: false,
     },
   ];
@@ -47,14 +47,32 @@ export class CoursesNavComponent {
     private sourceService: SourceService,
     private voiceService: VoiceService,
     public menuService: MenuService
-  ) {}
+  ) {
+    debugger;
+    const { isVoiceOverOn, isVoiceOverMessagesOn } =
+      this.voiceService.getSettings();
+
+    if (isVoiceOverOn && isVoiceOverMessagesOn) {
+      this.setVoiceOver(0);
+    }
+    if (isVoiceOverOn && !isVoiceOverMessagesOn) {
+      this.setVoiceOver(1);
+    }
+    if (!isVoiceOverOn && !isVoiceOverMessagesOn) {
+      this.setVoiceOver(2);
+    }
+  }
+
+  private setVoiceOver(voiceOverIndex) {
+    this.voiceOverIndex = voiceOverIndex;
+    this.voiceOverSettings = this.voiceOverOptions[this.voiceOverIndex];
+  }
 
   updateVoiceOver() {
-    this.voiceOverIndex =
-      (this.voiceOverIndex + 1) % this.voiceOverOptions.length;
-    this.voiceOverSettings = this.voiceOverOptions[this.voiceOverIndex];
-    const { isVoiveOvecerOn, isVoiveOverMessagesOn } = this.voiceOverSettings;
-    this.voiceService.updateSettigns(isVoiveOvecerOn, isVoiveOverMessagesOn);
+    this.setVoiceOver((this.voiceOverIndex + 1) % this.voiceOverOptions.length);
+    const { isVoiceOverOn, isVoiveOverMessagesOn } = this.voiceOverSettings;
+    debugger;
+    this.voiceService.updateSettigns(isVoiceOverOn, isVoiveOverMessagesOn);
   }
 
   openCourse(courseId: string) {
