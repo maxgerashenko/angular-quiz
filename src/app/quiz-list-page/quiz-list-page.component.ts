@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SourceService } from '../services/source.service';
 import { ScoreService } from '../services/score.service';
 import { filter } from 'rxjs/operators';
-import { Subject, Subscription, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { Course } from '../services/interfaces';
 import { MenuService } from '../services/menu.service';
 
