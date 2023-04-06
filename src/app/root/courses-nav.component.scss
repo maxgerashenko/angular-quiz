@@ -7,10 +7,10 @@
   flex-direction: column;
 }
 
-.menu-button {
+.menu-nav-button {
+  position: fixed;
   margin-left: 20px;
 
-  position: absolute;
   top: 20px;
 
   &.is-open mat-icon {
