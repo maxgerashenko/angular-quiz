@@ -39,7 +39,6 @@ export class QuizListPageComponent {
         filter((event: unknown) => event instanceof NavigationEnd)
       )
       .subscribe(() => {
-        debugger;
         this.updateCourse();
       });
   }
