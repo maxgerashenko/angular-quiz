@@ -1,4 +1,5 @@
 import { Course } from '../src/app/services/interfaces';
+import { messageQueue } from './messageQueue';
 
 export const TMP_COURSES_LIST: Course[] = [
   {
@@ -32,6 +33,6 @@ export const TMP_COURSES_LIST: Course[] = [
   {
     id: '1',
     title: 'System Deisgn',
-    quizzesList: [],
+    quizzesList: [messageQueue],
   },
 ];
