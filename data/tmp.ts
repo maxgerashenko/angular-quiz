@@ -1,4 +1,4 @@
-import { Course } from '../services/interfaces';
+import { Course } from '../src/app/services/interfaces';
 
 export const TMP_COURSES_LIST: Course[] = [
   {

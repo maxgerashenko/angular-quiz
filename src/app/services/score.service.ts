@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { QuizResult } from './interfaces';
-import { castExists } from '../utils';
 
 const MAX_SCORE = 'max_quiz_score_';
 const THRESHOLD = 80;
@@ -8,7 +7,7 @@ const SECOND_THRESHOLD = 50;
 
 @Injectable({ providedIn: 'root' })
 export class ScoreService {
-  result: QuizResult|undefined;
+  result: QuizResult | undefined;
   threshold = 80;
 
   constructor() {}
@@ -39,7 +38,7 @@ export class ScoreService {
     return Number(localStorage.getItem(MAX_SCORE + title)) || 0;
   }
 
-  updateQuizMax(title:string, score: number) {
+  updateQuizMax(title: string, score: number) {
     const maxScore = Math.max(score, this.getQuizMax(title));
     localStorage.setItem(MAX_SCORE + title, String(maxScore));
   }

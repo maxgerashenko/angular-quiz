@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { TMP_COURSES_LIST } from '../data/tmp';
+import { TMP_COURSES_LIST } from '../../../data/tmp';
+
 import { Course, Tile } from './interfaces';
 
 @Injectable({ providedIn: 'root' })
