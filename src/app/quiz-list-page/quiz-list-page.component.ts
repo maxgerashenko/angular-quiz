@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Event as NavigationEvent } from '@angular/router';
+import { Event as NavigationEvent, NavigationEnd } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SourceService } from '../services/source.service';
 import { ScoreService } from '../services/score.service';
@@ -13,9 +13,9 @@ import { MenuService } from '../services/menu.service';
   styleUrls: ['./quiz-list-page.component.scss'],
 })
 export class QuizListPageComponent {
-  course?: Course
+  course?: Course;
   destroy = new Subject();
-  
+
   constructor(
     private readonly sourceService: SourceService,
     private router: Router,
@@ -36,9 +36,10 @@ export class QuizListPageComponent {
     this.router.events
       .pipe(
         takeUntil(this.destroy),
-        filter((event) => event instanceof Event)
+        filter((event: unknown) => event instanceof NavigationEnd)
       )
       .subscribe(() => {
+        debugger;
         this.updateCourse();
       });
   }
