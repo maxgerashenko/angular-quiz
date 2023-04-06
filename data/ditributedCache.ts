@@ -7,6 +7,18 @@ export const distributedQueue: Quiz = {
   title: 'Distributed Cache',
   questionsList: [
     {
+      title: 'What is pipelining?',
+      optionsList: [
+        'A way to store multiple values under a single key in a cache',
+        'A way to store data in secondary storage',
+        'A technique to reduce round-trip time in a distributed system',
+        'A way to replicate data across multiple nodes in a distributed system',
+      ],
+      answer: 'c',
+      description:
+        'Pipelining is a technique to reduce round-trip time in a distributed system.',
+    },
+    {
       title: 'What are the benefits of using a distributed cache?',
       optionsList: [
         'Minimizes network costs',
@@ -95,30 +107,6 @@ export const distributedQueue: Quiz = {
         'The recommended policy for eviction in a cache is least recently used (LRU).',
     },
     {
-      title: 'What is the recommended approach for cache writing?',
-      optionsList: [
-        'Write-through cache',
-        'Write-back cache',
-        'Write-around cache',
-        'All of the above',
-      ],
-      answer: 'd',
-      description:
-        'Businesses can choose from different cache writing approaches, including write-through, write-back, and write-around cache.',
-    },
-    {
-      title: 'What is a key-value store?',
-      optionsList: [
-        'A type of relational database',
-        'A data structure that stores values with unique keys',
-        'A type of cache',
-        'A way to store large amounts of data in memory',
-      ],
-      answer: 'b',
-      description:
-        'A key-value store is a data structure that stores values with unique keys.',
-    },
-    {
       title: 'What is sharding?',
       optionsList: [
         'A technique to partition data across multiple nodes in a distributed system',
@@ -130,18 +118,7 @@ export const distributedQueue: Quiz = {
       description:
         'Sharding is a technique to partition data across multiple nodes in a distributed system.',
     },
-    {
-      title: 'What is pipelining?',
-      optionsList: [
-        'A way to store multiple values under a single key in a cache',
-        'A way to store data in secondary storage',
-        'A technique to reduce round-trip time in a distributed system',
-        'A way to replicate data across multiple nodes in a distributed system',
-      ],
-      answer: 'c',
-      description:
-        'Pipelining is a technique to reduce round-trip time in a distributed system.',
-    },
+
     {
       title: 'What is consistency in a cache?',
       optionsList: [
@@ -158,7 +135,7 @@ export const distributedQueue: Quiz = {
       title:
         'What is the difference between a write-through and write-back cache?',
       optionsList: [
-        'Write-through cache writes data to the cache and the primary storage simultaneously, while write-back cache writes data to the cache first and later updates the primary storage',
+        'Write-through cache and storage sync, while write-back cache to the cache first and async to storage',
         'Write-through cache writes data to the primary storage and the cache simultaneously, while write-back cache writes data to the cache first and later updates the primary storage',
         'Write-through cache writes data to the cache only, while write-back cache writes data to both the primary storage and the cache',
         'Write-through cache writes data to the primary storage only, while write-back cache writes data to both the primary storage and the cache',
@@ -177,6 +154,108 @@ export const distributedQueue: Quiz = {
       ],
       answer: 'd',
       description: 'A cache stores frequently used data temporarily',
+    },
+    {
+      title:
+        'Which caching approach is typically recommended for non-critical data where performance is a priority?',
+      optionsList: [
+        'Write-through caching',
+        'Write-behind caching',
+        'Batch updates',
+        'Event-based invalidation',
+      ],
+      answer: 'b',
+      description:
+        'Write-behind caching is typically recommended for non-critical data where performance is a priority.',
+    },
+    {
+      title: 'What is cache invalidation?',
+      optionsList: [
+        'The process of writing data to both the cache and the backend data store',
+        'The process of asynchronously writing data to the backend data store',
+        'The process of removing data from the cache after a set period of time',
+        'The process of removing data from the cache in response to specific events or changes in the data store',
+      ],
+      answer: 'd',
+      description:
+        'Cache invalidation is the process of removing data from the cache in response to specific events or changes in the data store.',
+    },
+    {
+      title: 'Which factor determines the granularity of the cache?',
+      optionsList: [
+        'The size of the data being cached',
+        'The performance requirements of the application',
+        'The consistency requirements of the data',
+        'The cache implementation being used',
+      ],
+      answer: 'a',
+      description:
+        'The size of the data being cached determines the granularity of the cache.',
+    },
+    {
+      title:
+        'What is the recommended approach for cache writing if data consistency is critical?',
+      optionsList: [
+        'Write-through caching',
+        'Write-behind caching',
+        'Batch updates',
+        'Event-based invalidation',
+      ],
+      answer: 'a',
+      description:
+        'Write-through caching is recommended for critical data that requires high consistency and availability.',
+    },
+    {
+      title:
+        'Which caching approach provides faster performance for writes to the cache?',
+      optionsList: [
+        'Write-through caching',
+        'Write-behind caching',
+        'Batch updates',
+        'Time-based invalidation',
+      ],
+      answer: 'b',
+      description:
+        'Write-behind caching provides faster performance for writes to the cache.',
+    },
+    {
+      title:
+        'Which caching approach may result in lower performance due to a higher number of cache entries?',
+      optionsList: [
+        'Fine-grained caching',
+        'Coarse-grained caching',
+        'Write-behind caching',
+        'Time-based invalidation',
+      ],
+      answer: 'a',
+      description:
+        'Fine-grained caching may result in lower performance due to a higher number of cache entries.',
+    },
+    {
+      title:
+        'What is the recommended approach for cache writing if performance is a priority?',
+      optionsList: [
+        'Write-through caching',
+        'Write-behind caching',
+        'Batch updates',
+        'Time-based invalidation',
+      ],
+      answer: 'b',
+      description:
+        'Write-behind caching is typically recommended for non-critical data where performance is a priority.',
+    },
+    {
+      title:
+        'Which caching approach can provide redundancy and high availability in case of node failures?',
+      optionsList: [
+        'Write-through caching',
+        'Write-behind caching',
+        'Batch updates',
+        'Replication',
+      ],
+      answer: 'd',
+      description:
+        'Replication can provide redundancy and high availability in case of node failures.',
     },
   ],
 };
