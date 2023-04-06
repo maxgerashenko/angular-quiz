@@ -9,6 +9,7 @@
       "projectType": "application",
       "prefix": "app",
       "schematics": {},
+      "polyfills": "src/polyfills",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
