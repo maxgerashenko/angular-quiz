@@ -21,25 +21,14 @@ Once Quizify is installed, you can access the application by navigating to `http
   - [ ] Allow user to change voice speed
 - Functional
   - [ ] Save courses to the firebase
-  - [ ] Make request to ChatGPT to generate quiz
+  - [ ] Make request to generate quiz
 - Project
-  - [ ] Add lint settigns to the project, ide, pre-submit.
-  - [ ] Add and run tests
-  - [ ] Show tests results
+  - [ ] Run and show tests results
 - DataBase
   - [ ] Intergrate fireBase
-  - [ ] Get course list
-  - [ ] Get course by id
-  - [ ] Get quiz list by course id
-  - [ ] Get quiz by course id and quiz id
 - Delivery
-  - [ ] Get hosting
   - [ ] Deploy
-  - [ ] Automated builds
-  - [ ] Continuous testing
-  - [ ] Continuous delivery pipeline
-  - [ ] Continuous deployment
-  - [ ] Alerts on the delivery
+  - [ ] Get hosting
 
 ## Contributing
 
