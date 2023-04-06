@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Course, Quiz, Tile } from './interfaces';
-import { QuizResult } from './interfaces';
-import { TMP_COURSES_LIST } from './tmp';
-
-
+import { TMP_COURSES_LIST } from '../data/tmp';
+import { Course, Tile } from './interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class SourceService {
@@ -11,15 +8,15 @@ export class SourceService {
 
   constructor() {}
 
-  private mapTile = ({ title, id }: { title: string, id: string }): Tile => ({
+  private mapTile = ({ title, id }: { title: string; id: string }): Tile => ({
     title: title,
     id: id,
   });
 
   getQuiz(courseId: string, quizId: string) {
-    return this.coursesList.find((course) => course.id === courseId)!.quizzesList.find(
-      (quiz) => quiz.id === quizId
-    );
+    return this.coursesList
+      .find((course) => course.id === courseId)!
+      .quizzesList.find((quiz) => quiz.id === quizId);
   }
 
   getCourseTileList(): Tile[] {
@@ -27,7 +24,9 @@ export class SourceService {
   }
 
   getQuizTileList(courseId: string): Tile[] {
-    return this.coursesList.find((course) => course.id === courseId)!.quizzesList.map(this.mapTile);
+    return this.coursesList
+      .find((course) => course.id === courseId)!
+      .quizzesList.map(this.mapTile);
   }
 
   getCourse(id: string): Course {
