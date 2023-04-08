@@ -5,6 +5,7 @@ import { MenuService } from '../services/menu.service';
 import { SourceService } from '../services/source.service';
 import { castExists } from '../utils';
 import { ScoreService } from '../services/score.service';
+import { SettingsService } from '../services/settings.service';
 
 @Component({
   selector: 'quiz',
@@ -12,32 +13,30 @@ import { ScoreService } from '../services/score.service';
   styleUrls: ['./quiz-page.component.scss'],
 })
 export class QuizPageComponent implements OnInit {
-  quiz!: Quiz;
+  courseId = castExists(
+    this.route.snapshot.queryParams['courseId'],
+    'course id is not set'
+  );
+  quizId = castExists(
+    this.route.snapshot.queryParams['quizId'],
+    'quiz id is not set'
+  );
+  quiz = castExists(
+    this.sourceService.getQuiz(this.courseId, this.quizId),
+    'quizId does not exist in course with courseId'
+  )!;
   questoinsWithResults!: Question[];
   questionIndex = 0;
-  shouldShowCorrectAnswer = true;
-  showResult = false;
+  isLocalResultOn = this.settingsService.getResulstSettings().isLocalResultOn;
 
   constructor(
     private readonly sourceService: SourceService,
     private readonly scoreService: ScoreService,
     private router: Router,
     private route: ActivatedRoute,
-    private menuService: MenuService
+    private menuService: MenuService,
+    private settingsService: SettingsService
   ) {
-    let courseId = castExists(
-      this.route.snapshot.queryParams['courseId'],
-      'course id is not set'
-    );
-    let quizId = castExists(
-      this.route.snapshot.queryParams['quizId'],
-      'quiz id is not set'
-    );
-    this.quiz = castExists(
-      this.sourceService.getQuiz(courseId, quizId),
-      'quizId does not exist in course with courseId'
-    )!;
-
     this.resetQuiz();
   }
 
@@ -49,15 +48,15 @@ export class QuizPageComponent implements OnInit {
     this.menuService.closeMenu();
   }
 
-  onToogleChange(value) {
-    this.shouldShowCorrectAnswer = value;
+  onToogleChange(isLocalResultOn) {
+    this.isLocalResultOn = isLocalResultOn;
+    this.settingsService.setResulstSettings({ isLocalResultOn });
   }
 
   selectOption({ value }) {
     this.questoinsWithResults[this.questionIndex].selectedValue = value;
 
-    if (this.shouldShowCorrectAnswer) {
-      this.showResult = true;
+    if (this.isLocalResultOn) {
       return;
     }
 

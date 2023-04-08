@@ -4,6 +4,7 @@
     [value]="(questionIndex+1)/questoinsWithResults.length*100" />
   
   <question #optionElement [question]="questoinsWithResults[questionIndex]"
+    [isToggleEnabled]="isLocalResultOn"
     [currentQuestionIndex]="questionIndex" 
     (optionSelected)="selectOption($event)" (toogleChange)="onToogleChange($event)"></question>
 

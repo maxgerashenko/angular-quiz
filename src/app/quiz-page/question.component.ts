@@ -22,6 +22,9 @@ import { assert } from '../utils';
 export class QuestionComponent {
   @ViewChild(MatSelectionList) listToFocus!: MatSelectionList;
 
+  @Output() toogleChange = new EventEmitter<boolean>();
+  @Input() isToggleEnabled;
+  @Input() currentQuestionIndex!: number;
   @Input() set question(question: Question) {
     this._question = question;
     setTimeout(() => {
@@ -29,19 +32,15 @@ export class QuestionComponent {
     }, 100);
     this.voiceOver(question.title);
   }
-  @Input() currentQuestionIndex!: number;
-
   @Output() optionSelected = new EventEmitter<{
     value: string;
     deselect: () => void;
   }>();
-  @Output() toogleChange = new EventEmitter<boolean>();
   get questionIndex(): number {
     return this.currentQuestionIndex + 1;
   }
 
   _question!: Question;
-  isToggleEnabled = true;
 
   constructor(
     readonly indexLetter: IndexLetterPipe,
@@ -72,8 +71,8 @@ export class QuestionComponent {
     this.listToFocus._items.first._elementRef.nativeElement.focus();
   }
 
-  onToggleChange(value: boolean) {
-    this.toogleChange.emit(value);
+  onToggleChange(isToggleEnabled: boolean) {
+    this.toogleChange.emit(isToggleEnabled);
     this.resetListFocus();
   }
 

@@ -26,7 +26,6 @@ export class QuizQuestionResultComponent {
   }
 
   isRelevant(optionLetter: string): boolean {
-    debugger;
     return (
       optionLetter === this.question.selectedValue ||
       optionLetter === this.question.answer

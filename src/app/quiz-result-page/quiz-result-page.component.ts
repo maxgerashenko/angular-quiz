@@ -30,7 +30,6 @@ export class QuizResultPageComponent {
     private voiceOverService: VoiceService,
     public scoreService: ScoreService
   ) {
-    debugger;
     this.quizResult = castExists(
       this.scoreService.getResult(),
       'result is not set'
