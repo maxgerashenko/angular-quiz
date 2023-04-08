@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  ViewChild,
+} from '@angular/core';
 import { QuestionWithResult } from '../services/interfaces';
 import { VoiceService } from '../services/voice.service';
 
@@ -9,14 +14,20 @@ import { VoiceService } from '../services/voice.service';
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QuizQuestionResultComponent {
+  @ViewChild('description') description;
+
   @Input() question!: QuestionWithResult;
   @Input() alwaysShowDescription?: QuestionWithResult;
+  @Input() isSingle = false;
+
+  inIncorrect = false;
 
   constructor(private voiceService: VoiceService) {}
 
   ngOnInit() {
-    if (this.question.description) {
-      this.voiceService.voiceOver(this.question.description);
+    this.inIncorrect = this.question.answer !== this.question.selectedValue;
+    if (this.isSingle && this.question.description && this.inIncorrect) {
+      this.voiceService.readResults(this.question.description);
     }
   }
 

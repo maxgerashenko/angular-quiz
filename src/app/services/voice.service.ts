@@ -64,30 +64,7 @@ export class VoiceService {
     return newText;
   }
 
-  getSettings() {
-    return {
-      isVoiceOverOn: this.isVoiceOverOn,
-      isVoiceOverMessagesOn: this.isVoiceOverMessagesOn,
-    };
-  }
-
-  updateSettigns(isVoiceOverOn: boolean, isVoiceOverMessagesOn: boolean) {
-    if (!(isVoiceOverOn || isVoiceOverMessagesOn)) {
-      this.voiceOver('Voice off', 0);
-    }
-    this.isVoiceOverOn = isVoiceOverOn;
-    this.isVoiceOverMessagesOn = isVoiceOverMessagesOn;
-    if (isVoiceOverMessagesOn && isVoiceOverOn) {
-      this.voiceOver('Voice on', 0);
-    }
-    this.setLocalSettings();
-  }
-
-  stop() {
-    window.speechSynthesis.cancel();
-  }
-
-  voiceOver(text: string, delay = SPEACH_DELAY) {
+  private voiceOver(text: string, delay = SPEACH_DELAY) {
     if (!this.isVoiceOverOn) return;
 
     this.initVoice();
@@ -98,7 +75,7 @@ export class VoiceService {
     }, delay);
   }
 
-  voiceOverMessages(messages: string[]) {
+  private voiceOverMessages(messages: string[]) {
     if (!this.isVoiceOverMessagesOn) return;
 
     this.initVoice();
@@ -124,5 +101,39 @@ export class VoiceService {
       }, NEXT_SPEACH_DELAY);
     };
     speakNextUtterance();
+  }
+
+  stop() {
+    window.speechSynthesis.cancel();
+  }
+
+  readTitle(text: string) {
+    if (!this.isVoiceOverOn) return;
+    this.voiceOver(text);
+  }
+
+  readResults(messages: string | string[]) {
+    if (!this.isVoiceOverMessagesOn) return;
+
+    this.voiceOverMessages(Array.isArray(messages) ? messages : [messages]);
+  }
+
+  getSettings() {
+    return {
+      isVoiceOverOn: this.isVoiceOverOn,
+      isVoiceOverMessagesOn: this.isVoiceOverMessagesOn,
+    };
+  }
+
+  updateSettigns(isVoiceOverOn: boolean, isVoiceOverMessagesOn: boolean) {
+    if (!(isVoiceOverOn || isVoiceOverMessagesOn)) {
+      this.voiceOver('Voice off', 0);
+    }
+    this.isVoiceOverOn = isVoiceOverOn;
+    this.isVoiceOverMessagesOn = isVoiceOverMessagesOn;
+    if (isVoiceOverMessagesOn && isVoiceOverOn) {
+      this.voiceOver('Voice on', 0);
+    }
+    this.setLocalSettings();
   }
 }

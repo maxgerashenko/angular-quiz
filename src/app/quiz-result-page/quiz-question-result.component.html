@@ -20,10 +20,7 @@
 
 <mat-form-field
   appearance="outline"
-  *ngIf="
-    alwaysShowDescription ||
-    (question.description && question.answer !== question.selectedValue)
-  "
+  *ngIf="alwaysShowDescription || inIncorrect"
   class="description"
   floatLabel="always"
 >

@@ -38,15 +38,12 @@ export class QuestionComponent {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.question) {
-      this.voiceOver(this.question.title);
+      debugger;
+      this.voiceService.readTitle(this.question.title);
     }
   }
 
   onToggleChange(isToggleEnabled: boolean) {
     this.toogleChange.emit(isToggleEnabled);
-  }
-
-  private voiceOver(text: string) {
-    this.voiceService.voiceOver(text);
   }
 }

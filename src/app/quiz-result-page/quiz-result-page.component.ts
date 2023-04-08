@@ -5,6 +5,7 @@ import { VoiceService } from '../services/voice.service';
 import { QuestionWithResult, Quiz } from '../services/interfaces';
 import { assert, castExists } from '../utils';
 import { Question } from '../services/interfaces';
+import { QuizQuestionResultComponent } from './quiz-question-result.component';
 
 export type sortedQuestion = Question & { selected: string };
 
@@ -13,9 +14,8 @@ export type sortedQuestion = Question & { selected: string };
   styleUrls: ['./quiz-result-page.component.scss'],
 })
 export class QuizResultPageComponent {
-  @ViewChildren('description') descriptions!: QueryList<
-    ElementRef<HTMLTextAreaElement>
-  >;
+  @ViewChildren('questionResult')
+  questionsResults!: QueryList<QuizQuestionResultComponent>;
   progressColor: 'primary' | 'accent';
   score: number;
   total: number;
@@ -81,17 +81,17 @@ export class QuizResultPageComponent {
   }
 
   ngAfterViewInit() {
-    assert(this.descriptions, 'descriptions is not on the page');
-    if (!this.descriptions) return;
+    debugger;
+    assert(this.questionsResults, 'descriptions is not on the page');
 
-    const messages = this.descriptions.map((el) =>
-      el.nativeElement.textContent!.trim()
+    const messages = this.questionsResults.map((result) =>
+      result.description.nativeElement.textContent.trim()
     );
-    this.voiceOverMessages(messages);
+    this.readResults(messages);
   }
 
-  voiceOverMessages(messages: string[]) {
-    this.voiceOverService.voiceOverMessages(messages);
+  private readResults(messages: string[]) {
+    this.voiceOverService.readResults(messages);
   }
 
   ngOnDestroy() {

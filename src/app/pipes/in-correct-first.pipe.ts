@@ -5,7 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class inCorrectFirstPipe implements PipeTransform {
   transform(items: any[], answer?, selectedValue?): any[] {
-    debugger;
     if (typeof items[0] === 'string') {
       if (selectedValue === answer) return items;
       const incorrectOption = items.filter(

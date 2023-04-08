@@ -22,6 +22,7 @@
 
     <app-quiz-question-result
       *ngIf="isResultSet"
+      [isSingle]="true"
       [question]="questionWithResultGuard(questoinsWithResults[questionIndex])"
     ></app-quiz-question-result>
   </question>

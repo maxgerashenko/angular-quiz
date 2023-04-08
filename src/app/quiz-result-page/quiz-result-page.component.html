@@ -51,6 +51,7 @@
         <h3>{{ question.title }}</h3>
 
         <app-quiz-question-result
+          #questionResult
           [question]="question"
         ></app-quiz-question-result>
       </ng-container>
