@@ -3,15 +3,9 @@ import { CommonModule } from '@angular/common';
 import { IndexLetterPipe } from './index-letter.pipe';
 import { LetterIndexPipe } from './letter-index.pipe';
 import { ArrayPipe } from './array.pipe';
-import { CorrectFirstPipe } from './correct-first.pipe';
+import { inCorrectFirstPipe } from './in-correct-first.pipe';
 
-
-const pipes = [
-  IndexLetterPipe,
-  LetterIndexPipe,
-  ArrayPipe,
-  CorrectFirstPipe,
-];
+const pipes = [IndexLetterPipe, LetterIndexPipe, ArrayPipe, inCorrectFirstPipe];
 
 @NgModule({
   imports: [CommonModule],

@@ -1,14 +1,11 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
   Output,
-  ViewChild,
+  SimpleChanges,
 } from '@angular/core';
-import {
-  MatSelectionList,
-  MatSelectionListChange,
-} from '@angular/material/list';
 import { IndexLetterPipe } from '../pipes/index-letter.pipe';
 import { Question } from '../services/interfaces';
 import { VoiceService } from '../services/voice.service';
@@ -18,29 +15,13 @@ import { assert } from '../utils';
   selector: 'question',
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.scss'],
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QuestionComponent {
-  @ViewChild(MatSelectionList) listToFocus!: MatSelectionList;
-
   @Output() toogleChange = new EventEmitter<boolean>();
   @Input() isToggleEnabled;
   @Input() currentQuestionIndex!: number;
-  @Input() set question(question: Question) {
-    this._question = question;
-    setTimeout(() => {
-      this.resetListFocus();
-    }, 100);
-    this.voiceOver(question.title);
-  }
-  @Output() optionSelected = new EventEmitter<{
-    value: string;
-    deselect: () => void;
-  }>();
-  get questionIndex(): number {
-    return this.currentQuestionIndex + 1;
-  }
-
-  _question!: Question;
+  @Input() question: Question;
 
   constructor(
     readonly indexLetter: IndexLetterPipe,
@@ -52,41 +33,20 @@ export class QuestionComponent {
       this.currentQuestionIndex,
       'QuestionComponent.currentQuestionIndex is not set'
     );
-    assert(this._question, 'QuestionComponent.question is not set');
+    assert(this.question, 'QuestionComponent.question is not set');
   }
 
-  ngAfterViewInit() {
-    assert(
-      this.listToFocus,
-      'QuestionComponent.list does not exist on the page'
-    );
-    this.resetListFocus();
-  }
-
-  private voiceOver(text: string) {
-    this.voiceService.voiceOver(text);
-  }
-
-  private resetListFocus() {
-    this.listToFocus._items.first._elementRef.nativeElement.focus();
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.question) {
+      this.voiceOver(this.question.title);
+    }
   }
 
   onToggleChange(isToggleEnabled: boolean) {
     this.toogleChange.emit(isToggleEnabled);
-    this.resetListFocus();
   }
 
-  selectOption(event: MatSelectionListChange): void {
-    const selectedValue = event.source.selectedOptions.selected.map(
-      ({ value }) => value
-    )[0];
-    this.optionSelected.emit({
-      value: selectedValue,
-      deselect: () => {
-        this.listToFocus.deselectAll();
-        this.resetListFocus();
-      },
-    });
-    this.listToFocus.deselectAll();
+  private voiceOver(text: string) {
+    this.voiceService.voiceOver(text);
   }
 }

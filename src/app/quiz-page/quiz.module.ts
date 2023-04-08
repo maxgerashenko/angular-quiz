@@ -9,19 +9,26 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { QuizResultsModule } from '../quiz-result-page/quiz-result.module';
+import { QuestionOptionsComponent } from './question-options.component';
+import { DirectivesModule } from '../directives/directives.module';
 
 @NgModule({
   imports: [
     CommonModule,
     PipesModule,
+    QuizResultsModule,
+    DirectivesModule,
     MatButtonModule,
     MatListModule,
     MatCardModule,
     MatProgressBarModule,
     MatSlideToggleModule,
-    QuizResultsModule,
   ],
-  declarations: [QuizPageComponent, QuestionComponent],
+  declarations: [
+    QuizPageComponent,
+    QuestionComponent,
+    QuestionOptionsComponent,
+  ],
   exports: [QuestionComponent],
 })
 export class QuizModule {}

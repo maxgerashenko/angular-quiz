@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Question, QuestionWithResult, Quiz } from '../services/interfaces';
 import { MenuService } from '../services/menu.service';
 import { SourceService } from '../services/source.service';
-import { castExists } from '../utils';
+import { assert, castExists } from '../utils';
 import { ScoreService } from '../services/score.service';
 import { SettingsService } from '../services/settings.service';
+import { MatSelectionList } from '@angular/material/list';
+import { QuestionOptionsComponent } from './question-options.component';
 
 const questionWithResultGuard = (
   question: Question | QuestionWithResult
@@ -19,8 +21,11 @@ const questionWithResultGuard = (
   selector: 'quiz',
   templateUrl: './quiz-page.component.html',
   styleUrls: ['./quiz-page.component.scss'],
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QuizPageComponent implements OnInit {
+export class QuizPageComponent {
+  @ViewChild(QuestionOptionsComponent) optionsList!: QuestionOptionsComponent;
+
   questionWithResultGuard = questionWithResultGuard;
   isResultSet = false;
   courseId = castExists(
@@ -50,8 +55,6 @@ export class QuizPageComponent implements OnInit {
     this.resetQuiz();
   }
 
-  ngOnInit() {}
-
   resetQuiz() {
     this.questionIndex = 0;
     this.questoinsWithResults = this.shuffleQuestions();
@@ -63,13 +66,12 @@ export class QuizPageComponent implements OnInit {
     this.settingsService.setResulstSettings({ isLocalResultOn });
   }
 
-  selectOption({ value }) {
+  onSelectOption(value) {
+    debugger;
     this.questoinsWithResults[this.questionIndex].selectedValue = value;
 
     this.isResultSet = true;
-    if (this.isLocalResultOn) {
-      return;
-    }
+    if (this.isLocalResultOn) return; // bailout
 
     this.nextQuestion();
   }

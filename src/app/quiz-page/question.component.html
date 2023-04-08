@@ -9,20 +9,9 @@
   <mat-card-subtitle class="subtitle space-between">
     <div>Question {{ currentQuestionIndex + 1 }}</div>
   </mat-card-subtitle>
-  <mat-card-title class="title">{{ _question.title }}</mat-card-title>
+  <mat-card-title class="title">{{ question.title }}</mat-card-title>
 </mat-card-header>
 
 <mat-card-content class="content">
-  <mat-selection-list
-    #listToFocus
-    [multiple]="false"
-    (selectionChange)="selectOption($event)"
-  >
-    <mat-list-option
-      *ngFor="let option of _question.optionsList; let i = index"
-      [value]="i | indexLetter"
-    >
-      {{ option }}
-    </mat-list-option>
-  </mat-selection-list>
+  <ng-content></ng-content>
 </mat-card-content>

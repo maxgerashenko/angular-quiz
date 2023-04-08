@@ -4,9 +4,11 @@
 }
 
 mat-slide-toggle {
-  position: absolute;
-  margin-right: 34px;
-  right: 0;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: start;
 }
 
 mat-card-title {

@@ -9,11 +9,13 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { QuizQuestionResultComponent } from './quiz-question-result.component';
+import { DirectivesModule } from '../directives/directives.module';
 
 @NgModule({
   imports: [
     CommonModule,
     PipesModule,
+    DirectivesModule,
     MatButtonModule,
     MatCardModule,
     MatListModule,

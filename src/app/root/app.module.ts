@@ -13,11 +13,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { DirectivesModule } from '../directives/directives.module';
 import { VoiceToggleComponent } from './voice-toggle.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
+    CommonModule,
     AppRoutingModule,
-    BrowserModule,
     ServicesModule,
     MatSidenavModule,
     MatListModule,
@@ -28,6 +29,6 @@ import { VoiceToggleComponent } from './voice-toggle.component';
     MatDividerModule,
     DirectivesModule,
   ],
-  declarations: [CoursesNavComponent, AppComponent, VoiceToggleComponent],
+  declarations: [AppComponent, CoursesNavComponent, VoiceToggleComponent],
 })
 export class AppModule {}

@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { QuestionWithResult } from '../services/interfaces';
 
 @Component({
   selector: 'app-quiz-question-result',
   templateUrl: './quiz-question-result.component.html',
   styleUrls: ['./quiz-question-result.component.css'],
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QuizQuestionResultComponent {
   @Input() question!: QuestionWithResult;

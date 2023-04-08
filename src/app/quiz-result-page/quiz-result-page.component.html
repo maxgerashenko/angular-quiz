@@ -24,7 +24,7 @@
       </button>
       <button
         *ngIf="!isTopScore()"
-        autofocus
+        [appFocusOnEnable]="!isTopScore()"
         mat-raised-button
         class="top-button"
         [color]="progressColor"
@@ -44,10 +44,11 @@
     <mat-list class="hover-list">
       <ng-container
         *ngFor="
-          let question of questions | correctFirst;
+          let question of questions | inCorrectFirst;
           let questionIndex = index
         "
       >
+        <h3>{{ question.title }}</h3>
         <app-quiz-question-result
           [question]="question"
         ></app-quiz-question-result>

@@ -8,11 +8,12 @@ import { QuizResultsModule } from './quiz-result-page/quiz-result.module';
 import { QuizModule } from './quiz-page/quiz.module';
 import { QuizListModule } from './quiz-list-page/quiz-list.module';
 import { StartPageModule } from './start-page/start-page.module';
-
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   imports: [
     CommonModule,
+    BrowserModule,
     BrowserAnimationsModule,
     CommonModule,
     AppRoutingModule,
@@ -24,4 +25,4 @@ import { StartPageModule } from './start-page/start-page.module';
   ],
   bootstrap: [AppComponent], // importatnt for bootstrap
 })
-export class MainModule { }
+export class MainModule {}

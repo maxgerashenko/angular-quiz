@@ -6,6 +6,7 @@ import { PipesModule } from '../pipes/pipes.module';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   imports: [

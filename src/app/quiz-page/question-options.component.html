@@ -1,0 +1,12 @@
+<mat-selection-list
+  #listToFocus
+  [multiple]="false"
+  (selectionChange)="onSelectionChange($event)"
+>
+  <mat-list-option
+    *ngFor="let option of options; let index = index"
+    [value]="index | indexLetter"
+  >
+    {{ option }}
+  </mat-list-option>
+</mat-selection-list>
