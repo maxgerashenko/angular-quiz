@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { QuestionWithResult } from '../services/interfaces';
+import { VoiceService } from '../services/voice.service';
 
 @Component({
   selector: 'app-quiz-question-result',
@@ -11,7 +12,13 @@ export class QuizQuestionResultComponent {
   @Input() question!: QuestionWithResult;
   @Input() alwaysShowDescription?: QuestionWithResult;
 
-  constructor() {}
+  constructor(private voiceService: VoiceService) {}
+
+  ngOnInit() {
+    if (this.question.description) {
+      this.voiceService.voiceOver(this.question.description);
+    }
+  }
 
   isCorrect(optionLetter: string): boolean {
     return (
@@ -33,5 +40,9 @@ export class QuizQuestionResultComponent {
       optionLetter === this.question.selectedValue ||
       optionLetter === this.question.answer
     );
+  }
+
+  ngOnDestroy() {
+    this.voiceService.stop();
   }
 }
