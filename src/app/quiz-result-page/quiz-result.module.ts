@@ -8,6 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { QuizQuestionResultComponent } from './quiz-question-result.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,7 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatInputModule,
   ],
-  declarations: [QuizResultPageComponent],
+  declarations: [QuizResultPageComponent, QuizQuestionResultComponent],
   exports: [QuizResultPageComponent],
 })
 export class QuizResultsModule {}
