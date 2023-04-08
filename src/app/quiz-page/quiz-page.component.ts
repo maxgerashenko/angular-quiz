@@ -16,7 +16,7 @@ export class QuizPageComponent implements OnInit {
   answers: string[] = [];
   currentQuestionIndex = 0;
   selectedOptionValue: string | null = null;
-  isAutoReply = true;
+  isShowCorrectAnswer = true;
 
   constructor(
     private readonly sourceService: SourceService,
@@ -53,14 +53,14 @@ export class QuizPageComponent implements OnInit {
     }
   }
 
-  toogleAutoReply(value: boolean) {
-    this.isAutoReply = value;
+  onToggle(value: boolean) {
+    this.isShowCorrectAnswer = value;
   }
 
   selectOption({ value }) {
     this.answers[this.currentQuestionIndex] = value;
     this.selectedOptionValue = value;
-    if (this.isAutoReply) this.submitAnswer();
+    if (this.isShowCorrectAnswer) this.submitAnswer();
   }
 
   resetQuiz() {

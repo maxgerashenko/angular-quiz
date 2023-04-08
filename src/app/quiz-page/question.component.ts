@@ -33,13 +33,13 @@ export class QuestionComponent {
     value: string;
     deselect: () => void;
   }>();
-  @Output() toogleChange = new EventEmitter<boolean>();
+  @Output() toggleChange = new EventEmitter<boolean>();
   @ViewChild(MatSelectionList) list!: MatSelectionList;
   get questionIndex(): number {
     return this.currentQuestionIndex + 1;
   }
 
-  isAutoReply = true;
+  isToggleEnabled = true;
 
   constructor(
     readonly indexLetter: IndexLetterPipe,
@@ -68,8 +68,8 @@ export class QuestionComponent {
   }
 
   onToggleChange(value: boolean) {
-    this.isAutoReply = value;
-    this.toogleChange.emit(value);
+    this.isToggleEnabled = value;
+    this.toggleChange.emit(value);
     this.list.deselectAll();
   }
 
@@ -84,6 +84,5 @@ export class QuestionComponent {
         this.resetFocus();
       },
     });
-    if (this.isAutoReply) this.list.deselectAll();
   }
 }
