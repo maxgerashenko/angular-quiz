@@ -20,25 +20,27 @@ import { assert } from '../utils';
   styleUrls: ['./question.component.scss'],
 })
 export class QuestionComponent {
-  _question!: Question;
+  @ViewChild(MatSelectionList) listToFocus!: MatSelectionList;
+
   @Input() set question(question: Question) {
     this._question = question;
     setTimeout(() => {
-      this.resetFocus();
+      this.resetListFocus();
     }, 100);
     this.voiceOver(question.title);
   }
   @Input() currentQuestionIndex!: number;
+
   @Output() optionSelected = new EventEmitter<{
     value: string;
     deselect: () => void;
   }>();
-  @Output() toggleChange = new EventEmitter<boolean>();
-  @ViewChild(MatSelectionList) list!: MatSelectionList;
+  @Output() toogleChange = new EventEmitter<boolean>();
   get questionIndex(): number {
     return this.currentQuestionIndex + 1;
   }
 
+  _question!: Question;
   isToggleEnabled = true;
 
   constructor(
@@ -55,34 +57,38 @@ export class QuestionComponent {
   }
 
   ngAfterViewInit() {
-    assert(this.list, 'QuestionComponent.list does not exist on the page');
-    this.resetFocus();
+    assert(
+      this.listToFocus,
+      'QuestionComponent.list does not exist on the page'
+    );
+    this.resetListFocus();
   }
 
   private voiceOver(text: string) {
     this.voiceService.voiceOver(text);
   }
 
-  private resetFocus() {
-    this.list._items.first._elementRef.nativeElement.focus();
+  private resetListFocus() {
+    this.listToFocus._items.first._elementRef.nativeElement.focus();
   }
 
   onToggleChange(value: boolean) {
-    this.isToggleEnabled = value;
-    this.toggleChange.emit(value);
-    this.list.deselectAll();
+    this.toogleChange.emit(value);
+    this.resetListFocus();
   }
 
   selectOption(event: MatSelectionListChange): void {
+    debugger;
     const selectedValue = event.source.selectedOptions.selected.map(
       ({ value }) => value
     )[0];
     this.optionSelected.emit({
       value: selectedValue,
       deselect: () => {
-        this.list.deselectAll();
-        this.resetFocus();
+        this.listToFocus.deselectAll();
+        this.resetListFocus();
       },
     });
+    this.listToFocus.deselectAll();
   }
 }

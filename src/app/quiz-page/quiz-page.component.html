@@ -2,9 +2,11 @@
 <mat-card class="quiz-card">
   <mat-progress-bar color="pimary" mode="determinate"
     [value]="(currentQuestionIndex+1)/quiz.questionsList.length*100" />
+  
   <question #optionElement [question]="quiz.questionsList[currentQuestionIndex]"
     [currentQuestionIndex]="currentQuestionIndex" 
-    (optionSelected)="selectOption($event)" (toggleChange)="onToggle($event)"></question>
+    (optionSelected)="selectOption($event)" (toogleChange)="onToogleChange($event)"></question>
+    
   <mat-card-actions class="button-container space-between">
     <div>
       <button mat-button (click)="resetQuiz()">

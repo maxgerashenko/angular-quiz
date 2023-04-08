@@ -15,8 +15,7 @@ export class QuizPageComponent implements OnInit {
   quiz!: Quiz;
   answers: string[] = [];
   currentQuestionIndex = 0;
-  selectedOptionValue: string | null = null;
-  isShowCorrectAnswer = true;
+  shouldShowCorrectAnswer = true;
 
   constructor(
     private readonly sourceService: SourceService,
@@ -53,21 +52,20 @@ export class QuizPageComponent implements OnInit {
     }
   }
 
-  onToggle(value: boolean) {
-    this.isShowCorrectAnswer = value;
+  onToogleChange(value) {
+    this.shouldShowCorrectAnswer = value;
   }
 
   selectOption({ value }) {
     this.answers[this.currentQuestionIndex] = value;
-    this.selectedOptionValue = value;
-    if (this.isShowCorrectAnswer) this.submitAnswer();
+    this.submitAnswer();
   }
 
   resetQuiz() {
     this.currentQuestionIndex = 0;
-    this.selectedOptionValue = null;
     this.shuffleQuestions();
   }
+
   goToList() {
     this.router.navigate(['/course'], {
       queryParams: { id: this.quiz.courseId },
@@ -75,8 +73,9 @@ export class QuizPageComponent implements OnInit {
   }
 
   submitAnswer() {
+    debugger;
     this.currentQuestionIndex++;
-    if (this.currentQuestionIndex === this.quiz.questionsList.length) {
+    if (this.currentQuestionIndex >= this.quiz.questionsList.length) {
       this.scoreService.setResult({
         quiz: this.quiz,
         answers: this.answers,

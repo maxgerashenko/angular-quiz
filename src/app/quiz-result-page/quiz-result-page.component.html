@@ -48,39 +48,10 @@
           let questionIndex = index
         "
       >
-        <h3>
-          {{ question.title }}
-        </h3>
-        <ng-container
-          *ngFor="let option of question.optionsList; let optionIndex = index"
-        >
-          <mat-list-item
-            *ngIf="isRelevant(question, optionIndex | indexLetter)"
-            [ngClass]="{
-              correct: isCorrect(question, optionIndex | indexLetter),
-              incorrect: isInCorrect(question, optionIndex | indexLetter)
-            }"
-          >
-            <label> {{ option }} </label>
-          </mat-list-item>
-        </ng-container>
-        <mat-form-field
-          appearance="outline"
-          *ngIf="question.description && question.answer !== question.selected"
-          class="description"
-          floatLabel="always"
-        >
-          <mat-label>Explanation</mat-label>
-          <textarea
-            maxLength="200"
-            cdkTextareaAutosize
-            #description
-            matInput
-            disabled="true"
-          >
-            {{ question.description }}
-          </textarea>
-        </mat-form-field>
+        <app-quiz-question-result
+          [question]="question"
+          [selectedAnswer]="answers[questionIndex]"
+        ></app-quiz-question-result>
       </ng-container>
     </mat-list>
   </mat-card-content>

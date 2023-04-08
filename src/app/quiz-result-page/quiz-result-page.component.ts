@@ -6,7 +6,6 @@ import { QuizResult, Quiz } from '../services/interfaces';
 import { assert, castExists } from '../utils';
 import { Question } from '../services/interfaces';
 
-
 export type sortedQuestion = Question & { selected: string };
 
 @Component({
@@ -29,9 +28,12 @@ export class QuizResultPageComponent {
   constructor(
     private router: Router,
     private voiceOverService: VoiceService,
-    public scoreService: ScoreService,
+    public scoreService: ScoreService
   ) {
-    const {quiz, answers} = castExists(this.scoreService.getResult(), 'result is not set')!;
+    const { quiz, answers } = castExists(
+      this.scoreService.getResult(),
+      'result is not set'
+    )!;
     this.quiz = quiz;
     this.answers = answers;
     this.total = quiz.questionsList.length;
@@ -49,41 +51,12 @@ export class QuizResultPageComponent {
     this.maxScore = this.scoreService.getQuizMax(this.quiz.title);
   }
 
-  ngOnViewInit() {  
-    assert(this.descriptions, 'descriptions is not on the page');
-  }
-
   trackQuestion(index: number, question: Question) {
     return question?.title;
   }
 
   isTopScore() {
     return this.score === 100;
-  }
-
-  flatResults({ quiz, answers }: QuizResult) {
-    
-  }
-
-  isRelevant(question: sortedQuestion, optionLetter:string): boolean {
-    return (
-      optionLetter === question.selected || optionLetter === question.answer
-    );
-  }
-
-  isCorrect(question: sortedQuestion, optionLetter:string): boolean {
-    return (
-      (question.selected === optionLetter &&
-        question.selected === question.answer) ||
-      optionLetter === question.answer
-    );
-  }
-
-  isInCorrect(question: sortedQuestion, optionLetter:string): boolean {
-    return (
-      question.selected === optionLetter &&
-      question.selected !== question.answer
-    );
   }
 
   goToList() {
@@ -112,6 +85,7 @@ export class QuizResultPageComponent {
   }
 
   ngAfterViewInit() {
+    assert(this.descriptions, 'descriptions is not on the page');
     if (!this.descriptions) return;
 
     const messages = this.descriptions.map((el) =>
@@ -120,7 +94,7 @@ export class QuizResultPageComponent {
     this.voiceOverMessages(messages);
   }
 
-  voiceOverMessages(messages:string[]) {
+  voiceOverMessages(messages: string[]) {
     this.voiceOverService.voiceOverMessages(messages);
   }
 
