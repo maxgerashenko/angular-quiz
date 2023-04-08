@@ -7,12 +7,22 @@ import { castExists } from '../utils';
 import { ScoreService } from '../services/score.service';
 import { SettingsService } from '../services/settings.service';
 
+const questionWithResultGuard = (
+  question: Question | QuestionWithResult
+): QuestionWithResult => {
+  debugger;
+  if ((question as QuestionWithResult).selectedValue == null) return;
+  return question as QuestionWithResult;
+};
+
 @Component({
   selector: 'quiz',
   templateUrl: './quiz-page.component.html',
   styleUrls: ['./quiz-page.component.scss'],
 })
 export class QuizPageComponent implements OnInit {
+  questionWithResultGuard = questionWithResultGuard;
+  isResultSet = false;
   courseId = castExists(
     this.route.snapshot.queryParams['courseId'],
     'course id is not set'
@@ -25,7 +35,7 @@ export class QuizPageComponent implements OnInit {
     this.sourceService.getQuiz(this.courseId, this.quizId),
     'quizId does not exist in course with courseId'
   )!;
-  questoinsWithResults!: Question[];
+  questoinsWithResults!: (Question | QuestionWithResult)[];
   questionIndex = 0;
   isLocalResultOn = this.settingsService.getResulstSettings().isLocalResultOn;
 
@@ -56,6 +66,7 @@ export class QuizPageComponent implements OnInit {
   selectOption({ value }) {
     this.questoinsWithResults[this.questionIndex].selectedValue = value;
 
+    this.isResultSet = true;
     if (this.isLocalResultOn) {
       return;
     }
@@ -64,6 +75,7 @@ export class QuizPageComponent implements OnInit {
   }
 
   nextQuestion() {
+    this.isResultSet = false;
     this.questionIndex++;
     if (this.questionIndex < this.questoinsWithResults.length) return;
 

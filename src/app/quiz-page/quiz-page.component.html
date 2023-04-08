@@ -3,10 +3,17 @@
   <mat-progress-bar color="pimary" mode="determinate"
     [value]="(questionIndex+1)/questoinsWithResults.length*100" />
   
-  <question #optionElement [question]="questoinsWithResults[questionIndex]"
+  <question 
+    *ngIf="!isResultSet"
+    #optionElement 
+    [question]="questoinsWithResults[questionIndex]"
     [isToggleEnabled]="isLocalResultOn"
     [currentQuestionIndex]="questionIndex" 
     (optionSelected)="selectOption($event)" (toogleChange)="onToogleChange($event)"></question>
+  
+  <app-quiz-question-result *ngIf="isResultSet"
+        [question]="questionWithResultGuard(questoinsWithResults[questionIndex])"
+      ></app-quiz-question-result>
 
   <mat-card-actions class="button-container space-between">
     <div>

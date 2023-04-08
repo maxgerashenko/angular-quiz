@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { QuestionWithResult } from '../services/interfaces';
-import { sortedQuestion } from './quiz-result-page.component';
 
 @Component({
   selector: 'app-quiz-question-result',
@@ -9,6 +8,13 @@ import { sortedQuestion } from './quiz-result-page.component';
 })
 export class QuizQuestionResultComponent {
   @Input() question!: QuestionWithResult;
+  @Input() alwaysShowDescription?: QuestionWithResult;
+
+  constructor() {}
+
+  ngOnInit() {
+    debugger;
+  }
 
   isCorrect(optionLetter: string): boolean {
     return (

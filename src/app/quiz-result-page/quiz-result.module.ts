@@ -22,6 +22,6 @@ import { QuizQuestionResultComponent } from './quiz-question-result.component';
     MatInputModule,
   ],
   declarations: [QuizResultPageComponent, QuizQuestionResultComponent],
-  exports: [QuizResultPageComponent],
+  exports: [QuizResultPageComponent, QuizQuestionResultComponent],
 })
 export class QuizResultsModule {}

@@ -14,9 +14,13 @@
     </mat-list-item>
   </ng-container>
 </mat-list>
+
 <mat-form-field
   appearance="outline"
-  *ngIf="question.description && question.answer !== question.selectedValue"
+  *ngIf="
+    alwaysShowDescription ||
+    (question.description && question.answer !== question.selectedValue)
+  "
   class="description"
   floatLabel="always"
 >

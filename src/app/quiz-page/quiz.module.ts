@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
+import { QuizResultsModule } from '../quiz-result-page/quiz-result.module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatCardModule,
     MatProgressBarModule,
     MatSlideToggleModule,
+    QuizResultsModule,
   ],
   declarations: [QuizPageComponent, QuestionComponent],
   exports: [QuestionComponent],
