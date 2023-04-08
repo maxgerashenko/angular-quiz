@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Quiz } from '../services/interfaces';
+import { Question, QuestionWithResult, Quiz } from '../services/interfaces';
 import { MenuService } from '../services/menu.service';
 import { SourceService } from '../services/source.service';
-import { ObjectType, castExists } from '../utils';
+import { castExists } from '../utils';
 import { ScoreService } from '../services/score.service';
 
 @Component({
@@ -13,9 +13,10 @@ import { ScoreService } from '../services/score.service';
 })
 export class QuizPageComponent implements OnInit {
   quiz!: Quiz;
-  answers: string[] = [];
-  currentQuestionIndex = 0;
+  questoinsWithResults!: Question[];
+  questionIndex = 0;
   shouldShowCorrectAnswer = true;
+  showResult = false;
 
   constructor(
     private readonly sourceService: SourceService,
@@ -36,20 +37,16 @@ export class QuizPageComponent implements OnInit {
       this.sourceService.getQuiz(courseId, quizId),
       'quizId does not exist in course with courseId'
     )!;
-    this.shuffleQuestions();
-    this.menuService.closeMenu();
+
+    this.resetQuiz();
   }
 
   ngOnInit() {}
 
-  private shuffleQuestions() {
-    for (let i = this.quiz.questionsList.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [this.quiz.questionsList[i], this.quiz.questionsList[j]] = [
-        this.quiz.questionsList[j],
-        this.quiz.questionsList[i],
-      ];
-    }
+  resetQuiz() {
+    this.questionIndex = 0;
+    this.questoinsWithResults = this.shuffleQuestions();
+    this.menuService.closeMenu();
   }
 
   onToogleChange(value) {
@@ -57,13 +54,27 @@ export class QuizPageComponent implements OnInit {
   }
 
   selectOption({ value }) {
-    this.answers[this.currentQuestionIndex] = value;
-    this.submitAnswer();
+    this.questoinsWithResults[this.questionIndex].selectedValue = value;
+
+    if (this.shouldShowCorrectAnswer) {
+      this.showResult = true;
+      return;
+    }
+
+    this.nextQuestion();
   }
 
-  resetQuiz() {
-    this.currentQuestionIndex = 0;
-    this.shuffleQuestions();
+  nextQuestion() {
+    this.questionIndex++;
+    if (this.questionIndex < this.questoinsWithResults.length) return;
+
+    this.scoreService.setResult(
+      this.questoinsWithResults as unknown as QuestionWithResult[],
+      this.quiz.title,
+      this.quiz.courseId,
+      this.quiz.id
+    );
+    this.router.navigate(['/results']);
   }
 
   goToList() {
@@ -72,15 +83,14 @@ export class QuizPageComponent implements OnInit {
     });
   }
 
-  submitAnswer() {
-    debugger;
-    this.currentQuestionIndex++;
-    if (this.currentQuestionIndex >= this.quiz.questionsList.length) {
-      this.scoreService.setResult({
-        quiz: this.quiz,
-        answers: this.answers,
-      });
-      this.router.navigate(['/results']);
+  private shuffleQuestions() {
+    const questions = [...this.quiz.questionsList];
+    const half = Math.round(questions.length / 2);
+    const lastIndex = questions.length - 1;
+    for (let i = lastIndex; i >= half; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [questions[i], questions[j]] = [questions[j], questions[i]];
     }
+    return questions;
   }
 }

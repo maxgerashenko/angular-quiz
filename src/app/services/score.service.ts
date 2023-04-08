@@ -1,5 +1,13 @@
 import { Injectable } from '@angular/core';
-import { QuizResult } from './interfaces';
+import { QuizQuestionResultComponent } from '../quiz-result-page/quiz-question-result.component';
+import { Question, QuestionWithResult } from './interfaces';
+
+export interface QuizResult {
+  quizTitle: string;
+  courseId: string;
+  questions: QuestionWithResult[];
+  quizId: string;
+}
 
 const MAX_SCORE = 'max_quiz_score_';
 const THRESHOLD = 80;
@@ -7,15 +15,16 @@ const SECOND_THRESHOLD = 50;
 
 @Injectable({ providedIn: 'root' })
 export class ScoreService {
-  result: QuizResult | undefined;
+  quizResult: QuizResult | undefined;
   threshold = 80;
 
   constructor() {}
-  setResult(value: QuizResult) {
-    this.result = { ...value };
+
+  setResult(questions: QuestionWithResult[], quizTitle, courseId, quizId) {
+    this.quizResult = { quizTitle, questions, courseId, quizId };
   }
   getResult(): QuizResult | undefined {
-    return this.result;
+    return this.quizResult;
   }
 
   hasPass(score: number) {

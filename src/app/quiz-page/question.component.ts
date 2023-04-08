@@ -78,7 +78,6 @@ export class QuestionComponent {
   }
 
   selectOption(event: MatSelectionListChange): void {
-    debugger;
     const selectedValue = event.source.selectedOptions.selected.map(
       ({ value }) => value
     )[0];

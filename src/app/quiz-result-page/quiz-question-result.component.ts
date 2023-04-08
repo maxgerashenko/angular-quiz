@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { QuestionWithResult } from '../services/interfaces';
 import { sortedQuestion } from './quiz-result-page.component';
 
 @Component({
@@ -7,27 +8,28 @@ import { sortedQuestion } from './quiz-result-page.component';
   styleUrls: ['./quiz-question-result.component.css'],
 })
 export class QuizQuestionResultComponent {
-  @Input() question!: sortedQuestion;
-  @Input() selectedAnswer!: string;
+  @Input() question!: QuestionWithResult;
 
   isCorrect(optionLetter: string): boolean {
     return (
-      (this.selectedAnswer === optionLetter &&
-        this.selectedAnswer === this.question.answer) ||
+      (this.question.selectedValue === optionLetter &&
+        this.question.selectedValue === this.question.answer) ||
       optionLetter === this.question.answer
     );
   }
 
   isInCorrect(optionLetter: string): boolean {
     return (
-      this.selectedAnswer === optionLetter &&
-      this.selectedAnswer !== this.question.answer
+      optionLetter === this.question.selectedValue &&
+      this.question.answer !== this.question.selectedValue
     );
   }
 
-  isRelevant(question: sortedQuestion, optionLetter: string): boolean {
+  isRelevant(optionLetter: string): boolean {
+    debugger;
     return (
-      optionLetter === question.selected || optionLetter === question.answer
+      optionLetter === this.question.selectedValue ||
+      optionLetter === this.question.answer
     );
   }
 }

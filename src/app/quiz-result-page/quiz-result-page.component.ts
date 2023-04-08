@@ -1,8 +1,8 @@
 import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
-import { ScoreService } from '../services/score.service';
+import { QuizResult, ScoreService } from '../services/score.service';
 import { VoiceService } from '../services/voice.service';
-import { QuizResult, Quiz } from '../services/interfaces';
+import { QuestionWithResult, Quiz } from '../services/interfaces';
 import { assert, castExists } from '../utils';
 import { Question } from '../services/interfaces';
 
@@ -20,35 +20,32 @@ export class QuizResultPageComponent {
   score: number;
   total: number;
   feedbackMessage: string;
-  answers: string[];
-  quiz: Quiz;
+  questions: QuestionWithResult[];
   correctCount: number;
   maxScore = 0;
+  quizResult: QuizResult;
 
   constructor(
     private router: Router,
     private voiceOverService: VoiceService,
     public scoreService: ScoreService
   ) {
-    const { quiz, answers } = castExists(
+    debugger;
+    this.quizResult = castExists(
       this.scoreService.getResult(),
       'result is not set'
     )!;
-    this.quiz = quiz;
-    this.answers = answers;
-    this.total = quiz.questionsList.length;
-    this.correctCount = this.quiz.questionsList.reduce(
-      (pre, { answer }, index) => {
-        return answer === this.answers[index] ? pre + 1 : pre;
-      },
-      0
-    );
+    this.questions = this.quizResult.questions;
+    this.total = this.questions.length;
+    this.correctCount = this.questions.filter(
+      ({ selectedValue, answer }) => selectedValue === answer
+    ).length;
     this.score = Math.trunc((this.correctCount / this.total) * 100);
     this.feedbackMessage = this.getFeedbackMessage();
     this.progressColor = this.scoreService.getProgressColor(this.score);
 
-    this.scoreService.updateQuizMax(this.quiz.title, this.score);
-    this.maxScore = this.scoreService.getQuizMax(this.quiz.title);
+    this.scoreService.updateQuizMax(this.quizResult.quizTitle, this.score);
+    this.maxScore = this.scoreService.getQuizMax(this.quizResult.quizTitle);
   }
 
   trackQuestion(index: number, question: Question) {
@@ -61,15 +58,15 @@ export class QuizResultPageComponent {
 
   goToList() {
     this.router.navigate(['/start'], {
-      queryParams: { id: this.quiz.courseId },
+      queryParams: { id: this.quizResult.courseId },
     });
   }
 
   reset() {
     this.router.navigate(['/quiz'], {
       queryParams: {
-        courseId: this.quiz.courseId,
-        quizId: this.quiz.id,
+        courseId: this.quizResult.courseId,
+        quizId: this.quizResult.quizId,
       },
     });
   }

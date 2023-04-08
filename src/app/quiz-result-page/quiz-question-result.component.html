@@ -4,7 +4,7 @@
     *ngFor="let option of question.optionsList; let optionIndex = index"
   >
     <mat-list-item
-      *ngIf="isRelevant(question, optionIndex | indexLetter)"
+      *ngIf="isRelevant(optionIndex | indexLetter)"
       [ngClass]="{
         correct: isCorrect(optionIndex | indexLetter),
         incorrect: isInCorrect(optionIndex | indexLetter)
@@ -16,7 +16,7 @@
 </mat-list>
 <mat-form-field
   appearance="outline"
-  *ngIf="question.description && question.answer !== question.selected"
+  *ngIf="question.description && question.answer !== question.selectedValue"
   class="description"
   floatLabel="always"
 >
