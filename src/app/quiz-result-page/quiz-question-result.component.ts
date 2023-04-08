@@ -13,10 +13,6 @@ export class QuizQuestionResultComponent {
 
   constructor() {}
 
-  ngOnInit() {
-    debugger;
-  }
-
   isCorrect(optionLetter: string): boolean {
     return (
       (this.question.selectedValue === optionLetter &&

@@ -12,7 +12,6 @@ import { QuestionOptionsComponent } from './question-options.component';
 const questionWithResultGuard = (
   question: Question | QuestionWithResult
 ): QuestionWithResult => {
-  debugger;
   if ((question as QuestionWithResult).selectedValue == null) return;
   return question as QuestionWithResult;
 };
@@ -67,7 +66,6 @@ export class QuizPageComponent {
   }
 
   onSelectOption(value) {
-    debugger;
     this.questoinsWithResults[this.questionIndex].selectedValue = value;
 
     this.isResultSet = true;
