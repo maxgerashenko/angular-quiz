@@ -1,5 +1,6 @@
 import { Injectable, assertPlatform } from '@angular/core';
 import { assert, castExists } from '../utils';
+import { SettingsService } from './settings.service';
 
 interface pattern {
   [key: string]: string;
@@ -7,7 +8,6 @@ interface pattern {
 
 const SPEACH_DELAY = 800;
 const NEXT_SPEACH_DELAY = 500;
-const VOICE_OVER_SETTINGS = 'settings_voice_over';
 
 @Injectable({ providedIn: 'root' })
 export class VoiceService {
@@ -18,7 +18,7 @@ export class VoiceService {
   isVoiceOverOn = true;
   isVoiceOverMessagesOn = true;
 
-  constructor() {
+  constructor(private settingsService: SettingsService) {
     this.speech = castExists<SpeechSynthesisUtterance>(
       new SpeechSynthesisUtterance(),
       'No speechSynthesis found'
@@ -28,21 +28,18 @@ export class VoiceService {
   }
 
   private initLocalsettings() {
-    let settingsString = localStorage.getItem(VOICE_OVER_SETTINGS);
-    if (!settingsString) return;
-    const { isVoiceOverOn, isVoiceOverMessagesOn } = JSON.parse(settingsString);
+    const { isVoiceOverOn, isVoiceOverMessagesOn } =
+      this.settingsService.getVoiceOverSettings();
+
     this.isVoiceOverOn = isVoiceOverOn;
     this.isVoiceOverMessagesOn = isVoiceOverMessagesOn;
   }
 
   private setLocalSettings() {
-    localStorage.setItem(
-      VOICE_OVER_SETTINGS,
-      JSON.stringify({
-        isVoiceOverOn: this.isVoiceOverOn,
-        isVoiceOverMessagesOn: this.isVoiceOverMessagesOn,
-      })
-    );
+    this.settingsService.setVoiceOverSettings({
+      isVoiceOverOn: this.isVoiceOverOn,
+      isVoiceOverMessagesOn: this.isVoiceOverMessagesOn,
+    });
   }
 
   private initVoice(speed = 1.2, voiceName = 'Samantha') {
