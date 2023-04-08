@@ -9,11 +9,15 @@
     [question]="questoinsWithResults[questionIndex]"
     [isToggleEnabled]="isLocalResultOn"
     [currentQuestionIndex]="questionIndex" 
-    (optionSelected)="selectOption($event)" (toogleChange)="onToogleChange($event)"></question>
+    (optionSelected)="selectOption($event)" 
+    (toogleChange)="onToogleChange($event)">
+  </question>
   
-  <app-quiz-question-result *ngIf="isResultSet"
-        [question]="questionWithResultGuard(questoinsWithResults[questionIndex])"
-      ></app-quiz-question-result>
+  
+  <app-quiz-question-result 
+    *ngIf="isResultSet"
+    [question]="questionWithResultGuard(questoinsWithResults[questionIndex])"
+  ></app-quiz-question-result>
 
   <mat-card-actions class="button-container space-between">
     <div>
