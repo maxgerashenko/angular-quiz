@@ -11,6 +11,8 @@ import { reliability } from './reliability';
 import { rpc } from './rpc';
 import { scalability } from './scalability';
 import { maintainability } from './maintainability';
+import { faultTolerance } from './faultTolerance';
+import { backOfTheEnvelopeCalculation } from './backOfTheEnvelopeCalculation';
 
 export const TMP_COURSES_LIST: Course[] = [
   {
@@ -57,6 +59,8 @@ export const TMP_COURSES_LIST: Course[] = [
       reliability,
       scalability,
       maintainability,
+      faultTolerance,
+      backOfTheEnvelopeCalculation,
       distributedMonitoring,
       distributedQueue,
       messageQueue,
