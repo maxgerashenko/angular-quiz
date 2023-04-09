@@ -67,7 +67,6 @@ export class QuizPageComponent {
   }
 
   onSelectOption(value) {
-    debugger;
     this.questoinsWithResults[this.questionIndex].selectedValue = value;
     const question = this.questoinsWithResults[this.questionIndex];
     const isCorrect = question.selectedValue === question.answer;

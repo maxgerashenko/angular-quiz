@@ -3,6 +3,7 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  OnDestroy,
   QueryList,
   ViewChild,
   ViewChildren,
@@ -16,6 +17,9 @@ import {
   MatListItem,
   MatListOption,
 } from '@angular/material/list';
+import { Subject, takeUntil } from 'rxjs';
+
+const VIEW_DELAY = 30;
 
 @Component({
   selector: 'app-courses-nav',
@@ -23,9 +27,10 @@ import {
   styleUrls: ['./courses-nav.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CoursesNavComponent implements AfterViewInit {
-  @ViewChild(MatSidenav) sidenav!: MatSidenav;
+export class CoursesNavComponent implements AfterViewInit, OnDestroy {
   @ViewChildren(MatListItem) options: QueryList<MatListItem>;
+
+  destroy = new Subject();
 
   courses = this.sourceService.getCourseTileList();
 
@@ -33,25 +38,32 @@ export class CoursesNavComponent implements AfterViewInit {
     private router: Router,
     private sourceService: SourceService,
     public menuService: MenuService
-  ) {}
+  ) {
+    this.menuService.onOpen.pipe(takeUntil(this.destroy)).subscribe(() => {
+      this.resetFoucs();
+    });
+  }
 
   ngAfterViewInit() {
     this.resetFoucs();
   }
 
   toggleMenu() {
-    this.sidenav.toggle();
-    if (!this.sidenav.opened) return;
-    setTimeout(() => {
-      this.resetFoucs();
-    }, 30);
+    this.menuService.toggleMenu();
   }
 
   resetFoucs() {
-    this.options.first._elementRef.nativeElement.focus();
+    setTimeout(() => {
+      this.options.first._elementRef.nativeElement.focus();
+    }, VIEW_DELAY);
   }
 
   openCourse(courseId: string) {
     this.router.navigate(['/course'], { queryParams: { id: courseId } });
+  }
+
+  ngOnDestroy() {
+    this.destroy.next(null);
+    this.destroy.complete();
   }
 }
