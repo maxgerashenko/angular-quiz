@@ -99,10 +99,10 @@ export const messageQueue: Quiz = {
       title:
         'What are the three cases when a message can be sent to a dead-letter queue?',
       optionsList: [
-        'When the message is corrupted, when the message is not delivered, and when the message is too large',
-        'When the message intended for a queue that doesn’t exist anymore, when the queue length limit is exceeded, and when the message expires due to per-message time to live (TTL)',
-        'When the message is out of order, when the message is too small, and when the message is lost',
-        'When the message is too slow, when the message is too fast, and when the message is too complex',
+        'Corrupted, is not delivered, too large',
+        'Doesn’t exist anymore, queue length limit is exceeded, expires due to per-message time to live (TTL)',
+        'Out of order, too small, and lost',
+        'too slow, too fast, and too complex',
       ],
       answer: 'b',
       description:
@@ -215,18 +215,6 @@ export const messageQueue: Quiz = {
       description:
         'The purpose of sharding is to distribute data across servers.',
     },
-    {
-      title: 'What is the purpose of a metadata cache cluster?',
-      optionsList: [
-        'To manage hosts',
-        'To manage message queues',
-        'To distribute metadata cache',
-        'To distribute data across servers',
-      ],
-      answer: 'c',
-      description:
-        'The purpose of a metadata cache cluster is to distribute metadata cache.',
-    },
 
     {
       title:
@@ -249,20 +237,20 @@ export const messageQueue: Quiz = {
         'The back-end server',
         'Both B and C',
       ],
-      answer: 'a',
+      answer: 'b',
       description:
         'The metadata service interacts with both the front-end and data layer components to manage the queues.',
     },
     {
       title:
-        'What is the primary-secondary model in distributed messaging queues?',
+        'Which model is commonly used in distributed messaging queues to provide high availability and fault tolerance?',
       optionsList: [
-        'The primary host is responsible for data replication',
-        'Secondary hosts replicate the data',
-        'The internal cluster manager maps hosts and queues',
-        'All of the above',
+        'Primary-Secondary Model',
+        'Publish-Subscribe Model',
+        'Point-to-Point Model',
+        'Request-Reply Model',
       ],
-      answer: 'd',
+      answer: 'a',
       description:
         'The primary-secondary model in distributed messaging queues involves the primary host being responsible for data replication, secondary hosts replicating the data, and the internal cluster manager mapping hosts and queues.',
     },
