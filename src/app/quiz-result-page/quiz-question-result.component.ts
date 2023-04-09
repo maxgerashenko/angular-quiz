@@ -34,7 +34,7 @@ export class QuizQuestionResultComponent {
   isCorrect(optionLetter: string): boolean {
     return (
       (this.question.selectedValue === optionLetter &&
-        this.question.selectedValue === this.question.answer) ||
+        this.question.selectedValue === this.getAnswer()) ||
       optionLetter === this.getAnswer()
     );
   }
@@ -47,6 +47,7 @@ export class QuizQuestionResultComponent {
   }
 
   isRelevant(optionLetter: string): boolean {
+    debugger;
     return (
       optionLetter === this.question.selectedValue ||
       optionLetter === this.getAnswer()

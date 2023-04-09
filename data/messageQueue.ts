@@ -14,7 +14,7 @@ export const messageQueue: Quiz = {
         'To create and send messages to the queue',
         'To delete messages from the queue',
       ],
-      answer: 'C',
+      answer: 'c',
       description:
         'The client is the component that creates and sends messages to the messaging queue.',
     },
@@ -53,7 +53,7 @@ export const messageQueue: Quiz = {
         'To validate and authorize client requests',
         'To store and deliver messages to clients',
       ],
-      answer: 'A',
+      answer: 'a',
       description:
         'The metadata database stores messages and users, which can be used for auditing and tracking purposes.',
     },
@@ -287,7 +287,7 @@ export const messageQueue: Quiz = {
         'The back-end server',
         'Both B and C',
       ],
-      answer: 'D',
+      answer: 'a',
       description:
         'The metadata service interacts with both the front-end and data layer components to manage the queues.',
     },

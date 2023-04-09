@@ -1,10 +1,7 @@
+<!-- inCorrectFirst: question.answer:question.selectedValue; -->
 <mat-list>
   <ng-container
-    *ngFor="
-      let option of question.optionsList
-        | inCorrectFirst: question.answer:question.selectedValue;
-      let optionIndex = index
-    "
+    *ngFor="let option of question.optionsList; let optionIndex = index"
   >
     <mat-list-item
       *ngIf="isRelevant(optionIndex | indexLetter)"
