@@ -63,6 +63,7 @@ export class QuizPageComponent {
   onToogleChange(isLocalResultOn) {
     this.isLocalResultOn = isLocalResultOn;
     this.settingsService.setResulstSettings({ isLocalResultOn });
+    this.optionsList.resetFocus();
   }
 
   onSelectOption(value) {
