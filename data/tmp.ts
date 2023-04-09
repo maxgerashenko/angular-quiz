@@ -2,6 +2,7 @@ import { Course } from '../src/app/services/interfaces';
 import { consistency } from './consistency';
 import { distributedMonitoring } from './distributedMonitoring';
 import { distributedQueue } from './ditributedCache';
+import { failureModels } from './failureModels';
 import { messageQueue } from './messageQueue';
 import { rpc } from './rpc';
 
@@ -39,6 +40,7 @@ export const TMP_COURSES_LIST: Course[] = [
     title: 'System Deisgn',
     quizzesList: [
       consistency,
+      failureModels,
       rpc,
       distributedMonitoring,
       distributedQueue,
