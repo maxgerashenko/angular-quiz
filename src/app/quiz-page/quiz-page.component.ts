@@ -57,7 +57,10 @@ export class QuizPageComponent {
   resetQuiz() {
     this.isResultSet = false;
     this.questionIndex = 0;
-    this.questoinsWithResults = this.shuffleQuestions();
+    this.questoinsWithResults = this.shuffleQuestions(this.quiz.questionsList);
+    this.questoinsWithResults = this.resetSelectedOptions(
+      this.questoinsWithResults
+    );
     this.menuService.closeMenu();
   }
 
@@ -102,14 +105,25 @@ export class QuizPageComponent {
     });
   }
 
-  private shuffleQuestions() {
-    const questions = [...this.quiz.questionsList];
-    const half = Math.round(questions.length / 2);
-    const lastIndex = questions.length - 1;
+  private resetSelectedOptions = (
+    questions: (Question | QuestionWithResult)[]
+  ) =>
+    questions.map((question) => ({
+      ...question,
+      selectedValue: undefined,
+    }));
+
+  private shuffleQuestions(questions: Question[]) {
+    const shuffledQuestions = [...questions];
+    const half = Math.round(shuffledQuestions.length / 2);
+    const lastIndex = shuffledQuestions.length - 1;
     for (let i = lastIndex; i >= half; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [questions[i], questions[j]] = [questions[j], questions[i]];
+      [shuffledQuestions[i], shuffledQuestions[j]] = [
+        shuffledQuestions[j],
+        shuffledQuestions[i],
+      ];
     }
-    return questions;
+    return shuffledQuestions;
   }
 }
