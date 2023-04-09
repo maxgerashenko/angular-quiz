@@ -29,9 +29,11 @@ export class QuestionOptionsComponent {
   constructor(readonly indexLetter: IndexLetterPipe) {}
 
   ngOnChanges(changes: SimpleChanges) {
-    setTimeout(() => {
-      this.resetFocus();
-    }, 40);
+    if (changes.options) {
+      setTimeout(() => {
+        this.resetFocus();
+      }, 40);
+    }
   }
 
   onSelectionChange(event: MatSelectionListChange): void {
