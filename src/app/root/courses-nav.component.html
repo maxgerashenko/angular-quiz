@@ -10,7 +10,7 @@
       class="menu-nav-button menu-top"
       [class.is-open]="sidenav.opened"
       mat-mini-fab
-      (click)="sidenav.toggle()"
+      (click)="toggleMenu()"
     >
       <mat-icon *ngIf="!sidenav.opened">arrow_forward_ios</mat-icon>
       <mat-icon *ngIf="sidenav.opened">arrow_back_ios</mat-icon>
@@ -39,7 +39,7 @@
     [class.is-open]="sidenav.opened"
     class="menu-nav-button"
     mat-mini-fab
-    (click)="sidenav.toggle()"
+    (click)="toggleMenu()"
   >
     <mat-icon *ngIf="!sidenav.opened">arrow_forward_ios</mat-icon>
     <mat-icon *ngIf="sidenav.opened">arrow_back_ios</mat-icon>
