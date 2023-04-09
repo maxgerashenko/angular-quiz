@@ -1,6 +1,6 @@
 import { Quiz } from '../src/app/services/interfaces';
 
-export const BackOfTheEnvelopeCalculation: Quiz = {
+export const backOfTheEnvelopeCalculation: Quiz = {
   courseId: '1',
   courseTitle: 'System Design',
   summary: `Back-of-the-envelope calculations are quick and rough estimations that are based on assumptions and simplifications. These calculations are useful for getting a rough idea of the feasibility of a project, determining the scale of the required infrastructure, and making initial design decisions.
