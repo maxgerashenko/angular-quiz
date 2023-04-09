@@ -55,6 +55,7 @@ export class QuizPageComponent {
   }
 
   resetQuiz() {
+    this.isResultSet = false;
     this.questionIndex = 0;
     this.questoinsWithResults = this.shuffleQuestions();
     this.menuService.closeMenu();
