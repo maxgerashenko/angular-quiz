@@ -109,12 +109,11 @@ export const distributedQueue: Quiz = {
     {
       title: 'What is sharding?',
       optionsList: [
-        'A technique to partition data across multiple nodes in a distributed system',
         'A way to encrypt data in a cache',
         'A technique to store data in secondary storage',
         'A technique to replicate data across multiple nodes in a distributed system',
       ],
-      answer: 'a',
+      answer: 'c',
       description:
         'Sharding is a technique to partition data across multiple nodes in a distributed system.',
     },
@@ -176,7 +175,7 @@ export const distributedQueue: Quiz = {
         'The process of removing data from the cache after a set period of time',
         'The process of removing data from the cache in response to specific events or changes in the data store',
       ],
-      answer: 'd',
+      answer: 'c',
       description:
         'Cache invalidation is the process of removing data from the cache in response to specific events or changes in the data store.',
     },
