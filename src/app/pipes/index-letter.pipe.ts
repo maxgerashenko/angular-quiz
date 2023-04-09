@@ -5,6 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class IndexLetterPipe implements PipeTransform {
   transform(value: number): string {
-    return String.fromCharCode(value + 97);
+    return String.fromCharCode(value + 97).toLocaleLowerCase();
   }
 }

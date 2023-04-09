@@ -29,27 +29,32 @@ export class QuizQuestionResultComponent {
     if (this.isSingle && this.question.description && this.inIncorrect) {
       this.voiceService.readResults(this.question.description);
     }
+    this.question = [this.question].map((question: QuestionWithResult) => ({
+      ...question,
+      selectedValue: question.selectedValue.toLocaleLowerCase(),
+      answer: question.answer.toLocaleLowerCase(),
+    }))[0];
   }
 
   isCorrect(optionLetter: string): boolean {
     return (
-      (this.question.selectedValue === optionLetter &&
+      (this.question.selectedValue === optionLetter.toLocaleLowerCase() &&
         this.question.selectedValue === this.question.answer) ||
-      optionLetter === this.question.answer
+      optionLetter.toLocaleLowerCase() === this.question.answer
     );
   }
 
   isInCorrect(optionLetter: string): boolean {
     return (
-      optionLetter === this.question.selectedValue &&
+      optionLetter.toLocaleLowerCase() === this.question.selectedValue &&
       this.question.answer !== this.question.selectedValue
     );
   }
 
   isRelevant(optionLetter: string): boolean {
     return (
-      optionLetter === this.question.selectedValue ||
-      optionLetter === this.question.answer
+      optionLetter.toLocaleLowerCase() === this.question.selectedValue ||
+      optionLetter.toLocaleLowerCase() === this.question.answer
     );
   }
 

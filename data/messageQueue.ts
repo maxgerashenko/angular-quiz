@@ -9,10 +9,10 @@ export const messageQueue: Quiz = {
     {
       title: 'What is the role of the client in a messaging queue system?',
       optionsList: [
-        'A. To receive messages from the queue',
-        'B. To store messages in the queue',
-        'C. To create and send messages to the queue',
-        'D. To delete messages from the queue',
+        'To receive messages from the queue',
+        'To store messages in the queue',
+        'To create and send messages to the queue',
+        'To delete messages from the queue',
       ],
       answer: 'C',
       description:
@@ -22,10 +22,10 @@ export const messageQueue: Quiz = {
       title:
         'What is the responsibility of the front-end server in a messaging queue system?',
       optionsList: [
-        'A. To store and retrieve metadata related to queues',
-        'B. To distribute client traffic among multiple front-end servers',
-        'C. To validate and authorize client requests',
-        'D. To store and deliver messages to clients',
+        'To store and retrieve metadata related to queues',
+        'To distribute client traffic among multiple front-end servers',
+        'To validate and authorize client requests',
+        'To store and deliver messages to clients',
       ],
       answer: 'C',
       description:
@@ -35,10 +35,10 @@ export const messageQueue: Quiz = {
       title:
         'What is the purpose of the metadata service in a messaging queue system?',
       optionsList: [
-        'A. To distribute client traffic among multiple front-end servers',
-        'B. To store and retrieve metadata related to queues',
-        'C. To validate and authorize client requests',
-        'D. To store and deliver messages to clients',
+        'To distribute client traffic among multiple front-end servers',
+        'To store and retrieve metadata related to queues',
+        'To validate and authorize client requests',
+        'To store and deliver messages to clients',
       ],
       answer: 'B',
       description:
@@ -48,10 +48,10 @@ export const messageQueue: Quiz = {
       title:
         'What is the role of the metadata database in a messaging queue system?',
       optionsList: [
-        'A. To store messages and users for auditing and tracking purposes',
-        'B. To distribute client traffic among multiple front-end servers',
-        'C. To validate and authorize client requests',
-        'D. To store and deliver messages to clients',
+        'To store messages and users for auditing and tracking purposes',
+        'To distribute client traffic among multiple front-end servers',
+        'To validate and authorize client requests',
+        'To store and deliver messages to clients',
       ],
       answer: 'A',
       description:
@@ -61,10 +61,10 @@ export const messageQueue: Quiz = {
       title:
         'What is the purpose of the metadata cache server in a messaging queue system?',
       optionsList: [
-        'A. To distribute client traffic among multiple front-end servers',
-        'B. To store and retrieve metadata related to queues',
-        'C. To cache metadata related to queues',
-        'D. To store and deliver messages to clients',
+        'To distribute client traffic among multiple front-end servers',
+        'To store and retrieve metadata related to queues',
+        'To cache metadata related to queues',
+        'To store and deliver messages to clients',
       ],
       answer: 'C',
       description:
@@ -74,10 +74,10 @@ export const messageQueue: Quiz = {
       title:
         'What is the role of the back-end server in a messaging queue system?',
       optionsList: [
-        'A. To distribute client traffic among multiple front-end servers',
-        'B. To store and retrieve metadata related to queues',
-        'C. To validate and authorize client requests',
-        'D. To store and deliver messages to clients',
+        'To distribute client traffic among multiple front-end servers',
+        'To store and retrieve metadata related to queues',
+        'To validate and authorize client requests',
+        'To store and deliver messages to clients',
       ],
       answer: 'D',
       description:
@@ -269,10 +269,10 @@ export const messageQueue: Quiz = {
       title:
         'What is the responsibility of the front-end server in message deduplication?',
       optionsList: [
-        'A. To ensure that each message is delivered to the appropriate client',
-        'B. To cache authentication and authorization data',
-        'C. To validate and authorize client requests',
-        'D. To deduplicate messages',
+        'To ensure that each message is delivered to the appropriate client',
+        'To cache authentication and authorization data',
+        'To validate and authorize client requests',
+        'To deduplicate messages',
       ],
       answer: 'D',
       description:
@@ -282,10 +282,10 @@ export const messageQueue: Quiz = {
       title:
         'What does the metadata service interact with in a messaging queue system?',
       optionsList: [
-        'A. The client',
-        'B. The front-end server',
-        'C. The back-end server',
-        'D. Both B and C',
+        'The client',
+        'The front-end server',
+        'The back-end server',
+        'Both B and C',
       ],
       answer: 'D',
       description:
