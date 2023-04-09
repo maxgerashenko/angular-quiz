@@ -1,11 +1,12 @@
 import { Course } from '../src/app/services/interfaces';
-import { modalWords } from './1';
 import { availability } from './availability';
 import { consistency } from './consistency';
 import { distributedMonitoring } from './distributedMonitoring';
 import { distributedQueue } from './ditributedCache';
 import { failureModels } from './failureModels';
 import { messageQueue } from './messageQueue';
+import { modalVerbs } from './modalVerbs';
+import { modalVerbs2 } from './modalVerbs2';
 import { rpc } from './rpc';
 
 export const TMP_COURSES_LIST: Course[] = [
@@ -40,7 +41,7 @@ export const TMP_COURSES_LIST: Course[] = [
   {
     id: '2',
     title: 'English',
-    quizzesList: [modalWords],
+    quizzesList: [modalVerbs, modalVerbs2],
   },
   {
     id: '1',

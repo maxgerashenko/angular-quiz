@@ -1,6 +1,6 @@
 import { Quiz } from '../src/app/services/interfaces';
 
-export const modalWords: Quiz = {
+export const modalVerbs: Quiz = {
   id: '0',
   courseId: '2',
   courseTitle: 'English Lesson',
