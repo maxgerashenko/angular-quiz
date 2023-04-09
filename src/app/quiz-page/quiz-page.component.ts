@@ -92,6 +92,11 @@ export class QuizPageComponent {
   }
 
   goToList() {
+    if (this.sourceService.isLastQuiz(this.quiz.courseId, this.quiz.id)) {
+      this.router.navigate(['/start']);
+      return;
+    }
+
     this.router.navigate(['/course'], {
       queryParams: { id: this.quiz.courseId },
     });

@@ -33,4 +33,17 @@ export class SourceService {
   getCourse(id: string): Course {
     return this.coursesList.find((course) => course.id === id)!;
   }
+
+  isLastQuiz(courseId: string, quizId: string) {
+    const course = this.getCourse(courseId);
+    return this.isLastObjectInArray(course.quizzesList, quizId);
+  }
+
+  private isLastObjectInArray(
+    array: Partial<{ id: string }>[],
+    id: string
+  ): boolean {
+    const index = array.findIndex((obj) => obj.id === id);
+    return index !== -1 && index === array.length - 1;
+  }
 }
