@@ -10,6 +10,7 @@ import { modalVerbs2 } from './modalVerbs2';
 import { reliability } from './reliability';
 import { rpc } from './rpc';
 import { scalability } from './scalability';
+import { maintainability } from './maintainability';
 
 export const TMP_COURSES_LIST: Course[] = [
   {
@@ -55,6 +56,7 @@ export const TMP_COURSES_LIST: Course[] = [
       availability,
       reliability,
       scalability,
+      maintainability,
       distributedMonitoring,
       distributedQueue,
       messageQueue,
