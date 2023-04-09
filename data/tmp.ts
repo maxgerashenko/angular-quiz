@@ -1,4 +1,5 @@
 import { Course } from '../src/app/services/interfaces';
+import { modalWords } from './1';
 import { availability } from './availability';
 import { consistency } from './consistency';
 import { distributedMonitoring } from './distributedMonitoring';
@@ -35,6 +36,11 @@ export const TMP_COURSES_LIST: Course[] = [
         ],
       },
     ],
+  },
+  {
+    id: '2',
+    title: 'English',
+    quizzesList: [modalWords],
   },
   {
     id: '1',
