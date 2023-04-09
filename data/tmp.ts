@@ -7,6 +7,7 @@ import { failureModels } from './failureModels';
 import { messageQueue } from './messageQueue';
 import { modalVerbs } from './modalVerbs';
 import { modalVerbs2 } from './modalVerbs2';
+import { reliability } from './reliability';
 import { rpc } from './rpc';
 
 export const TMP_COURSES_LIST: Course[] = [
@@ -51,6 +52,7 @@ export const TMP_COURSES_LIST: Course[] = [
       consistency,
       failureModels,
       availability,
+      reliability,
       distributedMonitoring,
       distributedQueue,
       messageQueue,
