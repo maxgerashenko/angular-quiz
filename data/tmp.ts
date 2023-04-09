@@ -2,6 +2,7 @@ import { Course } from '../src/app/services/interfaces';
 import { distributedMonitoring } from './distributedMonitoring';
 import { distributedQueue } from './ditributedCache';
 import { messageQueue } from './messageQueue';
+import { rpc } from './rpc';
 
 export const TMP_COURSES_LIST: Course[] = [
   {
@@ -35,6 +36,6 @@ export const TMP_COURSES_LIST: Course[] = [
   {
     id: '1',
     title: 'System Deisgn',
-    quizzesList: [distributedMonitoring, distributedQueue, messageQueue],
+    quizzesList: [rpc, distributedMonitoring, distributedQueue, messageQueue],
   },
 ];
