@@ -46,10 +46,10 @@ export const TMP_COURSES_LIST: Course[] = [
     id: '1',
     title: 'System Deisgn',
     quizzesList: [
-      consistency,
-      availability,
-      failureModels,
       rpc,
+      consistency,
+      failureModels,
+      availability,
       distributedMonitoring,
       distributedQueue,
       messageQueue,
