@@ -38,7 +38,6 @@ export class QuestionComponent {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.question) {
-      debugger;
       this.voiceService.readTitle(this.question.title);
     }
   }

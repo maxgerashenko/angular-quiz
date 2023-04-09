@@ -5,6 +5,7 @@ import {
   EventEmitter,
   ViewChild,
   ChangeDetectionStrategy,
+  SimpleChanges,
 } from '@angular/core';
 import {
   MatSelectionList,
@@ -27,8 +28,10 @@ export class QuestionOptionsComponent {
 
   constructor(readonly indexLetter: IndexLetterPipe) {}
 
-  ngAfterViewInit() {
-    this.resetFocus();
+  ngOnChanges(changes: SimpleChanges) {
+    setTimeout(() => {
+      this.resetFocus();
+    }, 40);
   }
 
   onSelectionChange(event: MatSelectionListChange): void {

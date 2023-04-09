@@ -81,7 +81,6 @@ export class QuizResultPageComponent {
   }
 
   ngAfterViewInit() {
-    debugger;
     assert(this.questionsResults, 'descriptions is not on the page');
 
     const messages = this.questionsResults.map((result) =>
