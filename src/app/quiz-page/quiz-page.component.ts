@@ -73,7 +73,7 @@ export class QuizPageComponent {
   onSelectOption(value) {
     this.questoinsWithResults[this.questionIndex].selectedValue = value;
     const question = this.questoinsWithResults[this.questionIndex];
-    const isCorrect = question.selectedValue === question.answer;
+    const isCorrect = question.selectedValue === question.answer.toLocaleLowerCase();
     this.isResultSet = true;
     if (this.isLocalResultOn && !isCorrect) return; // bailout;
 

@@ -7,18 +7,6 @@ export const messageQueue: Quiz = {
   title: 'Messaging Queues',
   questionsList: [
     {
-      title: 'What is the role of the client in a messaging queue system?',
-      optionsList: [
-        'To receive messages from the queue',
-        'To store messages in the queue',
-        'To create and send messages to the queue',
-        'To delete messages from the queue',
-      ],
-      answer: 'c',
-      description:
-        'The client is the component that creates and sends messages to the messaging queue.',
-    },
-    {
       title:
         'What is the responsibility of the front-end server in a messaging queue system?',
       optionsList: [
@@ -59,25 +47,12 @@ export const messageQueue: Quiz = {
     },
     {
       title:
-        'What is the purpose of the metadata cache server in a messaging queue system?',
-      optionsList: [
-        'To distribute client traffic among multiple front-end servers',
-        'To store and retrieve metadata related to queues',
-        'To cache metadata related to queues',
-        'To store and deliver messages to clients',
-      ],
-      answer: 'C',
-      description:
-        'The metadata cache server caches metadata related to queues, such as the number of messages in the queue, to improve performance and reduce latency.',
-    },
-    {
-      title:
         'What is the role of the back-end server in a messaging queue system?',
       optionsList: [
         'To distribute client traffic among multiple front-end servers',
         'To store and retrieve metadata related to queues',
         'To validate and authorize client requests',
-        'To store and deliver messages to clients',
+        'To store, process, and transmit messages ',
       ],
       answer: 'D',
       description:
@@ -94,18 +69,6 @@ export const messageQueue: Quiz = {
       answer: 'b',
       description:
         'The two types of message ordering are best-effort and strict ordering. Best-effort ordering follows FIFO for the system received order, not necessarily the order produced by the client. Strict ordering follows FIFO for the client produced order.',
-    },
-    {
-      title: 'What are the four types of indexes to maintain message ordering?',
-      optionsList: [
-        'Sequence numbers, event-driven, synchronized clocks, and timestamp + sequence numbers',
-        'Sequence numbers, wall-clock timestamps, synchronized clocks timestamps, and timestamp + sequence numbers',
-        'FIFO, wall-clock timestamps, synchronized clocks, and timestamp + sequence numbers',
-        'Sequence numbers, LIFO, synchronized clocks, and timestamp + sequence numbers',
-      ],
-      answer: 'b',
-      description:
-        'The four types of indexes to maintain message ordering are sequence numbers, wall-clock timestamps, synchronized clocks timestamps, and timestamp + sequence numbers.',
     },
     {
       title:
@@ -271,10 +234,9 @@ export const messageQueue: Quiz = {
       optionsList: [
         'To ensure that each message is delivered to the appropriate client',
         'To cache authentication and authorization data',
-        'To validate and authorize client requests',
-        'To deduplicate messages',
+        'To validate and authorize client requests and deduplicate messages',
       ],
-      answer: 'D',
+      answer: 'c',
       description:
         'The front-end server is responsible for deduplicating messages.',
     },
@@ -332,23 +294,10 @@ export const messageQueue: Quiz = {
     },
     {
       title:
-        'What is at-least-once delivery semantic in distributed messaging queues?',
-      optionsList: [
-        'The message is delivered at least once to the consumer',
-        'The message is delivered exactly once to the consumer',
-        'The message is delivered at most once to the consumer',
-        'None of the above',
-      ],
-      answer: 'a',
-      description:
-        'At-least-once delivery semantic in distributed messaging queues means that in the event of a worker failure, the message is processed again to ensure the message is delivered at least once to the consumer.',
-    },
-    {
-      title:
         'What is the impact of enforcing strict ordering in distributed messaging queues?',
       optionsList: [
-        'Improved performance',
-        'Increased complexity',
+        'Decrease performance & Increased complexity',
+        'Decrease complexity',
         'Better reliability',
         'None of the above',
       ],
@@ -380,19 +329,6 @@ export const messageQueue: Quiz = {
       answer: 'a',
       description:
         'Internal cluster managers manage queues within a cluster, while external cluster managers manage queues across clusters.',
-    },
-    {
-      title:
-        'What is the impact of message deletion on message processing in distributed messaging queues?',
-      optionsList: [
-        "Deleting a message immediately after it's consumed ensures better performance",
-        'Deleting a message after a certain period of time called visibility_timeout ensures message reliability',
-        'Deleting a message can have no impact on message processing if the consumer fails to delete it',
-        'None of the above',
-      ],
-      answer: 'c',
-      description:
-        'In distributed messaging queues, deleting a message can have no impact on message processing if the consumer fails to delete it.',
     },
     {
       title:
