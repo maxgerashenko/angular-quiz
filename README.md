@@ -32,7 +32,7 @@ Once Quizify is installed, you can access the application by navigating to `http
   - [ ] Make request to generate quiz
 - Git
   - [ ] Create a submodule for the pull requests with gitPod
-- Project
+- Testing
   - [ ] Run and show tests results
 - DataBase
   - [ ] Intergrate fireBase
