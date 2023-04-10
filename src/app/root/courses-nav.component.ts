@@ -8,7 +8,7 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SourceService } from '../services/source.service';
 import { MenuService } from '../services/menu.service';
 import { MatSidenav } from '@angular/material/sidenav';
@@ -18,6 +18,7 @@ import {
   MatListOption,
 } from '@angular/material/list';
 import { Subject, takeUntil } from 'rxjs';
+import { map, withLatestFrom } from 'rxjs/operators';
 
 const VIEW_DELAY = 30;
 
@@ -35,13 +36,25 @@ export class CoursesNavComponent implements AfterViewInit, OnDestroy {
   courses = this.sourceService.getCourseTileList();
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private sourceService: SourceService,
     public menuService: MenuService
   ) {
-    this.menuService.onOpen.pipe(takeUntil(this.destroy)).subscribe(() => {
-      this.resetFoucs();
-    });
+    this.menuService.onOpen
+      .pipe(
+        takeUntil(this.destroy),
+        withLatestFrom(this.route.url),
+        map(([isOpen, url]) => [isOpen, url[0].path])
+      )
+      .subscribe(([isOpen, routeUrl]) => {
+        debugger;
+        if (!isOpen || routeUrl !== '/start') return;
+        this.resetFoucs();
+      });
+    // this.menuService.onOpen.pipe(takeUntil(this.destroy)).subscribe(() => {
+    //   this.resetFoucs();
+    // });
   }
 
   ngAfterViewInit() {
