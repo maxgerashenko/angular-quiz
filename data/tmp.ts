@@ -13,6 +13,8 @@ import { scalability } from './scalability';
 import { maintainability } from './maintainability';
 import { faultTolerance } from './faultTolerance';
 import { backOfTheEnvelopeCalculation } from './backOfTheEnvelopeCalculation';
+import { dns } from './dns';
+import { loadBalancer } from './loadBallancer';
 
 export const TMP_COURSES_LIST: Course[] = [
   {
@@ -61,6 +63,8 @@ export const TMP_COURSES_LIST: Course[] = [
       maintainability,
       faultTolerance,
       backOfTheEnvelopeCalculation,
+      dns,
+      loadBalancer,
       distributedMonitoring,
       distributedQueue,
       messageQueue,
