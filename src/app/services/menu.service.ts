@@ -7,12 +7,16 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class MenuService {
   isMenuOpen = new BehaviorSubject<boolean>(true);
   onOpen = new Subject();
+  onClose = new Subject();
 
   toggleMenu() {
-    this.isMenuOpen.next(!this.isMenuOpen.value);
-    if (this.isMenuOpen.value) {
+    let isOpen = !this.isMenuOpen.value;
+    this.isMenuOpen.next(isOpen);
+    if (isOpen) {
       this.onOpen.next(null);
+      return;
     }
+    this.onClose.next(null);
   }
 
   openMenu() {
@@ -22,5 +26,6 @@ export class MenuService {
 
   closeMenu() {
     this.isMenuOpen.next(false);
+    this.onClose.next(null);
   }
 }

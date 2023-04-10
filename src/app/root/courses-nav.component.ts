@@ -41,20 +41,11 @@ export class CoursesNavComponent implements AfterViewInit, OnDestroy {
     private sourceService: SourceService,
     public menuService: MenuService
   ) {
-    this.menuService.onOpen
-      .pipe(
-        takeUntil(this.destroy),
-        withLatestFrom(this.route.url),
-        map(([isOpen, url]) => [isOpen, url[0].path])
-      )
-      .subscribe(([isOpen, routeUrl]) => {
-        debugger;
-        if (!isOpen || routeUrl !== '/start') return;
-        this.resetFoucs();
-      });
-    // this.menuService.onOpen.pipe(takeUntil(this.destroy)).subscribe(() => {
-    //   this.resetFoucs();
-    // });
+    this.menuService.onOpen.pipe(takeUntil(this.destroy)).subscribe(() => {
+      debugger;
+      if (this.router.url !== '/start') return;
+      this.resetFoucs();
+    });
   }
 
   ngAfterViewInit() {
