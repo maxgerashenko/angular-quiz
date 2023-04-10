@@ -15,7 +15,7 @@ export type sortedQuestion = Question & { selected: string };
 })
 export class QuizResultPageComponent {
   @ViewChildren('questionResult')
-  questionsResults!: QueryList<QuizQuestionResultComponent>;
+  questionResult!: QueryList<QuizQuestionResultComponent>;
   progressColor: 'primary' | 'accent';
   score: number;
   total: number;
@@ -81,11 +81,14 @@ export class QuizResultPageComponent {
   }
 
   ngAfterViewInit() {
-    assert(this.questionsResults, 'descriptions is not on the page');
+    assert(this.questionResult, 'descriptions is not on the page');
 
-    const messages = this.questionsResults.map((result) =>
-      result.description.nativeElement.textContent.trim()
-    );
+    const messages = this.questionResult
+      .filter(({ description }) => description)
+      .map<string>((component) =>
+        component.description.nativeElement.textContent.trim()
+      );
+
     this.readResults(messages);
   }
 
