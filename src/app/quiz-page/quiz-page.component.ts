@@ -42,6 +42,10 @@ export class QuizPageComponent {
   questoinsWithResults!: (Question | QuestionWithResult)[];
   questionIndex = 0;
   isLocalResultOn = this.settingsService.getResulstSettings().isLocalResultOn;
+  isLastQuizInCourse = this.sourceService.isLastQuiz(
+    this.quiz.courseId,
+    this.quiz.id
+  );
 
   constructor(
     private readonly sourceService: SourceService,
@@ -73,7 +77,8 @@ export class QuizPageComponent {
   onSelectOption(value) {
     this.questoinsWithResults[this.questionIndex].selectedValue = value;
     const question = this.questoinsWithResults[this.questionIndex];
-    const isCorrect = question.selectedValue === question.answer.toLocaleLowerCase();
+    const isCorrect =
+      question.selectedValue === question.answer.toLocaleLowerCase();
     this.isResultSet = true;
     if (this.isLocalResultOn && !isCorrect) return; // bailout;
 
