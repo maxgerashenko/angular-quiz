@@ -42,7 +42,6 @@ export class CoursesNavComponent implements AfterViewInit, OnDestroy {
     public menuService: MenuService
   ) {
     this.menuService.onOpen.pipe(takeUntil(this.destroy)).subscribe(() => {
-      debugger;
       if (this.router.url !== '/start') return;
       this.resetFoucs();
     });
