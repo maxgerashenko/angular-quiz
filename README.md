@@ -23,8 +23,8 @@ Once Quizify is installed, you can access the application by navigating to `http
   - [x] Settings to read questions/read question & results/turn off
   - [x] Show results after each answer with "Show Correct" trigger
   - [x] Change "List" navigation for the last quiz in list to "Start" page
+  - [x] Auto focus flow for keyboard navigation
   - [ ] Allow user to change voice speed
-  - [ ] Auto focus flow for keyboard navigation
   - [ ] Create Quiz progress reset button
   - [ ] Show progress status in numbers
 - Functional
