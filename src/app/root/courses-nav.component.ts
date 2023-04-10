@@ -32,7 +32,6 @@ export class CoursesNavComponent implements AfterViewInit, OnDestroy {
   @ViewChildren(MatListItem) options: QueryList<MatListItem>;
 
   destroy = new Subject();
-
   courses = this.sourceService.getCourseTileList();
 
   constructor(
