@@ -29,10 +29,10 @@
 
   <mat-card-actions class="button-container space-between">
     <div>
-      <button mat-button (click)="resetQuiz()">Reset</button>
       <button mat-button (click)="goToList()">
         {{ isLastQuizInCourse ? 'Course' : '' }} List
       </button>
+      <button mat-button (click)="resetQuiz()">Reset</button>
     </div>
     <button
       *ngIf="isResultSet"
